@@ -120,36 +120,36 @@ const HeroSection = ({ setCurrentPage }) => (
         />
       </div>
 
-      <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
+      <div className="mb-6 inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
         <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-        <span className="text-amber-400 text-sm font-medium tracking-wide">成立于 2002 · 新加坡历史最悠久的华人业余足球队之一</span>
+        <span className="text-amber-400 text-xs md:text-sm font-medium tracking-wide">成立于 2002 · 新加坡华人业余足球队</span>
       </div>
 
       <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
         STAR <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">FC</span>
       </h1>
       <p className="text-xl sm:text-2xl text-gray-300 mb-4 font-light">新加坡华人足球俱乐部</p>
-      <p className="text-2xl sm:text-3xl text-white font-medium mb-12">
+      <p className="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-8 md:mb-12">
         在异乡，也要踢出我们的<span className="text-amber-400">主场</span>。
       </p>
-      
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button 
+
+      <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+        <button
           onClick={() => setCurrentPage('fixtures')}
-          className="group px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl hover:from-red-500 hover:to-red-600 transition-all duration-300 shadow-lg shadow-red-900/50 hover:shadow-red-800/60 hover:-translate-y-1"
+          className="group px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl hover:from-red-500 hover:to-red-600 transition-all duration-300 shadow-lg shadow-red-900/50 hover:shadow-red-800/60 hover:-translate-y-1 text-sm md:text-base"
         >
           查看本周赛程
           <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
         </button>
-        <button 
+        <button
           onClick={() => setCurrentPage('history')}
-          className="px-8 py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300"
+          className="px-6 md:px-8 py-3 md:py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300 text-sm md:text-base"
         >
           了解 STAR FC 的故事
         </button>
-        <button 
+        <button
           onClick={() => setCurrentPage('join')}
-          className="px-8 py-4 bg-amber-500/10 backdrop-blur-sm text-amber-400 font-semibold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300"
+          className="px-6 md:px-8 py-3 md:py-4 bg-amber-500/10 backdrop-blur-sm text-amber-400 font-semibold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300 text-sm md:text-base"
         >
           我要加入球队
         </button>
@@ -642,13 +642,13 @@ const AboutPage = () => {
         <div className="max-w-4xl mx-auto px-4">
           <div className="prose prose-lg prose-invert max-w-none">
             <p className="text-gray-300 leading-relaxed text-lg">
-              STAR 华人足球俱乐部（STAR FC）创建于 <span className="text-amber-400 font-semibold">2002 年</span>，前身为「浙江华人足球队」，由终身名誉队长 <span className="text-amber-400 font-semibold">Lemon（9 号）</span> 发起。
+              <span className="text-white font-semibold">STAR FC</span> 创建于 <span className="text-amber-400 font-semibold">2002 年</span>，前身为「浙江华人足球队」，由终身名誉队长 <span className="text-amber-400 font-semibold">Lemon（9 号）</span> 发起。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
-              球队最早只是一群在新加坡打拼的华人，通过狮城华人论坛认识，约在一片烂泥地上踢球。后来与「狮城华人论坛队」合并，正式更名为 <span className="text-white font-semibold">STAR FC（STAR 华人足球俱乐部）</span>。
+              球队最早只是一群在新加坡打拼的华人，通过狮城华人论坛认识，约在一片烂泥地上踢球。后来与「狮城华人论坛队」合并，<span className="text-white font-semibold">STAR FC</span> 逐渐成为坡岛华人圈中历史最悠久的业余球队之一。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
-              从那时候起，STAR FC 一直是一支以华人为主、长期活跃在坡岛的 11 人制业余球队。
+              STAR FC 是一支以华人为主的业余 11 人制球队，长期活跃在新加坡各大球场。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
               经过二十多年的风雨，球队经历了无数次人员更替、工作压力、伤病和现实考验，但从来没有散。靠的是：
@@ -673,9 +673,9 @@ const AboutPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
             {[
               { value: '23+', label: '年历史' },
-              { value: '2025', label: 'UAFL 赛季' },
-              { value: '80+', label: '历史球员' },
-              { value: '25+', label: '活跃成员' },
+              { value: '亚军', label: '2025 UAFL 联赛' },
+              { value: '200+', label: '历史球员' },
+              { value: '30+', label: '活跃成员' },
             ].map((stat, idx) => (
               <div key={idx} className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50">
                 <p className="text-4xl font-bold text-amber-400">{stat.value}</p>
@@ -747,15 +747,17 @@ const clubStories = [
     title: '欢迎回家，Lemon 哥',
     summary: '球队创始人、终身名誉队长 Lemon 哥时隔多年回到新加坡，兄弟们用一场大胜和一件签名球衣欢迎他回家。',
     image: null,
-    color: 'from-amber-600/20 to-slate-900'
+    color: 'from-amber-600/20 to-slate-900',
+    link: 'https://xhslink.com/example-story-lemon'
   },
   {
-    id: 'first-championship-night',
+    id: '2025-final',
     tag: '冠军之夜',
-    title: '2024 联赛亚军之夜',
+    title: '2025 UAFL 联赛亚军',
     summary: '经过一整个赛季的拼搏，STAR FC 在 UAFL 联赛中取得亚军——这是球队二十多年来最好的联赛成绩之一。',
     image: null,
-    color: 'from-red-600/20 to-slate-900'
+    color: 'from-red-600/20 to-slate-900',
+    link: 'https://xhslink.com/example-story-2025'
   },
   {
     id: '0-3-to-4-3',
@@ -763,7 +765,8 @@ const clubStories = [
     title: '0–3 落后到 4–3 逆转',
     summary: '半场被打花，更衣室里没人说话。下半场开场 5 分钟追回一球，然后一发不可收拾——这是很多老队员心中 STAR FC 最燃的一战。',
     image: null,
-    color: 'from-green-600/20 to-slate-900'
+    color: 'from-green-600/20 to-slate-900',
+    link: 'https://xhslink.com/example-story-comeback'
   },
   {
     id: '20th-anniversary-legends-vs-now',
@@ -771,7 +774,8 @@ const clubStories = [
     title: '二十周年：老炮 vs 新锐',
     summary: '2022 年，球队成立 20 周年。我们组织了一场"元老队 vs 现役队"的内部对抗赛，场边站满了曾经穿过红色球衣的人。',
     image: null,
-    color: 'from-purple-600/20 to-slate-900'
+    color: 'from-purple-600/20 to-slate-900',
+    link: 'https://xhslink.com/example-story-20th'
   }
 ];
 
@@ -828,7 +832,7 @@ const HistoryPage = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Stories</span>
-            <h2 className="text-4xl font-bold text-white mt-2">最新战报与故事</h2>
+            <h2 className="text-4xl font-bold text-white mt-2">最新故事与动态</h2>
             <p className="text-gray-400 mt-4">二十多年，我们积累了太多值得记住的瞬间</p>
           </div>
 
@@ -839,9 +843,12 @@ const HistoryPage = () => {
               style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}
             >
               {clubStories.map((story) => (
-                <div
+                <a
                   key={story.id}
-                  className={`w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br ${story.color} rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group`}
+                  href={story.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br ${story.color} rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block`}
                 >
                   {/* Tag - 文章类型 */}
                   <span className="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">
@@ -858,10 +865,10 @@ const HistoryPage = () => {
                   {/* Read More Link */}
                   <div className="mt-4 pt-4 border-t border-slate-700/50">
                     <span className="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">
-                      阅读完整故事 →
+                      查看完整版 →
                     </span>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
@@ -877,44 +884,129 @@ const HistoryPage = () => {
           </p>
         </div>
       </section>
+
+      {/* Full Story: Lemon Homecoming */}
+      <section id="story-lemon-full" className="py-20 bg-slate-950">
+        <div className="max-w-4xl mx-auto px-4">
+          <a href="#" className="text-amber-400 text-sm hover:text-amber-300 mb-6 inline-block">← 返回故事列表</a>
+          <span className="block text-amber-400 text-sm font-semibold tracking-widest uppercase mt-4">记忆</span>
+          <h2 className="text-4xl font-bold text-white mt-2 mb-8">欢迎回家，Lemon 哥</h2>
+
+          <div className="prose prose-lg prose-invert max-w-none space-y-6">
+            <p className="text-gray-300 leading-relaxed text-lg">
+              2024 年的一个周末，球队微信群突然炸了——Lemon 哥要回来了。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              对很多新队员来说，Lemon 哥只是一个名字：球队创始人，终身名誉队长，9 号球衣永久封存。但对老队员来说，他是 STAR FC 的起点，是二十多年前在新加坡把大家召集到一起踢球的那个人。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              那天的比赛，队员们踢出了赛季最好的状态。最后时刻，一记漂亮的配合，球进了。所有人冲向边线——不是为了庆祝进球，而是为了让站在场边的 Lemon 哥看到：二十多年过去了，这支球队还在，还在赢球。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              赛后，队长拿出一件印满签名的球衣："Lemon 哥，欢迎回家。"
+            </p>
+            <blockquote className="border-l-4 border-amber-500 pl-6 my-8 italic text-xl text-white font-medium">
+              "这里永远是你的主场。"
+            </blockquote>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              Lemon 哥说不出话，只是拍了拍队长的肩膀。那一刻，没有人说话，但所有人都知道——STAR FC 的意义，从来不只是赢球。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Full Story: 2025 UAFL 亚军之夜 */}
+      <section id="story-2025-final-full" className="py-20 bg-slate-900">
+        <div className="max-w-4xl mx-auto px-4">
+          <a href="#" className="text-amber-400 text-sm hover:text-amber-300 mb-6 inline-block">← 返回故事列表</a>
+          <span className="block text-amber-400 text-sm font-semibold tracking-widest uppercase mt-4">亚军之夜</span>
+          <h2 className="text-4xl font-bold text-white mt-2 mb-8">2025 UAFL 联赛亚军之夜</h2>
+
+          <div className="prose prose-lg prose-invert max-w-none space-y-6">
+            <p className="text-gray-300 leading-relaxed text-lg">
+              2025 年 5 月 3 日，UAFL 联赛决赛。这是 STAR FC 成立二十多年来，第一次站在业余联赛的决赛赛场上。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              整个赛季，球队打了 14 场比赛，9 胜 2 平 3 负，一路从小组赛杀进决赛。对手是联赛最强的 Clementi Tigers，一支技术流打法的老牌劲旅。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              上半场，对方先进两球。中场休息时，更衣室里没人说话。队长站起来："我们等了二十多年才到这里，还有 45 分钟，拼到底。"
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              下半场第 58 分钟，刘子昂接到角球头球破门，1-2。全场沸腾。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              接下来的 30 分钟，STAR FC 全力进攻，制造了三次绝佳机会，但都被对方门将神勇扑出。终场哨响，1-2，亚军。
+            </p>
+            <blockquote className="border-l-4 border-red-600 pl-6 my-8 italic text-xl text-white font-medium">
+              "我们输了比赛，但没有输掉尊严。"
+            </blockquote>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              颁奖仪式上，当队长举起亚军奖杯时，场边爆发出比冠军还响的欢呼声——那是几十个队员、家属、朋友，在为这支球队二十多年的坚持喝彩。
+            </p>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              这一夜，STAR FC 没有拿到冠军，但每个人都知道：这只是开始。
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
 // Team Page
 const TeamPage = () => {
-  // 球员数据 - 增加 positionGroup 分组字段
+  // 球员数据 - 每个位置 10 人
   const players = [
-    // 门将 GK
-    { number: 1, name: '王立国', position: '守门员', year: 1989, joined: 2010, desc: '反应快，指挥欲强，被队友称为"后防大喇叭"', positionGroup: 'GK', photo: null },
-    { number: 22, name: '黄俊杰', position: '守门员', year: 1996, joined: 2023, desc: '扑点球专家，门线技术出色', positionGroup: 'GK', photo: null },
+    // 前锋 FWD (10人)
+    { number: 10, name: '刘子昂', position: '前锋', joined: 2017, positionGroup: 'FWD', captain: false },
+    { number: 7, name: '张一鸣', position: '右边锋', joined: 2022, positionGroup: 'FWD' },
+    { number: 9, name: '周逸凡', position: '中锋', joined: 2023, positionGroup: 'FWD' },
+    { number: 11, name: '林致远', position: '左边锋', joined: 2024, positionGroup: 'FWD' },
+    { number: 19, name: '陆嘉豪', position: '影锋', joined: 2023, positionGroup: 'FWD' },
+    { number: 20, name: '冯子铭', position: '前锋', joined: 2024, positionGroup: 'FWD' },
+    { number: 21, name: '韩志远', position: '右边锋', joined: 2024, positionGroup: 'FWD' },
+    { number: 27, name: '曾嘉伟', position: '中锋', joined: 2025, positionGroup: 'FWD' },
+    { number: 29, name: '罗天成', position: '左边锋', joined: 2025, positionGroup: 'FWD' },
+    { number: 30, name: '方俊杰', position: '前锋', joined: 2025, positionGroup: 'FWD' },
 
-    // 后卫 DEF
-    { number: 3, name: '严博文', position: '中后卫', year: 1987, joined: 2009, desc: '队内"空霸"，擅长高空解围', positionGroup: 'DEF', photo: null },
-    { number: 4, name: '赵明远', position: '中后卫', year: 1993, joined: 2020, desc: '防守稳健，出球准确', positionGroup: 'DEF', photo: null },
-    { number: 2, name: '李浩然', position: '右后卫', year: 1996, joined: 2021, desc: '助攻能力强，体能充沛', positionGroup: 'DEF', photo: null },
-    { number: 5, name: '吴天宇', position: '左后卫', year: 1995, joined: 2022, desc: '边路突破犀利，防守到位', positionGroup: 'DEF', photo: null },
-    { number: 15, name: '钱宏达', position: '中后卫', year: 1990, joined: 2018, desc: '经验丰富，领袖气质，更衣室核心', positionGroup: 'DEF', photo: null },
-    { number: 23, name: '郑凯文', position: '右后卫', year: 1999, joined: 2024, desc: '年轻有冲劲，传中精准', positionGroup: 'DEF', photo: null },
+    // 中场 MID (10人)
+    { number: 6, name: '陈伟强', position: '后腰/队长', joined: 2015, positionGroup: 'MID', captain: true },
+    { number: 8, name: '江子瑜', position: '中前卫', joined: 2019, positionGroup: 'MID' },
+    { number: 14, name: '孙志豪', position: '后腰', joined: 2023, positionGroup: 'MID' },
+    { number: 16, name: '马思聪', position: '前腰', joined: 2022, positionGroup: 'MID' },
+    { number: 17, name: '杨子轩', position: '中前卫', joined: 2021, positionGroup: 'MID' },
+    { number: 18, name: '谢晓东', position: '边前卫', joined: 2024, positionGroup: 'MID' },
+    { number: 24, name: '吕文博', position: '后腰', joined: 2024, positionGroup: 'MID' },
+    { number: 25, name: '沈浩宇', position: '前腰', joined: 2025, positionGroup: 'MID' },
+    { number: 26, name: '高志鹏', position: '边前卫', joined: 2025, positionGroup: 'MID' },
+    { number: 28, name: '梁俊豪', position: '中前卫', joined: 2025, positionGroup: 'MID' },
 
-    // 中场 MID
-    { number: 6, name: '陈伟强', position: '后腰/队长', year: 1991, joined: 2015, desc: '球队战术核心，擅长调度与抢断', captain: true, positionGroup: 'MID', photo: null },
-    { number: 8, name: '江子瑜', position: '中前卫', year: 1995, joined: 2019, desc: '有远射能力，视野开阔', positionGroup: 'MID', photo: null },
-    { number: 14, name: '孙志豪', position: '后腰', year: 1994, joined: 2023, desc: '拦截能力出色，转移球精准', positionGroup: 'MID', photo: null },
-    { number: 16, name: '马思聪', position: '前腰', year: 1997, joined: 2022, desc: '技术细腻，最后一传能力强', positionGroup: 'MID', photo: null },
-    { number: 17, name: '杨子轩', position: '中前卫', year: 1993, joined: 2021, desc: 'Box-to-box 球员，攻守兼备', positionGroup: 'MID', photo: null },
-    { number: 18, name: '谢晓东', position: '边前卫', year: 1998, joined: 2024, desc: '速度与技术兼备，擅长内切', positionGroup: 'MID', photo: null },
+    // 后卫 DEF (10人)
+    { number: 3, name: '严博文', position: '中后卫', joined: 2009, positionGroup: 'DEF' },
+    { number: 4, name: '赵明远', position: '中后卫', joined: 2020, positionGroup: 'DEF' },
+    { number: 2, name: '李浩然', position: '右后卫', joined: 2021, positionGroup: 'DEF' },
+    { number: 5, name: '吴天宇', position: '左后卫', joined: 2022, positionGroup: 'DEF' },
+    { number: 15, name: '钱宏达', position: '中后卫', joined: 2018, positionGroup: 'DEF' },
+    { number: 23, name: '郑凯文', position: '右后卫', joined: 2024, positionGroup: 'DEF' },
+    { number: 31, name: '许明辉', position: '左后卫', joined: 2024, positionGroup: 'DEF' },
+    { number: 32, name: '范志强', position: '中后卫', joined: 2025, positionGroup: 'DEF' },
+    { number: 33, name: '田宇航', position: '右后卫', joined: 2025, positionGroup: 'DEF' },
+    { number: 34, name: '贺子豪', position: '中后卫', joined: 2025, positionGroup: 'DEF' },
 
-    // 前锋 FWD
-    { number: 10, name: '刘子昂', position: '前锋', year: 1994, joined: 2017, desc: '球队头号射手，左右脚均能射门', positionGroup: 'FWD', photo: null },
-    { number: 7, name: '张一鸣', position: '右边锋', year: 1997, joined: 2022, desc: '速度快，内切射门威胁大', positionGroup: 'FWD', photo: null },
-    { number: 9, name: '周逸凡', position: '中锋', year: 1992, joined: 2023, desc: '传统支点型中锋，擅长背身拿球', positionGroup: 'FWD', photo: null },
-    { number: 11, name: '林致远', position: '左边锋', year: 1998, joined: 2024, desc: '盘带细腻，擅长 1v1 过人', positionGroup: 'FWD', photo: null },
-    { number: 19, name: '陆嘉豪', position: '影锋', year: 1996, joined: 2023, desc: '跑位灵活，禁区内嗅觉敏锐', positionGroup: 'FWD', photo: null },
-    { number: 20, name: '冯子铭', position: '前锋', year: 2000, joined: 2024, desc: '队内最年轻球员，潜力无限', positionGroup: 'FWD', photo: null },
+    // 门将 GK (10人)
+    { number: 1, name: '王立国', position: '守门员', joined: 2010, positionGroup: 'GK' },
+    { number: 22, name: '黄俊杰', position: '守门员', joined: 2023, positionGroup: 'GK' },
+    { number: 35, name: '朱伟明', position: '守门员', joined: 2024, positionGroup: 'GK' },
+    { number: 36, name: '董志文', position: '守门员', joined: 2024, positionGroup: 'GK' },
+    { number: 37, name: '蒋子龙', position: '守门员', joined: 2025, positionGroup: 'GK' },
+    { number: 38, name: '邓海洋', position: '守门员', joined: 2025, positionGroup: 'GK' },
+    { number: 39, name: '唐嘉铭', position: '守门员', joined: 2025, positionGroup: 'GK' },
+    { number: 40, name: '傅俊达', position: '守门员', joined: 2025, positionGroup: 'GK' },
+    { number: 41, name: '雷志伟', position: '守门员', joined: 2025, positionGroup: 'GK' },
+    { number: 42, name: '龚明轩', position: '守门员', joined: 2025, positionGroup: 'GK' },
   ];
 
-  // 位置分组配置
   const positionGroups = [
     { key: 'FWD', label: '前锋', labelEn: 'Forwards' },
     { key: 'MID', label: '中场', labelEn: 'Midfielders' },
@@ -922,113 +1014,65 @@ const TeamPage = () => {
     { key: 'GK', label: '门将', labelEn: 'Goalkeepers' },
   ];
 
-  // 按位置分组球员
-  const getPlayersByPosition = (positionKey) => {
-    return players.filter(p => p.positionGroup === positionKey);
-  };
+  const getPlayersByPosition = (positionKey) => players.filter(p => p.positionGroup === positionKey);
 
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
       <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Squad</span>
-          <h1 className="text-5xl font-bold text-white mt-4">一线队阵容</h1>
-          <p className="text-gray-400 mt-4">2026 赛季</p>
-          <p className="text-gray-500 text-sm mt-2">按位置浏览当前赛季 STAR FC 一线队阵容</p>
+          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Current Squad</span>
+          <h1 className="text-5xl font-bold text-white mt-4">当前阵容</h1>
+          <p className="text-gray-400 mt-4">2025-2026 赛季注册球员</p>
         </div>
       </section>
 
       {/* Players by Position Groups */}
       <section className="py-16 bg-slate-950">
-        <div className="max-w-6xl mx-auto px-4 space-y-12">
+        <div className="max-w-7xl mx-auto px-4 space-y-12">
           {positionGroups.map((group) => {
             const groupPlayers = getPlayersByPosition(group.key);
             if (groupPlayers.length === 0) return null;
 
             return (
               <div key={group.key}>
-                {/* Position Group Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
                     <h3 className="text-2xl font-bold text-white">{group.label}</h3>
-                    <span className="text-gray-500 text-sm">{group.labelEn} ({group.key})</span>
+                    <span className="text-gray-500 text-sm">{group.labelEn}</span>
                   </div>
                   <span className="text-gray-500 text-sm">共 {groupPlayers.length} 人</span>
                 </div>
 
-                {/* Horizontal Scrollable Player Cards */}
-                <div className="relative">
-                  <div
-                    className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory"
-                    style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}
-                  >
-                    {groupPlayers.map((player) => (
-                      <div
-                        key={player.number}
-                        className="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300"
-                      >
-                        {/* Player Photo Placeholder */}
-                        <div className="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
-                          {player.captain && (
-                            <div className="absolute top-3 right-3 px-2 py-1 bg-amber-500 text-slate-900 text-xs font-bold rounded">
-                              队长
-                            </div>
-                          )}
-                          <span className="text-6xl font-black text-white/10">#{player.number}</span>
-                        </div>
-
-                        {/* Player Info */}
-                        <div className="p-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-amber-400 font-bold text-lg">#{player.number}</span>
-                            <span className="text-white font-semibold text-lg">{player.name}</span>
-                          </div>
-                          <p className="text-gray-400 text-sm">{player.position} / {player.joined} 年加入</p>
-                        </div>
+                {/* Horizontal Scrollable Vertical Player Cards */}
+                <div
+                  className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory"
+                  style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}
+                >
+                  {groupPlayers.map((player) => (
+                    <div
+                      key={player.number}
+                      className="min-w-[180px] md:min-w-[200px] lg:min-w-[220px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col"
+                    >
+                      {/* Vertical Photo Placeholder (3:4 ratio) */}
+                      <div className="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center relative">
+                        <span className="text-slate-500 text-xs">球员照片</span>
+                        <span className="absolute bottom-2 right-2 text-4xl font-black text-white/10">#{player.number}</span>
+                        {player.captain && (
+                          <span className="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-slate-900 text-xs font-bold rounded">C</span>
+                        )}
                       </div>
-                    ))}
-                  </div>
+                      {/* Player Info */}
+                      <div className="p-4 space-y-1">
+                        <div className="font-semibold text-lg text-white">#{player.number} {player.name}</div>
+                        <div className="text-sm text-slate-400">{player.position} · {player.joined} 加入</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* Featured Player */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Featured</span>
-            <h2 className="text-4xl font-bold text-white mt-2">核心球员故事</h2>
-          </div>
-
-          <div className="p-8 bg-gradient-to-br from-slate-800/50 to-slate-900 rounded-2xl border border-slate-700/50">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-600 to-red-800 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">#10</span>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">刘子昂</h3>
-                <p className="text-amber-400">前锋 · 队内最佳射手</p>
-              </div>
-            </div>
-
-            <div className="space-y-4 text-gray-300 leading-relaxed">
-              <p>刘子昂 2017 年通过朋友介绍加入 STAR FC。第一次试训，他迟到 5 分钟，被当时的队长罚做 20 个俯卧撑。训练结束后，他悄悄问教练："我可以下周再来吗？"</p>
-              <p>从那之后，他几乎没缺席过任何一堂训练。2019 赛季，他在联赛中打入 18 球，成为 STAR FC 史上单赛季进球最多的球员之一。</p>
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-slate-700/50">
-              <p className="text-gray-400 text-sm mb-2">队友评价：</p>
-              <ul className="space-y-2 text-gray-300">
-                <li>• 训练从不偷懒</li>
-                <li>• 赛前紧张会不停系鞋带</li>
-                <li>• 进球后习惯指着队徽，而不是自己</li>
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -1037,164 +1081,51 @@ const TeamPage = () => {
 
 // Fixtures Page
 const FixturesPage = () => {
-  // 2026 年全年赛程数据
+  const [activeYear, setActiveYear] = useState(2026);
+
+  // 全部比赛数据（带年份字段）
   const matches = [
-    // 已完场比赛
-    {
-      id: '2025-12-15-friendly-year-end',
-      date: '2025-12-15',
-      competition: '友谊赛',
-      home: 'STAR FC',
-      away: 'Tampines Rovers Reserves',
-      venue: 'Dempsey Hill',
-      status: 'finished',
-      time: null,
-      score: '4-2',
-      scorers: ['刘子昂 x2', '周逸凡', '林致远'],
-      highlightUrl: 'https://www.youtube.com/watch?v=XXXXXXXX',
-      fullMatchUrl: 'https://www.youtube.com/watch?v=YYYYYYYY'
-    },
-    {
-      id: '2025-12-22-friendly-christmas',
-      date: '2025-12-22',
-      competition: '圣诞友谊赛',
-      home: 'Singapore Legends',
-      away: 'STAR FC',
-      venue: 'Queenstown Stadium',
-      status: 'finished',
-      time: null,
-      score: '1-3',
-      scorers: ['刘子昂', '江子瑜', '张一鸣'],
-      highlightUrl: 'https://www.youtube.com/watch?v=ZZZZZZZZ',
-      fullMatchUrl: null
-    },
-    // 即将进行的比赛
-    {
-      id: '2026-01-12-friendly-singapore-legends',
-      date: '2026-01-12',
-      competition: '友谊赛',
-      home: 'STAR FC',
-      away: 'Singapore Legends',
-      venue: 'Dempsey Hill',
-      status: 'upcoming',
-      time: '15:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-02-08-uafl-round1-harbour-united',
-      date: '2026-02-08',
-      competition: 'UAFL 联赛 第1轮',
-      home: 'STAR FC',
-      away: 'Harbour United',
-      venue: 'Dempsey Hill',
-      status: 'upcoming',
-      time: '15:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-02-15-uafl-round2-east-coast',
-      date: '2026-02-15',
-      competition: 'UAFL 联赛 第2轮',
-      home: 'East Coast Warriors',
-      away: 'STAR FC',
-      venue: 'East Coast Park',
-      status: 'upcoming',
-      time: '16:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-02-22-uafl-round3-clementi',
-      date: '2026-02-22',
-      competition: 'UAFL 联赛 第3轮',
-      home: 'STAR FC',
-      away: 'Clementi Tigers',
-      venue: 'Dempsey Hill',
-      status: 'upcoming',
-      time: '15:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-03-01-uafl-round4-lion-city',
-      date: '2026-03-01',
-      competition: 'UAFL 联赛 第4轮',
-      home: 'Lion City Rangers',
-      away: 'STAR FC',
-      venue: 'Queenstown Stadium',
-      status: 'upcoming',
-      time: '15:30',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-03-08-uafl-round5-bukit-timah',
-      date: '2026-03-08',
-      competition: 'UAFL 联赛 第5轮',
-      home: 'STAR FC',
-      away: 'Bukit Timah FC',
-      venue: 'Dempsey Hill',
-      status: 'upcoming',
-      time: '15:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-03-15-cup-quarterfinal',
-      date: '2026-03-15',
-      competition: 'UAFL 杯赛 1/4决赛',
-      home: 'STAR FC',
-      away: '待定',
-      venue: 'Dempsey Hill',
-      status: 'upcoming',
-      time: '15:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
-    {
-      id: '2026-03-22-uafl-round6-jurong',
-      date: '2026-03-22',
-      competition: 'UAFL 联赛 第6轮',
-      home: 'Jurong United',
-      away: 'STAR FC',
-      venue: 'Jurong West Stadium',
-      status: 'upcoming',
-      time: '16:00',
-      score: null,
-      scorers: [],
-      highlightUrl: null,
-      fullMatchUrl: null
-    },
+    // ===== 2025 年比赛 =====
+    // UAFL 联赛（2025 赛季 - 亚军赛季）
+    { id: '2025-02-15-uafl-r1', year: 2025, date: '2025-02-15', competition: 'UAFL 联赛 第1轮', home: 'STAR FC', away: 'Clementi Tigers', venue: 'Dempsey Hill', status: 'finished', score: '3-1', scorers: ['刘子昂 x2', '张一鸣'], highlightUrl: 'https://www.youtube.com/watch?v=AAAAAAAA' },
+    { id: '2025-02-22-uafl-r2', year: 2025, date: '2025-02-22', competition: 'UAFL 联赛 第2轮', home: 'East Coast Warriors', away: 'STAR FC', venue: 'East Coast Park', status: 'finished', score: '2-4', scorers: ['周逸凡 x2', '刘子昂', '江子瑜'], highlightUrl: 'https://www.youtube.com/watch?v=BBBBBBBB' },
+    { id: '2025-03-01-uafl-r3', year: 2025, date: '2025-03-01', competition: 'UAFL 联赛 第3轮', home: 'STAR FC', away: 'Harbour United', venue: 'Dempsey Hill', status: 'finished', score: '3-1', scorers: ['刘子昂', '张一鸣', '马思聪'], highlightUrl: 'https://www.youtube.com/watch?v=CCCCCCCC' },
+    { id: '2025-03-08-uafl-r4', year: 2025, date: '2025-03-08', competition: 'UAFL 联赛 第4轮', home: 'Lion City Rangers', away: 'STAR FC', venue: 'Queenstown Stadium', status: 'finished', score: '1-2', scorers: ['刘子昂', '林致远'], highlightUrl: null },
+    { id: '2025-03-15-uafl-r5', year: 2025, date: '2025-03-15', competition: 'UAFL 联赛 第5轮', home: 'STAR FC', away: 'Bukit Timah FC', venue: 'Dempsey Hill', status: 'finished', score: '2-0', scorers: ['周逸凡', '张一鸣'], highlightUrl: 'https://www.youtube.com/watch?v=DDDDDDDD' },
+    { id: '2025-03-22-uafl-r6', year: 2025, date: '2025-03-22', competition: 'UAFL 联赛 第6轮', home: 'Jurong United', away: 'STAR FC', venue: 'Jurong West Stadium', status: 'finished', score: '2-2', scorers: ['刘子昂', '江子瑜'], highlightUrl: null },
+    { id: '2025-03-29-uafl-r7', year: 2025, date: '2025-03-29', competition: 'UAFL 联赛 第7轮', home: 'STAR FC', away: 'Pasir Ris FC', venue: 'Dempsey Hill', status: 'finished', score: '4-1', scorers: ['刘子昂 x2', '林致远', '陆嘉豪'], highlightUrl: 'https://www.youtube.com/watch?v=EEEEEEEE' },
+    { id: '2025-04-05-uafl-r8', year: 2025, date: '2025-04-05', competition: 'UAFL 联赛 第8轮', home: 'Woodlands FC', away: 'STAR FC', venue: 'Woodlands Stadium', status: 'finished', score: '0-2', scorers: ['周逸凡', '刘子昂'], highlightUrl: null },
+    { id: '2025-04-12-uafl-r9', year: 2025, date: '2025-04-12', competition: 'UAFL 联赛 第9轮', home: 'STAR FC', away: 'Tampines Rovers Res', venue: 'Dempsey Hill', status: 'finished', score: '3-0', scorers: ['刘子昂', '张一鸣', '马思聪'], highlightUrl: 'https://www.youtube.com/watch?v=FFFFFFFF' },
+    { id: '2025-04-19-uafl-r10', year: 2025, date: '2025-04-19', competition: 'UAFL 联赛 第10轮', home: 'Sengkang FC', away: 'STAR FC', venue: 'Sengkang Stadium', status: 'finished', score: '1-1', scorers: ['刘子昂'], highlightUrl: null },
+    { id: '2025-05-03-uafl-final', year: 2025, date: '2025-05-03', competition: 'UAFL 联赛 决赛', home: 'STAR FC', away: 'Harbour United', venue: 'Jalan Besar Stadium', status: 'finished', score: '1-2', scorers: ['刘子昂'], highlightUrl: 'https://www.youtube.com/watch?v=GGGGGGGG' },
+    // 友谊赛
+    { id: '2025-01-15-lemon-return', year: 2025, date: '2025-01-15', competition: '纪念赛', home: 'STAR FC 现役', away: 'STAR FC 元老', venue: 'Dempsey Hill', status: 'finished', score: '5-4', scorers: ['刘子昂 x2', '张一鸣', '周逸凡', '林致远'], highlightUrl: 'https://www.youtube.com/watch?v=LLLLLLLL' },
+    { id: '2025-12-15-friendly', year: 2025, date: '2025-12-15', competition: '友谊赛', home: 'STAR FC', away: 'Tampines Rovers Res', venue: 'Dempsey Hill', status: 'finished', score: '4-2', scorers: ['刘子昂 x2', '周逸凡', '林致远'], highlightUrl: 'https://www.youtube.com/watch?v=XXXXXXXX' },
+    { id: '2025-12-22-xmas', year: 2025, date: '2025-12-22', competition: '圣诞友谊赛', home: 'Singapore Legends', away: 'STAR FC', venue: 'Queenstown Stadium', status: 'finished', score: '1-3', scorers: ['刘子昂', '江子瑜', '张一鸣'], highlightUrl: 'https://www.youtube.com/watch?v=ZZZZZZZZ' },
+
+    // ===== 2026 年比赛 =====
+    { id: '2026-01-12-friendly', year: 2026, date: '2026-01-12', competition: '友谊赛', home: 'STAR FC', away: 'Singapore Legends', venue: 'Dempsey Hill', status: 'upcoming', time: '15:00' },
+    { id: '2026-02-08-uafl-r1', year: 2026, date: '2026-02-08', competition: 'UAFL 联赛 第1轮', home: 'STAR FC', away: 'Harbour United', venue: 'Dempsey Hill', status: 'upcoming', time: '15:00' },
+    { id: '2026-02-15-uafl-r2', year: 2026, date: '2026-02-15', competition: 'UAFL 联赛 第2轮', home: 'East Coast Warriors', away: 'STAR FC', venue: 'East Coast Park', status: 'upcoming', time: '16:00' },
+    { id: '2026-02-22-uafl-r3', year: 2026, date: '2026-02-22', competition: 'UAFL 联赛 第3轮', home: 'STAR FC', away: 'Clementi Tigers', venue: 'Dempsey Hill', status: 'upcoming', time: '15:00' },
+    { id: '2026-03-01-uafl-r4', year: 2026, date: '2026-03-01', competition: 'UAFL 联赛 第4轮', home: 'Lion City Rangers', away: 'STAR FC', venue: 'Queenstown Stadium', status: 'upcoming', time: '15:30' },
+    { id: '2026-03-08-uafl-r5', year: 2026, date: '2026-03-08', competition: 'UAFL 联赛 第5轮', home: 'STAR FC', away: 'Bukit Timah FC', venue: 'Dempsey Hill', status: 'upcoming', time: '15:00' },
+    { id: '2026-03-15-cup-qf', year: 2026, date: '2026-03-15', competition: 'UAFL 杯赛 1/4决赛', home: 'STAR FC', away: '待定', venue: 'Dempsey Hill', status: 'upcoming', time: '15:00' },
+    { id: '2026-03-22-uafl-r6', year: 2026, date: '2026-03-22', competition: 'UAFL 联赛 第6轮', home: 'Jurong United', away: 'STAR FC', venue: 'Jurong West Stadium', status: 'upcoming', time: '16:00' },
   ];
 
-  // 按日期降序排序（最近的在左边）
-  const sortedMatches = [...matches].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  // 统计数据（2026年暂时置零）
+  // 按年份的统计数据
   const seasonStats = {
-    played: 0,
-    won: 0,
-    drawn: 0,
-    lost: 0,
-    goalsFor: 0,
-    goalsAgainst: 0
+    2025: { played: 14, won: 9, drawn: 2, lost: 3, goalsFor: 35, goalsAgainst: 17 },
+    2026: { played: 0, won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0 }
   };
+
+  // 筛选当前年份比赛并排序（降序：最新在左）
+  const matchesForYear = matches
+    .filter(m => m.year === activeYear)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const stats = seasonStats[activeYear];
 
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
@@ -1203,51 +1134,44 @@ const FixturesPage = () => {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Fixtures & Results</span>
           <h1 className="text-5xl font-bold text-white mt-4">赛程与战绩</h1>
+          <p className="text-gray-400 mt-4">{activeYear} 年 · STAR FC 全年赛程与战绩</p>
         </div>
       </section>
 
-      {/* Season Stats */}
+      {/* Year Toggle + Matches + Stats */}
       <section className="py-12 bg-slate-950">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-            {[
-              { label: '比赛', value: seasonStats.played },
-              { label: '胜', value: seasonStats.won },
-              { label: '平', value: seasonStats.drawn },
-              { label: '负', value: seasonStats.lost },
-              { label: '进球', value: seasonStats.goalsFor },
-              { label: '失球', value: seasonStats.goalsAgainst },
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center p-4 bg-slate-800/50 rounded-xl">
-                <p className="text-3xl font-bold text-amber-400">{stat.value}</p>
-                <p className="text-gray-400 text-sm">{stat.label}</p>
-              </div>
+          {/* Year Toggle Buttons */}
+          <div className="flex justify-center gap-4 mb-8">
+            {[2025, 2026].map((year) => (
+              <button
+                key={year}
+                onClick={() => setActiveYear(year)}
+                className={`px-6 py-2 font-semibold rounded-lg transition-all ${
+                  activeYear === year
+                    ? 'bg-red-600 text-white'
+                    : 'bg-slate-800 text-gray-400 border border-slate-600 hover:border-slate-500'
+                }`}
+              >
+                {year}
+              </button>
             ))}
           </div>
 
-          {/* 2026 Year Subtitle */}
-          <div className="mt-8 text-center">
-            <h2 className="text-2xl font-bold text-white">2026 年 · STAR FC 全年赛程与战绩</h2>
-            <p className="text-gray-500 text-sm mt-2">包括联赛、杯赛和友谊赛，均按自然年统计。新赛季即将开始，赛程公布后将实时更新。</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Horizontal Timeline Matches */}
-      <section className="py-16 bg-slate-900">
-        <div className="max-w-6xl mx-auto px-4">
           {/* Horizontal Scrollable Match Cards */}
-          <div className="relative">
+          <div className="relative mb-12">
             <div
               className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory"
               style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}
             >
-              {sortedMatches.map((match) => (
+              {matchesForYear.map((match) => (
                 <div
                   key={match.id}
-                  className="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg"
+                  className={`min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 p-5 shadow-lg ${
+                    match.status === 'finished' ? 'border border-green-600/30' : 'border border-slate-700/70'
+                  }`}
                 >
-                  {/* Top Row: Date, Competition Badge, Status */}
+                  {/* Top Row */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <span className="text-gray-400 text-sm">📅 {match.date}</span>
@@ -1256,86 +1180,75 @@ const FixturesPage = () => {
                       </span>
                     </div>
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                      match.status === 'upcoming'
-                        ? 'bg-amber-500/20 text-amber-400'
-                        : 'bg-green-500/20 text-green-400'
+                      match.status === 'upcoming' ? 'bg-amber-500/20 text-amber-400' : 'bg-green-500/20 text-green-400'
                     }`}>
                       {match.status === 'upcoming' ? '即将开球' : '完场'}
                     </span>
                   </div>
 
-                  {/* Main Content: Teams and Score/Time */}
+                  {/* Teams and Score */}
                   <div className="mb-4">
                     <p className="text-white font-semibold text-lg">
-                      <span className={match.home === 'STAR FC' ? 'text-amber-400' : ''}>{match.home}</span>
+                      <span className={match.home === 'STAR FC' || match.home === 'STAR FC 现役' ? 'text-amber-400' : ''}>{match.home}</span>
                       <span className="text-gray-500 mx-2">vs</span>
-                      <span className={match.away === 'STAR FC' ? 'text-amber-400' : ''}>{match.away}</span>
+                      <span className={match.away === 'STAR FC' || match.away === 'STAR FC 元老' ? 'text-amber-400' : ''}>{match.away}</span>
                     </p>
                     <div className="mt-2">
                       {match.status === 'finished' && match.score ? (
-                        <span className="text-3xl font-black text-white">{match.score}</span>
+                        <span className="text-3xl font-black text-green-400">{match.score}</span>
                       ) : (
                         <span className="text-xl text-gray-400">{match.time} 开球</span>
                       )}
                     </div>
                   </div>
 
-                  {/* Venue */}
                   <p className="text-gray-500 text-sm mb-3">📍 {match.venue}</p>
 
-                  {/* Scorers (if finished) */}
                   {match.status === 'finished' && match.scorers && match.scorers.length > 0 && (
                     <div className="mb-3">
-                      <p className="text-gray-500 text-xs mb-1">进球：</p>
                       <div className="flex flex-wrap gap-1">
                         {match.scorers.map((scorer, i) => (
-                          <span key={i} className="px-2 py-0.5 bg-green-900/30 text-green-400 text-xs rounded">
-                            ⚽ {scorer}
-                          </span>
+                          <span key={i} className="px-2 py-0.5 bg-green-900/30 text-green-400 text-xs rounded">⚽ {scorer}</span>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Video Buttons */}
-                  {(match.highlightUrl || match.fullMatchUrl) && (
-                    <div className="pt-3 border-t border-slate-700/50 flex flex-wrap gap-2">
-                      {match.highlightUrl && (
-                        <a
-                          href={match.highlightUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors"
-                        >
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                          集锦
-                        </a>
-                      )}
-                      {match.fullMatchUrl && (
-                        <a
-                          href={match.fullMatchUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-700/50 hover:bg-slate-700 text-gray-300 text-sm font-medium rounded-lg transition-colors"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          全场录像
-                        </a>
-                      )}
+                  {match.highlightUrl && (
+                    <div className="pt-3 border-t border-slate-700/50">
+                      <a href={match.highlightUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        集锦
+                      </a>
                     </div>
                   )}
                 </div>
               ))}
             </div>
+            <div className="flex justify-center mt-4">
+              <span className="text-gray-500 text-sm">← 左右滑动查看 {activeYear} 年全部比赛 →</span>
+            </div>
           </div>
 
-          {/* Scroll Hint */}
-          <div className="flex justify-center mt-6">
-            <span className="text-gray-500 text-sm">← 左右滑动查看 2026 年全部比赛 →</span>
+          {/* Season Stats Summary */}
+          <div className="pt-8 border-t border-slate-700/50">
+            <h3 className="text-xl font-bold text-white text-center mb-6">{activeYear} 年度总结</h3>
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+              {[
+                { label: '比赛', value: stats.played },
+                { label: '胜', value: stats.won },
+                { label: '平', value: stats.drawn },
+                { label: '负', value: stats.lost },
+                { label: '进球', value: stats.goalsFor },
+                { label: '失球', value: stats.goalsAgainst },
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center p-4 bg-slate-800/50 rounded-xl">
+                  <p className="text-3xl font-bold text-amber-400">{stat.value}</p>
+                  <p className="text-gray-400 text-sm">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1345,122 +1258,65 @@ const FixturesPage = () => {
 
 // Media Page
 const MediaPage = () => {
-  // 视频数据结构化
+  // 视频集锦数据
   const highlightVideos = [
-    {
-      id: 'harbour-3-1',
-      title: '3–1 完胜 Harbour United：雨战中的控场',
-      description: '在细雨中的 Dempsey Hill，STAR FC 以 3–1 击败 Harbour United，展现了中场压迫和快速反击的结合。',
-      date: '2025-03-02',
-      opponent: 'Harbour United',
-      competition: 'UAFL Premier 第 6 轮',
-      youtubeId: 'XXXXXXXX'
-    },
-    {
-      id: 'eastcoast-4-2',
-      title: '4–2 逆转 East Coast Warriors：从 0–2 到 4–2',
-      description: '半场 0–2 落后，下半场连入四球完成逆转，被队员称为"本赛季最燃的一战"。',
-      date: '2025-02-23',
-      opponent: 'East Coast Warriors',
-      competition: 'UAFL Premier 第 5 轮',
-      youtubeId: 'YYYYYYYY'
-    },
-    {
-      id: '2024-final',
-      title: '2024 UAFL 赛季精彩回顾',
-      description: '回顾 2023-2024 赛季，STAR FC 取得联赛亚军的精彩瞬间。',
-      date: '2024-12-01',
-      opponent: '赛季合集',
-      competition: 'UAFL 2023-2024 赛季',
-      youtubeId: 'ZZZZZZZZ'
-    },
-    {
-      id: 'lemon-return',
-      title: 'Lemon 哥回归纪念赛集锦',
-      description: '球队创始人 Lemon 哥回到新加坡，与新老队员一起在 Dempsey Hill 踢了一场难忘的比赛。',
-      date: '2025-01-15',
-      opponent: '内部对抗赛',
-      competition: '纪念赛',
-      youtubeId: 'LLLLLLLL'
-    },
+    { id: 'harbour-3-1', title: '3–1 完胜 Harbour United：雨战中的控场', description: '在细雨中的 Dempsey Hill，STAR FC 以 3–1 击败 Harbour United。', date: '2025-03-02', competition: 'UAFL 第6轮', youtubeId: 'XXXXXXXX' },
+    { id: 'eastcoast-4-2', title: '4–2 逆转 East Coast Warriors', description: '半场 0–2 落后，下半场连入四球完成逆转。', date: '2025-02-23', competition: 'UAFL 第5轮', youtubeId: 'YYYYYYYY' },
+    { id: '2025-final', title: '2025 UAFL 决赛：遗憾的亚军之夜', description: '虽然 1-2 惜败，但这是球队历史上最接近冠军的一次。', date: '2025-05-03', competition: 'UAFL 决赛', youtubeId: 'GGGGGGGG' },
+    { id: 'lemon-return', title: 'Lemon 哥回归纪念赛集锦', description: '球队创始人 Lemon 哥回到新加坡的纪念赛。', date: '2025-01-15', competition: '纪念赛', youtubeId: 'LLLLLLLL' },
+  ];
+
+  // 照片图集数据
+  const photos = [
+    { id: 'photo-1', title: '2025 UAFL 决赛 · 比赛照片', subtitle: '18 张照片 · Queenstown Stadium', date: '2025-05-03', link: 'https://xhslink.com/example-photo-album-1' },
+    { id: 'photo-2', title: '2025 赛季全家福', subtitle: '12 张照片 · Dempsey Hill', date: '2025-02-01', link: 'https://xhslink.com/example-photo-album-2' },
+    { id: 'photo-3', title: 'Lemon 哥回归 · 合影集', subtitle: '15 张照片 · 创始人与新老队员', date: '2024-12-15', link: 'https://xhslink.com/example-photo-album-3' },
+    { id: 'photo-4', title: '2025-03-02 vs Harbour United', subtitle: '20 张照片 · 3-1 大胜', date: '2025-03-02', link: 'https://xhslink.com/example-photo-album-4' },
+  ];
+
+  // 表情包合集数据
+  const memes = [
+    { id: 'meme-1', title: '训练场表情包 vol.1', subtitle: '10 张 · 队友不要打我', link: 'https://xhslink.com/example-meme-pack-1' },
+    { id: 'meme-2', title: '比赛名场面 vol.1', subtitle: '8 张 · 经典时刻', link: 'https://xhslink.com/example-meme-pack-2' },
+    { id: 'meme-3', title: '门将专属表情包', subtitle: '6 张 · 稳如老狗', link: 'https://xhslink.com/example-meme-pack-3' },
+    { id: 'meme-4', title: '庆祝动作合集', subtitle: '12 张 · 进球就是要浪', link: 'https://xhslink.com/example-meme-pack-4' },
   ];
 
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
+      {/* Hero */}
       <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Media Center</span>
           <h1 className="text-5xl font-bold text-white mt-4">媒体中心</h1>
-          <p className="text-gray-400 mt-4">每一场比赛，我们都用 Veo3 录像设备记录下来</p>
+          <p className="text-gray-400 mt-4">每一场比赛后的高光时刻、赛场内外的照片，以及 STAR FC 的趣味表情包，都会陆续收录在这里。</p>
         </div>
       </section>
 
-      <section className="py-16 bg-slate-950">
+      {/* 视频集锦区 */}
+      <section className="py-12 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-white mb-8">精彩集锦</h2>
-          <div
-            className="overflow-x-auto flex gap-6 pb-4 snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}
-          >
+          <h2 className="text-2xl font-bold text-white mb-6">🎬 视频集锦</h2>
+          <div className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}>
             {highlightVideos.map((video) => (
-              <div key={video.id} className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
-                {/* Video Thumbnail with Play Button */}
-                <a
-                  href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden"
-                >
-                  {/* YouTube Thumbnail Background */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-50 group-hover:opacity-70 transition-opacity"
-                    style={{
-                      backgroundImage: `url(https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg)`
-                    }}
-                  />
-                  {/* Play Button Overlay */}
+              <div key={video.id} className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[300px] md:w-[340px] snap-start">
+                <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noopener noreferrer" className="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
-                      <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                    <div className="w-14 h-14 bg-red-600/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-all">
+                      <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                     </div>
                   </div>
-                  {/* Competition Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2 py-1 bg-slate-900/80 backdrop-blur text-amber-400 text-xs font-medium rounded">
-                      {video.competition}
-                    </span>
+                  <div className="absolute top-2 left-2">
+                    <span className="px-2 py-1 bg-red-600/80 text-white text-xs font-medium rounded">视频</span>
+                  </div>
+                  <div className="absolute top-2 right-2">
+                    <span className="px-2 py-1 bg-slate-900/80 text-amber-400 text-xs rounded">{video.competition}</span>
                   </div>
                 </a>
-
-                {/* Video Info */}
-                <div className="p-5">
-                  <h3 className="text-white font-semibold group-hover:text-amber-400 transition-colors mb-2">
-                    {video.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-                    {video.description}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>📅 {video.date}</span>
-                    <span>vs {video.opponent}</span>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="mt-4 pt-4 border-t border-slate-700/50 flex gap-3">
-                    <a
-                      href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors"
-                    >
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                      </svg>
-                      在 YouTube 观看
-                    </a>
-                  </div>
+                <div className="p-4">
+                  <h3 className="text-white font-semibold text-sm group-hover:text-amber-400 transition-colors mb-1">{video.title}</h3>
+                  <p className="text-gray-400 text-xs line-clamp-2">{video.description}</p>
+                  <p className="text-gray-500 text-xs mt-2">📅 {video.date}</p>
                 </div>
               </div>
             ))}
@@ -1468,24 +1324,50 @@ const MediaPage = () => {
         </div>
       </section>
 
-      {/* More Videos Section */}
-      <section className="py-16 bg-slate-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">更多视频</h2>
-          <p className="text-gray-400 mb-8">
-            我们的完整比赛录像和更多集锦都在 YouTube 频道上，欢迎订阅关注！
-          </p>
-          <a
-            href="https://www.youtube.com/@SingaporeStarFC"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-xl transition-colors"
-          >
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-            订阅 STAR FC YouTube 频道
-          </a>
+      {/* 照片区 */}
+      <section className="py-12 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-white mb-6">📷 比赛照片</h2>
+          <div className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}>
+            {photos.map((photo) => (
+              <a key={photo.id} href={photo.link} target="_blank" rel="noopener noreferrer" className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[280px] md:w-[320px] snap-start block">
+                <div className="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 flex items-center justify-center relative">
+                  <span className="text-4xl">📸</span>
+                  <div className="absolute top-2 left-2">
+                    <span className="px-2 py-1 bg-blue-600/80 text-white text-xs font-medium rounded">照片</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-white font-semibold text-sm group-hover:text-amber-400 transition-colors mb-1">{photo.title}</h3>
+                  <p className="text-gray-400 text-xs">{photo.subtitle}</p>
+                  <p className="text-gray-500 text-xs mt-2">📅 {photo.date}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 表情包区 */}
+      <section className="py-12 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-white mb-6">😂 表情包</h2>
+          <div className="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'thin', scrollbarColor: '#475569 #1e293b' }}>
+            {memes.map((meme) => (
+              <a key={meme.id} href={meme.link} target="_blank" rel="noopener noreferrer" className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[200px] md:w-[240px] snap-start block">
+                <div className="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 flex items-center justify-center relative">
+                  <span className="text-4xl">😂</span>
+                  <div className="absolute top-2 left-2">
+                    <span className="px-2 py-1 bg-green-600/80 text-white text-xs font-medium rounded">表情包</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-white font-semibold text-sm group-hover:text-amber-400 transition-colors mb-1">{meme.title}</h3>
+                  <p className="text-gray-400 text-xs">{meme.subtitle}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
     </div>
@@ -1508,38 +1390,6 @@ const JoinPage = () => {
 
       <section className="py-16 bg-slate-950">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="prose prose-lg prose-invert max-w-none mb-12">
-            <p className="text-gray-300 text-lg">如果你有一定 11 人制比赛经验（或肯学），能接受周末固定时间比赛或训练，懂得尊重队友和对手，那么无论你是前锋、后卫、门将，STAR FC 都欢迎你来试训。</p>
-          </div>
-
-          {/* Requirements */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
-              <h3 className="text-lg font-bold text-white mb-4">🎯 所需位置</h3>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>• 中后卫（优先）</li>
-                <li>• 后腰</li>
-                <li>• 守门员（轮换）</li>
-                <li>• 边路球员</li>
-              </ul>
-            </div>
-            <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
-              <h3 className="text-lg font-bold text-white mb-4">📋 基本要求</h3>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>• 年龄：18–38 岁为主</li>
-                <li>• 每月至少 2–3 次出勤</li>
-                <li>• 身体健康，无严重伤病</li>
-              </ul>
-            </div>
-            <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
-              <h3 className="text-lg font-bold text-white mb-4">⭐ 加分项</h3>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>• 有正式联赛经验</li>
-                <li>• 有剪辑/摄影/设计特长</li>
-              </ul>
-            </div>
-          </div>
-
           {/* Form */}
           <div className="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
             <h2 className="text-2xl font-bold text-white mb-6">试训报名表</h2>
@@ -1557,7 +1407,7 @@ const JoinPage = () => {
                 <input 
                   type="text" 
                   className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors"
-                  placeholder="WhatsApp / 微信"
+                  placeholder="手机号 / 邮箱"
                 />
               </div>
               <div>
@@ -1600,44 +1450,63 @@ const JoinPage = () => {
 // Contact Page
 const ContactPage = () => (
   <div className="min-h-screen bg-slate-900 pt-24">
-    <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-slate-900 to-slate-950">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Contact</span>
-        <h1 className="text-5xl font-bold text-white mt-4">联系我们</h1>
-        <p className="text-gray-400 mt-4">无论你是想加入球队、安排友谊赛，还是希望进行品牌合作</p>
+        <h1 className="text-2xl md:text-5xl font-bold text-white mt-4">联系我们</h1>
+        <p className="text-gray-400 text-sm md:text-base mt-4">无论你是想加入球队、安排友谊赛，还是希望进行品牌合作</p>
       </div>
     </section>
 
-    <section className="py-16 bg-slate-950">
+    <section className="py-12 md:py-16 bg-slate-950">
       <div className="max-w-4xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            {[
-              { icon: '📧', label: '邮箱', value: 'contact@starfc.sg', link: 'mailto:contact@starfc.sg' },
-              { icon: '📱', label: 'WhatsApp', value: '+65 8888 8888', link: 'https://wa.me/6588888888' },
-              { icon: '💬', label: '微信', value: 'STARFC-SG', link: null },
-              { icon: '📕', label: '小红书', value: 'STAR FC 新加坡华人足球队', link: 'https://xhslink.com/m/8BgWbanhmVq' },
-              { icon: '📸', label: 'Instagram', value: '@starfc.sg', link: 'https://instagram.com/starfc.sg' },
-            ].map((contact, idx) => (
-              <a
-                key={idx}
-                href={contact.link || '#'}
-                target={contact.link ? '_blank' : undefined}
-                rel={contact.link ? 'noopener noreferrer' : undefined}
-                className={`flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 ${contact.link ? 'hover:border-amber-500/50 hover:bg-slate-800/50 transition-all' : ''}`}
-              >
-                <span className="text-2xl">{contact.icon}</span>
-                <div>
-                  <p className="text-gray-400 text-sm">{contact.label}</p>
-                  <p className="text-white font-medium">{contact.value}</p>
-                </div>
-              </a>
-            ))}
+          <div className="space-y-4">
+            <a href="mailto:account@starfc.sg" className="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-slate-700 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">邮箱</p>
+                <p className="text-white font-medium">account@starfc.sg</p>
+              </div>
+            </a>
+            <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-4h2v4zm0-6h-2V9h2v2z"/></svg>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">小红书</p>
+                <p className="text-white font-medium">新加坡STAR足球俱乐部</p>
+              </div>
+            </a>
+            <div className="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-red-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Instagram</p>
+                <p className="text-white font-medium">正在搭建中，敬请期待</p>
+              </div>
+            </div>
+            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">YouTube</p>
+                <p className="text-white font-medium">Singapore Star FC</p>
+              </div>
+            </a>
           </div>
-          
+
           <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
-            <h3 className="text-lg font-bold text-white mb-4">🏟️ 常用球场</h3>
+            <h3 className="text-lg font-bold text-white mb-4">常用球场</h3>
             <ul className="space-y-3 text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="text-amber-400">•</span>
+                Dempsey Hill 天然草球场（主场）
+              </li>
               <li className="flex items-start gap-2">
                 <span className="text-amber-400">•</span>
                 Queenstown Stadium
@@ -1645,10 +1514,6 @@ const ContactPage = () => (
               <li className="flex items-start gap-2">
                 <span className="text-amber-400">•</span>
                 Clementi / West Coast 社区球场
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-400">•</span>
-                Tampines / Yishun 公立人工草球场
               </li>
             </ul>
           </div>
@@ -1661,59 +1526,52 @@ const ContactPage = () => (
 // Footer Component
 const Footer = () => (
   <footer className="bg-slate-950 border-t border-slate-800">
-    <div className="max-w-6xl mx-auto px-4 py-16">
-      <div className="grid md:grid-cols-4 gap-8">
-        <div className="md:col-span-2">
+    <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="col-span-2 md:col-span-2">
           <div className="flex items-center gap-3 mb-4">
             <img
               src="./starfclogo2.png"
               alt="STAR FC 官方队徽"
-              className="w-12 h-12 object-contain drop-shadow-md"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md"
             />
             <div>
-              <span className="text-white font-bold text-xl">STAR FC</span>
+              <span className="text-white font-bold text-lg md:text-xl">STAR FC</span>
               <span className="block text-amber-400 text-xs tracking-widest">SINCE 2002</span>
             </div>
           </div>
-          <p className="text-gray-400 max-w-md">
+          <p className="text-gray-400 text-sm md:text-base max-w-md">
             新加坡华人足球俱乐部。在异乡，也要踢出我们的主场。
           </p>
         </div>
-        
+
         <div>
           <h4 className="text-white font-semibold mb-4">快速链接</h4>
           <ul className="space-y-2 text-gray-400 text-sm">
             <li className="hover:text-amber-400 cursor-pointer transition-colors">关于我们</li>
             <li className="hover:text-amber-400 cursor-pointer transition-colors">赛程战绩</li>
+            <li className="hover:text-amber-400 cursor-pointer transition-colors">媒体中心</li>
             <li className="hover:text-amber-400 cursor-pointer transition-colors">加入球队</li>
             <li className="hover:text-amber-400 cursor-pointer transition-colors">联系我们</li>
           </ul>
         </div>
-        
+
         <div>
           <h4 className="text-white font-semibold mb-4">关注我们</h4>
           <div className="flex gap-3">
-            {[
-              { icon: '📱', label: 'WhatsApp', link: 'https://wa.me/6588888888' },
-              { icon: '📕', label: '小红书', link: 'https://xhslink.com/m/8BgWbanhmVq' },
-              { icon: '📸', label: 'Instagram', link: 'https://instagram.com/starfc.sg' },
-              { icon: '▶️', label: 'YouTube', link: 'https://www.youtube.com/@SingaporeStarFC' },
-            ].map((social, idx) => (
-              <a
-                key={idx}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={social.label}
-                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 hover:scale-110 transition-all"
-              >
-                <span>{social.icon}</span>
-              </a>
-            ))}
+            <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" title="小红书" className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-4h2v4zm0-6h-2V9h2v2z"/></svg>
+            </a>
+            <a href="https://instagram.com/starfc.sg" target="_blank" rel="noopener noreferrer" title="Instagram" className="w-10 h-10 bg-gradient-to-br from-pink-500 via-red-500 to-yellow-400 rounded-lg flex items-center justify-center hover:scale-110 transition-all">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" title="YouTube" className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
           </div>
         </div>
       </div>
-      
+
       <div className="mt-12 pt-8 border-t border-slate-800 text-center text-gray-500 text-sm">
         © 2025 STAR FC. All rights reserved. | 新加坡华人足球俱乐部
       </div>
