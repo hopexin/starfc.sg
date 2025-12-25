@@ -43,6 +43,37 @@
         .scroll-container::-webkit-scrollbar-thumb:hover {
             background: #64748b;
         }
+        /* 统一横滑：移动端 1 卡 / 小平板 2 卡 / 桌面固定宽 */
+        .hscroll {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 0 16px 16px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .hscroll::-webkit-scrollbar { display: none; }
+        .hscroll > * { scroll-snap-align: start; }
+        /* 默认：1 张完整卡 */
+        .hscroll { grid-auto-columns: calc(100% - 32px); }
+        /* >= 640px：2 张完整卡 */
+        @media (min-width: 640px) {
+            .hscroll { grid-auto-columns: calc((100% - 48px) / 2); }
+        }
+        /* >= 1024px：桌面固定卡宽 */
+        @media (min-width: 1024px) {
+            .hscroll { grid-auto-columns: 340px; }
+        }
+        /* 球员卡片横滑：窄卡片 2 张/3 张/固定宽 */
+        .hscroll-player { grid-auto-columns: calc((100% - 32px) / 2); }
+        @media (min-width: 640px) {
+            .hscroll-player { grid-auto-columns: calc((100% - 48px) / 3); }
+        }
+        @media (min-width: 1024px) {
+            .hscroll-player { grid-auto-columns: 180px; }
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-white">
@@ -141,9 +172,9 @@
     </section>
 
     <!-- Fixtures Section - 2026 全年赛程 -->
-    <section id="fixtures" class="py-16 md:py-24 bg-slate-900">
+    <section id="fixtures" class="py-16 md:py-20 bg-slate-900">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Fixtures & Results</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">赛程与战绩</h2>
             </div>
@@ -157,9 +188,9 @@
             <!-- 2025 Year Panel -->
             <div data-year-panel="2025" class="hidden">
                 <!-- 2025 Matches Timeline -->
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container mb-12" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                <div class="hscroll mb-10">
                     <!-- UAFL 决赛 - 2025-05-03 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-600/50 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-600/50 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2025-05-03</span>
@@ -182,7 +213,7 @@
                     </div>
 
                     <!-- 2025 常规赛示例 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2025-04-26</span>
@@ -204,7 +235,7 @@
                         <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
                     </div>
 
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2025-03-02</span>
@@ -226,7 +257,7 @@
                         <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
                     </div>
 
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2025-02-15</span>
@@ -281,9 +312,9 @@
             <!-- 2026 Year Panel -->
             <div data-year-panel="2026">
                 <!-- 2026 Matches Timeline -->
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container mb-12" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                <div class="hscroll mb-10">
                     <!-- 2026-01-12 友谊赛 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-800/50 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-800/50 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2026-01-12</span>
@@ -305,7 +336,7 @@
                     </div>
 
                     <!-- 2026-02-08 UAFL 第1轮 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2026-02-08</span>
@@ -327,7 +358,7 @@
                     </div>
 
                     <!-- 2026-02-15 UAFL 第2轮 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2026-02-15</span>
@@ -349,7 +380,7 @@
                     </div>
 
                     <!-- 2026-02-22 UAFL 第3轮 -->
-                    <div class="min-w-[320px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
                                 <span class="text-gray-400 text-sm">📅 2026-02-22</span>
@@ -404,23 +435,23 @@
     </section>
 
     <!-- Media Section -->
-    <section id="media" class="py-16 md:py-24 bg-gradient-to-b from-slate-900 to-slate-950">
+    <section id="media" class="py-16 md:py-20 bg-slate-950">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Media Center</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">媒体中心</h2>
                 <p class="text-gray-400 mt-4">每一场比赛，我们都用 Veo3 录像设备记录下来</p>
             </div>
 
             <!-- Videos Section -->
-            <div class="mb-16">
+            <div class="mb-10 md:mb-12">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="px-3 py-1 bg-red-600/20 text-red-400 text-xs font-semibold rounded-full">视频</span>
-                    <h3 class="text-2xl font-bold text-white">视频集锦</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-white">视频集锦</h3>
                 </div>
-            <div class="overflow-x-auto flex gap-6 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+            <div class="hscroll">
                 <!-- Video 1 -->
-                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all">
                     <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
@@ -448,7 +479,7 @@
                 </div>
 
                 <!-- Video 2 -->
-                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all">
                     <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
@@ -476,7 +507,7 @@
                 </div>
 
                 <!-- Video 3 -->
-                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all">
                     <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
@@ -504,7 +535,7 @@
                 </div>
 
                 <!-- Video 4 -->
-                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all">
                     <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
@@ -535,13 +566,13 @@
             </div>
 
             <!-- Photos Section -->
-            <div class="mb-16">
+            <div class="mb-10 md:mb-12">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="px-3 py-1 bg-blue-600/20 text-blue-400 text-xs font-semibold rounded-full">照片</span>
-                    <h3 class="text-2xl font-bold text-white">比赛照片</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-white">比赛照片</h3>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <a href="https://xhslink.com/example-photo-album-1" target="_blank" rel="noopener noreferrer" class="min-w-[280px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                <div class="hscroll">
+                    <a href="https://xhslink.com/example-photo-album-1" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">📸</span>
                         </div>
@@ -549,7 +580,7 @@
                         <p class="text-gray-400 text-sm">18 张照片 · Queenstown Stadium</p>
                         <p class="text-gray-500 text-xs mt-2">2025-05-03</p>
                     </a>
-                    <a href="https://xhslink.com/example-photo-album-2" target="_blank" rel="noopener noreferrer" class="min-w-[280px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-photo-album-2" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">📸</span>
                         </div>
@@ -557,7 +588,7 @@
                         <p class="text-gray-400 text-sm">12 张照片 · Dempsey Hill</p>
                         <p class="text-gray-500 text-xs mt-2">2025-02-01</p>
                     </a>
-                    <a href="https://xhslink.com/example-photo-album-3" target="_blank" rel="noopener noreferrer" class="min-w-[280px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-photo-album-3" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">📸</span>
                         </div>
@@ -565,7 +596,7 @@
                         <p class="text-gray-400 text-sm">15 张照片 · 创始人与新老队员</p>
                         <p class="text-gray-500 text-xs mt-2">2024-12-15</p>
                     </a>
-                    <a href="https://xhslink.com/example-photo-album-4" target="_blank" rel="noopener noreferrer" class="min-w-[280px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-photo-album-4" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">📸</span>
                         </div>
@@ -577,34 +608,34 @@
             </div>
 
             <!-- Memes Section -->
-            <div class="mb-8">
+            <div>
                 <div class="flex items-center gap-3 mb-6">
                     <span class="px-3 py-1 bg-green-600/20 text-green-400 text-xs font-semibold rounded-full">趣图</span>
-                    <h3 class="text-2xl font-bold text-white">表情包</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-white">表情包</h3>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <a href="https://xhslink.com/example-meme-pack-1" target="_blank" rel="noopener noreferrer" class="min-w-[200px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                <div class="hscroll">
+                    <a href="https://xhslink.com/example-meme-pack-1" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">😂</span>
                         </div>
                         <h4 class="text-white font-semibold text-sm mb-1 group-hover:text-amber-400 transition-colors">训练场表情包 vol.1</h4>
                         <p class="text-gray-400 text-xs">10 张 · 队友不要打我</p>
                     </a>
-                    <a href="https://xhslink.com/example-meme-pack-2" target="_blank" rel="noopener noreferrer" class="min-w-[200px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-meme-pack-2" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">🤣</span>
                         </div>
                         <h4 class="text-white font-semibold text-sm mb-1 group-hover:text-amber-400 transition-colors">比赛名场面 vol.1</h4>
                         <p class="text-gray-400 text-xs">8 张 · 经典时刻</p>
                     </a>
-                    <a href="https://xhslink.com/example-meme-pack-3" target="_blank" rel="noopener noreferrer" class="min-w-[200px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-meme-pack-3" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">😎</span>
                         </div>
                         <h4 class="text-white font-semibold text-sm mb-1 group-hover:text-amber-400 transition-colors">门将专属表情包</h4>
                         <p class="text-gray-400 text-xs">6 张 · 稳如老狗</p>
                     </a>
-                    <a href="https://xhslink.com/example-meme-pack-4" target="_blank" rel="noopener noreferrer" class="min-w-[200px] flex-shrink-0 snap-start bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
+                    <a href="https://xhslink.com/example-meme-pack-4" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
                             <span class="text-4xl">🔥</span>
                         </div>
@@ -618,9 +649,9 @@
     </section>
 
     <!-- Team Section - 按位置分组 -->
-    <section id="team" class="py-16 md:py-24 bg-slate-950">
+    <section id="team" class="py-16 md:py-20 bg-slate-900">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Current Squad</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">当前阵容</h2>
                 <p class="text-gray-400 mt-4">2026 赛季</p>
@@ -628,79 +659,79 @@
             </div>
 
             <!-- 前锋 FWD -->
-            <div class="mb-12">
-                <div class="flex items-center justify-between mb-6">
+            <div class="mb-10 md:mb-12">
+                <div class="flex items-center justify-between mb-4 md:mb-6">
                     <div class="flex items-center gap-3">
-                        <h3 class="text-2xl font-bold text-white">前锋</h3>
-                        <span class="text-gray-500 text-sm">Forwards (FWD)</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">前锋</h3>
+                        <span class="text-gray-500 text-xs md:text-sm">Forwards (FWD)</span>
                     </div>
-                    <span class="text-gray-500 text-sm">共 10 人</span>
+                    <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                <div class="hscroll hscroll-player">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#10 刘子昂</div>
                             <div class="text-sm text-slate-300">前锋 · 2017 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#7 张一鸣</div>
                             <div class="text-sm text-slate-300">右边锋 · 2022 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#9 周逸凡</div>
                             <div class="text-sm text-slate-300">中锋 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#11 林致远</div>
                             <div class="text-sm text-slate-300">左边锋 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#19 陆嘉豪</div>
                             <div class="text-sm text-slate-300">影锋 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#20 冯子铭</div>
                             <div class="text-sm text-slate-300">前锋 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#21 韩志远</div>
                             <div class="text-sm text-slate-300">右边锋 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#27 曾嘉伟</div>
                             <div class="text-sm text-slate-300">中锋 · 2025 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#29 罗天成</div>
                             <div class="text-sm text-slate-300">左边锋 · 2025 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#33 郭子豪</div>
@@ -711,16 +742,16 @@
             </div>
 
             <!-- 中场 MID -->
-            <div class="mb-12">
-                <div class="flex items-center justify-between mb-6">
+            <div class="mb-10 md:mb-12">
+                <div class="flex items-center justify-between mb-4 md:mb-6">
                     <div class="flex items-center gap-3">
-                        <h3 class="text-2xl font-bold text-white">中场</h3>
-                        <span class="text-gray-500 text-sm">Midfielders (MID)</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">中场</h3>
+                        <span class="text-gray-500 text-xs md:text-sm">Midfielders (MID)</span>
                     </div>
-                    <span class="text-gray-500 text-sm">共 10 人</span>
+                    <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col relative">
+                <div class="hscroll hscroll-player">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col relative">
                         <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-slate-900 text-xs font-bold rounded z-10">队长</div>
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
@@ -728,63 +759,63 @@
                             <div class="text-sm text-slate-300">后腰/队长 · 2015 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#8 江子瑜</div>
                             <div class="text-sm text-slate-300">中前卫 · 2019 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#14 孙志豪</div>
                             <div class="text-sm text-slate-300">后腰 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#16 马思聪</div>
                             <div class="text-sm text-slate-300">边前卫 · 2021 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#17 徐浩宇</div>
                             <div class="text-sm text-slate-300">中前卫 · 2022 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#18 黄俊杰</div>
                             <div class="text-sm text-slate-300">后腰 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#22 杨明辉</div>
                             <div class="text-sm text-slate-300">边前卫 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#24 刘文博</div>
                             <div class="text-sm text-slate-300">中前卫 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#26 陈昊天</div>
                             <div class="text-sm text-slate-300">后腰 · 2025 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#28 吴泽宇</div>
@@ -795,79 +826,79 @@
             </div>
 
             <!-- 后卫 DEF -->
-            <div class="mb-12">
-                <div class="flex items-center justify-between mb-6">
+            <div class="mb-10 md:mb-12">
+                <div class="flex items-center justify-between mb-4 md:mb-6">
                     <div class="flex items-center gap-3">
-                        <h3 class="text-2xl font-bold text-white">后卫</h3>
-                        <span class="text-gray-500 text-sm">Defenders (DEF)</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">后卫</h3>
+                        <span class="text-gray-500 text-xs md:text-sm">Defenders (DEF)</span>
                     </div>
-                    <span class="text-gray-500 text-sm">共 10 人</span>
+                    <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                <div class="hscroll hscroll-player">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#3 严博文</div>
                             <div class="text-sm text-slate-300">中后卫 · 2009 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#4 赵明远</div>
                             <div class="text-sm text-slate-300">中后卫 · 2020 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#2 李浩然</div>
                             <div class="text-sm text-slate-300">右后卫 · 2021 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#5 吴天宇</div>
                             <div class="text-sm text-slate-300">左后卫 · 2022 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#12 谢天翔</div>
                             <div class="text-sm text-slate-300">中后卫 · 2022 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#13 蔡俊豪</div>
                             <div class="text-sm text-slate-300">右后卫 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#15 范志明</div>
                             <div class="text-sm text-slate-300">左后卫 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#23 钟子豪</div>
                             <div class="text-sm text-slate-300">中后卫 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#25 邓伟杰</div>
                             <div class="text-sm text-slate-300">右后卫 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#31 廖子轩</div>
@@ -878,79 +909,79 @@
             </div>
 
             <!-- 门将 GK -->
-            <div class="mb-12">
-                <div class="flex items-center justify-between mb-6">
+            <div>
+                <div class="flex items-center justify-between mb-4 md:mb-6">
                     <div class="flex items-center gap-3">
-                        <h3 class="text-2xl font-bold text-white">门将</h3>
-                        <span class="text-gray-500 text-sm">Goalkeepers (GK)</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">门将</h3>
+                        <span class="text-gray-500 text-xs md:text-sm">Goalkeepers (GK)</span>
                     </div>
-                    <span class="text-gray-500 text-sm">共 10 人</span>
+                    <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
-                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                <div class="hscroll hscroll-player">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#1 王立国</div>
                             <div class="text-sm text-slate-300">门将 · 2010 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#30 张凯文</div>
                             <div class="text-sm text-slate-300">门将 · 2018 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#32 李国豪</div>
                             <div class="text-sm text-slate-300">门将 · 2021 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#34 周俊伟</div>
                             <div class="text-sm text-slate-300">门将 · 2022 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#35 陈文涛</div>
                             <div class="text-sm text-slate-300">门将 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#36 黄子豪</div>
                             <div class="text-sm text-slate-300">门将 · 2023 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#37 刘建国</div>
                             <div class="text-sm text-slate-300">门将 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#38 吴明轩</div>
                             <div class="text-sm text-slate-300">门将 · 2024 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#39 赵子轩</div>
                             <div class="text-sm text-slate-300">门将 · 2025 年加入</div>
                         </div>
                     </div>
-                    <div class="min-w-[180px] md:min-w-[200px] flex-shrink-0 snap-start bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                    <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
                         <div class="p-4 space-y-1">
                             <div class="font-semibold text-lg text-white">#40 孙志豪</div>
@@ -963,10 +994,10 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-slate-900 relative overflow-hidden">
+    <section id="about" class="py-16 md:py-20 bg-slate-950 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-red-900/10 to-transparent"></div>
         <div class="max-w-4xl mx-auto px-4 relative">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">About Us</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">关于 STAR FC</h2>
             </div>
@@ -1036,9 +1067,9 @@
     </section>
 
     <!-- History Section - 精简版 -->
-    <section id="history" class="py-16 md:py-24 bg-slate-900">
+    <section id="history" class="py-16 md:py-20 bg-slate-900">
         <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">History</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">STAR FC 大事记</h2>
                 <p class="text-gray-400 mt-4">从 2001 到今天，我们走过了这些年份</p>
@@ -1103,18 +1134,18 @@
     </section>
 
     <!-- Club Stories Section - 文章栏 -->
-    <section id="stories" class="py-16 md:py-24 bg-slate-950">
+    <section id="stories" class="py-16 md:py-20 bg-slate-950">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-10 md:mb-12">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Stories</span>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mt-2">最新故事与动态</h2>
                 <p class="text-gray-400 mt-4">二十多年，我们积累了太多值得记住的瞬间</p>
             </div>
 
             <!-- Horizontal Scrollable Stories -->
-            <div class="overflow-x-auto flex gap-6 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+            <div class="hscroll">
                 <!-- Story 1: Lemon Homecoming -->
-                <a href="https://xhslink.com/example-story-lemon" target="_blank" rel="noopener noreferrer" class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-amber-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
+                <a href="https://xhslink.com/example-story-lemon" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-gradient-to-br from-amber-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
                     <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">记忆</span>
                     <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">欢迎回家，Lemon 哥</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">球队创始人、终身名誉队长 Lemon 哥时隔多年回到新加坡，兄弟们用一场大胜和一件签名球衣欢迎他回家。</p>
@@ -1124,7 +1155,7 @@
                 </a>
 
                 <!-- Story 2: Championship Night -->
-                <a href="https://xhslink.com/example-story-2025" target="_blank" rel="noopener noreferrer" class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-red-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
+                <a href="https://xhslink.com/example-story-2025" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-gradient-to-br from-red-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
                     <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">冠军之夜</span>
                     <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">2025 UAFL 联赛亚军</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">经过一整个赛季的拼搏，STAR FC 在 UAFL 联赛中取得亚军——这是球队二十多年来最好的联赛成绩之一。</p>
@@ -1134,7 +1165,7 @@
                 </a>
 
                 <!-- Story 3: Epic Comeback -->
-                <a href="https://xhslink.com/example-story-comeback" target="_blank" rel="noopener noreferrer" class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-green-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
+                <a href="https://xhslink.com/example-story-comeback" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-gradient-to-br from-green-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
                     <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">经典战役</span>
                     <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">0–3 落后到 4–3 逆转</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">半场被打花，更衣室里没人说话。下半场开场 5 分钟追回一球，然后一发不可收拾——这是很多老队员心中 STAR FC 最燃的一战。</p>
@@ -1144,7 +1175,7 @@
                 </a>
 
                 <!-- Story 4: 20th Anniversary -->
-                <a href="https://xhslink.com/example-story-20th" target="_blank" rel="noopener noreferrer" class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-purple-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
+                <a href="https://xhslink.com/example-story-20th" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-gradient-to-br from-purple-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
                     <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">20 周年</span>
                     <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">二十周年：老炮 vs 新锐</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">2022 年，球队成立 20 周年。我们组织了一场"元老队 vs 现役队"的内部对抗赛，场边站满了曾经穿过红色球衣的人。</p>
@@ -1165,7 +1196,7 @@
     </section>
 
     <!-- Join Section -->
-    <section id="join" class="py-16 md:py-24 bg-slate-950">
+    <section id="join" class="py-16 md:py-20 bg-slate-900">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-10 md:mb-16">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Join Us</span>
@@ -1216,7 +1247,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-slate-900">
+    <section id="contact" class="py-16 md:py-20 bg-slate-950">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-10 md:mb-16">
                 <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Contact</span>

@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+/*
+ * NOTE: For horizontal scroll responsiveness (mobile 1 card, tablet 2 cards, desktop fixed),
+ * please refer to the .hscroll and .hscroll-player CSS classes defined in index.html <style> block.
+ *
+ * The static index.html is the deployment source of truth.
+ * This JSX file serves as a React development reference.
+ */
+
 // ============ COMPONENTS ============
 
 // Navigation Component
@@ -626,7 +634,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
           backgroundSize: '40px 40px',
@@ -687,7 +695,7 @@ const AboutPage = () => {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-slate-900">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Our Values</span>
@@ -707,7 +715,7 @@ const AboutPage = () => {
       </section>
 
       {/* Who We Are */}
-      <section className="py-20 bg-slate-950">
+      <section className="py-16 md:py-20 bg-slate-950">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Who We Are</span>
@@ -794,7 +802,7 @@ const HistoryPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">History</span>
           <h1 className="text-5xl font-bold text-white mt-4">STAR FC 大事记</h1>
@@ -828,7 +836,7 @@ const HistoryPage = () => {
       </section>
 
       {/* Club Stories Section - 文章/公告栏 */}
-      <section className="py-20 bg-slate-900">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Stories</span>
@@ -886,7 +894,7 @@ const HistoryPage = () => {
       </section>
 
       {/* Full Story: Lemon Homecoming */}
-      <section id="story-lemon-full" className="py-20 bg-slate-950">
+      <section id="story-lemon-full" className="py-16 md:py-20 bg-slate-950">
         <div className="max-w-4xl mx-auto px-4">
           <a href="#" className="text-amber-400 text-sm hover:text-amber-300 mb-6 inline-block">← 返回故事列表</a>
           <span className="block text-amber-400 text-sm font-semibold tracking-widest uppercase mt-4">记忆</span>
@@ -916,7 +924,7 @@ const HistoryPage = () => {
       </section>
 
       {/* Full Story: 2025 UAFL 亚军之夜 */}
-      <section id="story-2025-final-full" className="py-20 bg-slate-900">
+      <section id="story-2025-final-full" className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4">
           <a href="#" className="text-amber-400 text-sm hover:text-amber-300 mb-6 inline-block">← 返回故事列表</a>
           <span className="block text-amber-400 text-sm font-semibold tracking-widest uppercase mt-4">亚军之夜</span>
@@ -1019,7 +1027,7 @@ const TeamPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Current Squad</span>
           <h1 className="text-5xl font-bold text-white mt-4">当前阵容</h1>
@@ -1130,7 +1138,7 @@ const FixturesPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Fixtures & Results</span>
           <h1 className="text-5xl font-bold text-white mt-4">赛程与战绩</h1>
@@ -1285,7 +1293,7 @@ const MediaPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Media Center</span>
           <h1 className="text-5xl font-bold text-white mt-4">媒体中心</h1>
@@ -1380,7 +1388,7 @@ const JoinPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 pt-24">
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-16 md:py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Join Us</span>
           <h1 className="text-5xl font-bold text-white mt-4">我们一直在等</h1>
@@ -1450,7 +1458,7 @@ const JoinPage = () => {
 // Contact Page
 const ContactPage = () => (
   <div className="min-h-screen bg-slate-900 pt-24">
-    <section className="py-16 md:py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+    <section className="py-16 md:py-20 bg-slate-950">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Contact</span>
         <h1 className="text-2xl md:text-5xl font-bold text-white mt-4">联系我们</h1>
