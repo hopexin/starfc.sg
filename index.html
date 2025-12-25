@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR FC 新加坡华人足球俱乐部</title>
+    <link rel="icon" type="image/png" href="./starfclogo2.png">
+    <link rel="apple-touch-icon" href="./starfclogo2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Noto Sans SC', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #450a0a 50%, #0f172a 100%); }
+        .gold-text { color: #d4af37; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /* Custom scrollbar for horizontal scroll */
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .scroll-container::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#home" class="flex items-center gap-3">
+                    <img src="./starfclogo2.png" alt="STAR FC 官方队徽" class="w-10 h-10 object-contain drop-shadow-md">
+                    <div>
+                        <span class="text-white font-bold text-xl tracking-wide">STAR FC</span>
+                        <span class="block text-amber-400 text-xs tracking-widest">SINCE 2002</span>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">主页</a>
+                    <a href="#fixtures" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">赛程战绩</a>
+                    <a href="#media" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">媒体中心</a>
+                    <a href="#team" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">球队成员</a>
+                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">关于我们</a>
+                    <a href="#history" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">队史荣誉</a>
+                    <a href="#join" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">加入我们</a>
+                    <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">联系我们</a>
+                </div>
+                <button class="text-xs font-medium text-gray-400 hover:text-amber-400 transition-colors px-3 py-1 border border-gray-700 rounded-full">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+        <div class="absolute inset-0 opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-red-600/20 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+            <!-- Hero Logo -->
+            <div class="mb-8 flex justify-center">
+                <img src="./starfclogo2.png" alt="STAR FC 官方队徽" class="w-28 h-28 sm:w-32 sm:h-32 object-contain" style="filter: drop-shadow(0 0 30px rgba(251,191,36,0.3));">
+            </div>
+
+            <div class="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
+                <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                <span class="text-amber-400 text-sm font-medium tracking-wide">成立于 2002 · 新加坡历史最悠久的华人业余足球队之一</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
+                STAR <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">FC</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 mb-4 font-light">新加坡华人足球俱乐部</p>
+            <p class="text-2xl sm:text-3xl text-white font-medium mb-12">
+                在异乡，也要踢出我们的<span class="text-amber-400">主场</span>。
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#fixtures" class="group px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl hover:from-red-500 hover:to-red-600 transition-all duration-300 shadow-lg shadow-red-900/50 hover:shadow-red-800/60 hover:-translate-y-1">
+                    查看本周赛程
+                    <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+                <a href="#history" class="px-8 py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+                    了解 STAR FC 的故事
+                </a>
+                <a href="#join" class="px-8 py-4 bg-amber-500/10 backdrop-blur-sm text-amber-400 font-semibold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    我要加入球队
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+                <div class="w-1 h-2 bg-white/50 rounded-full animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixtures Section - 2026 全年赛程 -->
+    <section id="fixtures" class="py-24 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Fixtures & Results</span>
+                <h2 class="text-4xl font-bold text-white mt-2">赛程与战绩</h2>
+            </div>
+
+            <!-- Season Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">比赛</p>
+                </div>
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">胜</p>
+                </div>
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">平</p>
+                </div>
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">负</p>
+                </div>
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">进球</p>
+                </div>
+                <div class="text-center p-4 bg-slate-800/50 rounded-xl">
+                    <p class="text-3xl font-bold text-amber-400">0</p>
+                    <p class="text-gray-400 text-sm">失球</p>
+                </div>
+            </div>
+
+            <!-- 2026 Year Subtitle -->
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-bold text-white">2026 年 · STAR FC 全年赛程与战绩</h3>
+                <p class="text-gray-500 text-sm mt-2">包括联赛、杯赛和友谊赛，均按自然年统计。新赛季即将开始，赛程公布后将实时更新。</p>
+            </div>
+
+            <!-- Horizontal Timeline Matches - 按日期降序排列（最新在左） -->
+            <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                <!-- 已完场比赛 1 - 2025-12-15 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2025-12-15</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">已完场</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Tampines Rovers Reserves</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-3xl font-bold text-green-400">4 - 2</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2">⚽ 刘子昂 x2, 周逸凡, 林致远</p>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                    <div class="mt-3 pt-3 border-t border-slate-700/50 flex gap-2">
+                        <a href="https://www.youtube.com/watch?v=XXXXXXXX" target="_blank" class="flex-1 px-3 py-1.5 bg-red-600/20 text-red-400 text-xs text-center rounded-lg hover:bg-red-600/30">集锦</a>
+                        <a href="https://www.youtube.com/watch?v=YYYYYYYY" target="_blank" class="flex-1 px-3 py-1.5 bg-slate-700/50 text-gray-400 text-xs text-center rounded-lg hover:bg-slate-700">全场</a>
+                    </div>
+                </div>
+
+                <!-- 已完场比赛 2 - 2025-12-08 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2025-12-08</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第10轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">已完场</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Harbour United</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-3xl font-bold text-green-400">3 - 1</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2">⚽ 刘子昂, 张一鸣, 马思聪</p>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                    <div class="mt-3 pt-3 border-t border-slate-700/50 flex gap-2">
+                        <a href="https://www.youtube.com/watch?v=ZZZZZZZZ" target="_blank" class="flex-1 px-3 py-1.5 bg-red-600/20 text-red-400 text-xs text-center rounded-lg hover:bg-red-600/30">集锦</a>
+                        <a href="https://www.youtube.com/watch?v=WWWWWWWW" target="_blank" class="flex-1 px-3 py-1.5 bg-slate-700/50 text-gray-400 text-xs text-center rounded-lg hover:bg-slate-700">全场</a>
+                    </div>
+                </div>
+
+                <!-- 未来比赛 1 - 2026-01-12 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-01-12</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Singapore Legends</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                </div>
+
+                <!-- 未来比赛 2 - 2026-02-08 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-02-08</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第1轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Harbour United</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                </div>
+
+                <!-- 未来比赛 3 - 2026-02-15 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-02-15</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第2轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span>East Coast Warriors</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span class="text-amber-400">STAR FC</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">16:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 East Coast Park</p>
+                </div>
+
+                <!-- 未来比赛 4 - 2026-02-22 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-02-22</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第3轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Clementi Tigers</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                </div>
+
+                <!-- 未来比赛 5 - 2026-03-01 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-03-01</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第4轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span>Lion City Rangers</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span class="text-amber-400">STAR FC</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:30 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Queenstown Stadium</p>
+                </div>
+
+                <!-- Match 6 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-03-08</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第5轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>Bukit Timah FC</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                </div>
+
+                <!-- Match 7 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-03-15</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 杯赛 1/4决赛</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span class="text-amber-400">STAR FC</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span>待定</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">15:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Dempsey Hill</p>
+                </div>
+
+                <!-- Match 8 -->
+                <div class="min-w-[320px] md:min-w-[360px] lg:min-w-[380px] flex-shrink-0 snap-start rounded-2xl bg-slate-800/70 border border-slate-700/70 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400 text-sm">📅 2026-03-22</span>
+                            <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 联赛 第6轮</span>
+                        </div>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-400">即将开球</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white font-semibold text-lg">
+                            <span>Jurong United</span>
+                            <span class="text-gray-500 mx-2">vs</span>
+                            <span class="text-amber-400">STAR FC</span>
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-xl text-gray-400">16:00 开球</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">📍 Jurong West Stadium</p>
+                </div>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="flex justify-center mt-6">
+                <span class="text-gray-500 text-sm">← 左右滑动查看 2026 年全部比赛 →</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="py-24 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Media Center</span>
+                <h2 class="text-4xl font-bold text-white mt-2">媒体中心</h2>
+                <p class="text-gray-400 mt-4">每一场比赛，我们都用 Veo3 录像设备记录下来</p>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-8">精彩集锦</h3>
+            <div class="overflow-x-auto flex gap-6 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                <!-- Video 1 -->
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                    <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-slate-900/80 backdrop-blur text-amber-400 text-xs font-medium rounded">UAFL Premier 第 6 轮</span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-white font-semibold group-hover:text-amber-400 transition-colors mb-2">3–1 完胜 Harbour United：雨战中的控场</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">在细雨中的 Dempsey Hill，STAR FC 以 3–1 击败 Harbour United，展现了中场压迫和快速反击的结合。</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span>📅 2025-03-02</span>
+                            <span>vs Harbour United</span>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-700/50">
+                            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors w-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                在 YouTube 观看
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                    <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-slate-900/80 backdrop-blur text-amber-400 text-xs font-medium rounded">UAFL Premier 第 5 轮</span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-white font-semibold group-hover:text-amber-400 transition-colors mb-2">4–2 逆转 East Coast Warriors：从 0–2 到 4–2</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">半场 0–2 落后，下半场连入四球完成逆转，被队员称为"本赛季最燃的一战"。</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span>📅 2025-02-23</span>
+                            <span>vs East Coast Warriors</span>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-700/50">
+                            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors w-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                在 YouTube 观看
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                    <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-slate-900/80 backdrop-blur text-amber-400 text-xs font-medium rounded">UAFL 2023-2024 赛季</span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-white font-semibold group-hover:text-amber-400 transition-colors mb-2">2024 UAFL 赛季精彩回顾</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">回顾 2023-2024 赛季，STAR FC 取得联赛亚军的精彩瞬间。</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span>📅 2024-12-01</span>
+                            <span>赛季合集</span>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-700/50">
+                            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors w-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                在 YouTube 观看
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all flex-shrink-0 w-[340px] md:w-[400px] snap-start">
+                    <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="block aspect-video bg-gradient-to-br from-red-900/30 to-slate-900 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-red-600/90 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all shadow-lg">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-slate-900/80 backdrop-blur text-amber-400 text-xs font-medium rounded">纪念赛</span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-white font-semibold group-hover:text-amber-400 transition-colors mb-2">Lemon 哥回归纪念赛集锦</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">球队创始人 Lemon 哥回到新加坡，与新老队员一起在 Dempsey Hill 踢了一场难忘的比赛。</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span>📅 2025-01-15</span>
+                            <span>内部对抗赛</span>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-700/50">
+                            <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm font-medium rounded-lg transition-colors w-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                在 YouTube 观看
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Videos -->
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">更多视频</h3>
+                <p class="text-gray-400 mb-8">我们的完整比赛录像和更多集锦都在 YouTube 频道上，欢迎订阅关注！</p>
+                <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-xl transition-colors">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    订阅 STAR FC YouTube 频道
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - 按位置分组 -->
+    <section id="team" class="py-24 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Squad</span>
+                <h2 class="text-4xl font-bold text-white mt-2">一线队阵容</h2>
+                <p class="text-gray-400 mt-4">2026 赛季</p>
+                <p class="text-gray-500 text-sm mt-2">按位置浏览当前赛季 STAR FC 一线队阵容</p>
+            </div>
+
+            <!-- 前锋 FWD -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <h3 class="text-2xl font-bold text-white">前锋</h3>
+                        <span class="text-gray-500 text-sm">Forwards (FWD)</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">共 4 人</span>
+                </div>
+                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                    <!-- Player: #10 刘子昂 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#10</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#10</span>
+                                <span class="text-white font-semibold text-lg">刘子昂</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">前锋 / 2017 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #7 张一鸣 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#7</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#7</span>
+                                <span class="text-white font-semibold text-lg">张一鸣</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">右边锋 / 2022 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #9 周逸凡 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#9</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#9</span>
+                                <span class="text-white font-semibold text-lg">周逸凡</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">中锋 / 2023 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #11 林致远 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#11</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#11</span>
+                                <span class="text-white font-semibold text-lg">林致远</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">左边锋 / 2024 年加入</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中场 MID -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <h3 class="text-2xl font-bold text-white">中场</h3>
+                        <span class="text-gray-500 text-sm">Midfielders (MID)</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">共 3 人</span>
+                </div>
+                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                    <!-- Player: #6 陈伟强 (队长) -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <div class="absolute top-3 right-3 px-2 py-1 bg-amber-500 text-slate-900 text-xs font-bold rounded">队长</div>
+                            <span class="text-6xl font-black text-white/10">#6</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#6</span>
+                                <span class="text-white font-semibold text-lg">陈伟强</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">后腰/队长 / 2015 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #8 江子瑜 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#8</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#8</span>
+                                <span class="text-white font-semibold text-lg">江子瑜</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">中前卫 / 2019 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #14 孙志豪 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#14</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#14</span>
+                                <span class="text-white font-semibold text-lg">孙志豪</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">后腰 / 2023 年加入</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 后卫 DEF -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <h3 class="text-2xl font-bold text-white">后卫</h3>
+                        <span class="text-gray-500 text-sm">Defenders (DEF)</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">共 4 人</span>
+                </div>
+                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                    <!-- Player: #3 严博文 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#3</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#3</span>
+                                <span class="text-white font-semibold text-lg">严博文</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">中后卫 / 2009 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #4 赵明远 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#4</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#4</span>
+                                <span class="text-white font-semibold text-lg">赵明远</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">中后卫 / 2020 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #2 李浩然 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#2</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#2</span>
+                                <span class="text-white font-semibold text-lg">李浩然</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">右后卫 / 2021 年加入</p>
+                        </div>
+                    </div>
+                    <!-- Player: #5 吴天宇 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#5</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#5</span>
+                                <span class="text-white font-semibold text-lg">吴天宇</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">左后卫 / 2022 年加入</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 门将 GK -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <h3 class="text-2xl font-bold text-white">门将</h3>
+                        <span class="text-gray-500 text-sm">Goalkeepers (GK)</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">共 1 人</span>
+                </div>
+                <div class="overflow-x-auto flex gap-4 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                    <!-- Player: #1 王立国 -->
+                    <div class="min-w-[220px] md:min-w-[260px] flex-shrink-0 snap-start group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all duration-300">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center relative">
+                            <span class="text-6xl font-black text-white/10">#1</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-amber-400 font-bold text-lg">#1</span>
+                                <span class="text-white font-semibold text-lg">王立国</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">守门员 / 2010 年加入</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-red-900/10 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-4 relative">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">About Us</span>
+                <h2 class="text-4xl font-bold text-white mt-2">关于 STAR FC</h2>
+            </div>
+
+            <div class="prose prose-lg prose-invert max-w-none">
+                <p class="text-gray-300 leading-relaxed text-lg">
+                    STAR 华人足球俱乐部（STAR FC）创建于 <span class="text-amber-400 font-semibold">2002 年</span>，前身为「浙江华人足球队」，由终身名誉队长 <span class="text-amber-400 font-semibold">Lemon（9 号）</span> 发起。
+                </p>
+                <p class="text-gray-300 leading-relaxed text-lg mt-6">
+                    球队最早只是一群在新加坡打拼的华人，通过狮城华人论坛认识，约在一片烂泥地上踢球。后来与「狮城华人论坛队」合并，正式更名为 <span class="text-white font-semibold">STAR FC（STAR 华人足球俱乐部）</span>。
+                </p>
+                <p class="text-gray-300 leading-relaxed text-lg mt-6">
+                    从那时候起，STAR FC 一直是一支以华人为主、长期活跃在坡岛的 11 人制业余球队。
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+                <div class="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <p class="text-4xl font-bold text-amber-400">23+</p>
+                    <p class="text-gray-400 text-sm mt-1">年历史</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <p class="text-4xl font-bold text-amber-400">2025</p>
+                    <p class="text-gray-400 text-sm mt-1">UAFL 赛季</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <p class="text-4xl font-bold text-amber-400">80+</p>
+                    <p class="text-gray-400 text-sm mt-1">历史球员</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <p class="text-4xl font-bold text-amber-400">25+</p>
+                    <p class="text-gray-400 text-sm mt-1">活跃成员</p>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <div class="mt-20">
+                <div class="text-center mb-12">
+                    <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Our Values</span>
+                    <h3 class="text-3xl font-bold text-white mt-2">团结、分享、乐趣、成长</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h4 class="text-xl font-bold text-white mb-3">团结 Unity</h4>
+                        <p class="text-gray-400 leading-relaxed">老队员之间几十场、上百场并肩作战的感情；一代带一代的"传帮带"文化，让这支球队走过二十多年从未散场。</p>
+                    </div>
+                    <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+                        <div class="text-4xl mb-4">💡</div>
+                        <h4 class="text-xl font-bold text-white mb-3">分享 Share</h4>
+                        <p class="text-gray-400 leading-relaxed">从技术动作到战术配合，从训练心得到生活经验，STAR FC 的更衣室里从来不藏私。</p>
+                    </div>
+                    <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+                        <div class="text-4xl mb-4">⚽</div>
+                        <h4 class="text-xl font-bold text-white mb-3">乐趣 Fun</h4>
+                        <p class="text-gray-400 leading-relaxed">每个人都有正职工作，有家庭、有压力。能在周末换上球衣踢 90 分钟，本身就是一种幸福。</p>
+                    </div>
+                    <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="text-xl font-bold text-white mb-3">成长 Growth</h4>
+                        <p class="text-gray-400 leading-relaxed">我们欢迎不同水平的球员，但不接受"得过且过"。你可以慢，但要愿意学、敢于改。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section - 精简版 -->
+    <section id="history" class="py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">History</span>
+                <h2 class="text-4xl font-bold text-white mt-2">STAR FC 大事记</h2>
+                <p class="text-gray-400 mt-4">从 2001 到今天，我们走过了这些年份</p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500 via-red-600 to-slate-700"></div>
+
+                <div class="space-y-12">
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
+                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2001</span>
+                        </div>
+                        <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <h3 class="text-xl font-bold text-white mb-2">球队前身诞生</h3>
+                            <p class="text-gray-400">浙江华人足球队在新加坡自发成立，以在坡打拼的浙江华人为主，大家通过狮城华人论坛相约踢球。</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
+                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2002</span>
+                        </div>
+                        <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <h3 class="text-xl font-bold text-white mb-2">STAR 华人足球俱乐部成立</h3>
+                            <p class="text-gray-400">由 9 号前锋 Lemon 哥发起组队，在原有浙江华人足球队基础上扩展，吸引来自全国各地、不同背景的华人球员，正式使用「STAR 华人足球俱乐部」的名字。</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
+                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2008</span>
+                        </div>
+                        <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <h3 class="text-xl font-bold text-white mb-2">启用现版队徽</h3>
+                            <p class="text-gray-400">球队对队徽进行改动，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
+                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2025</span>
+                        </div>
+                        <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <h3 class="text-xl font-bold text-white mb-2">UAFL 联赛亚军 & 新一代崛起</h3>
+                            <p class="text-gray-400">球队在 UAFL 业余联赛中取得联赛第二名的佳绩。主力阵容以老带新，年轻一代多来自清华、武大、川大、重大、厦大、中财、上财等重点高校校队。</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
+                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">现在</span>
+                        </div>
+                        <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                            <h3 class="text-xl font-bold text-white mb-2">把球队当成一个"家"继续走下去</h3>
+                            <p class="text-gray-400">依托 Dempsey Hill 天然草球场和 Veo3 等录像设备，STAR FC 正在更系统地记录比赛与训练，对很多队员来说，这里早已不只是球队，而是一个"家"。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Club Stories Section - 文章栏 -->
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Stories</span>
+                <h2 class="text-4xl font-bold text-white mt-2">最新战报与故事</h2>
+                <p class="text-gray-400 mt-4">二十多年，我们积累了太多值得记住的瞬间</p>
+            </div>
+
+            <!-- Horizontal Scrollable Stories -->
+            <div class="overflow-x-auto flex gap-6 pb-4 snap-x snap-mandatory scroll-container" style="scrollbar-width: thin; scrollbar-color: #475569 #1e293b;">
+                <!-- Story 1: Lemon Homecoming -->
+                <div class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-amber-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group">
+                    <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">记忆</span>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">欢迎回家，Lemon 哥</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">球队创始人、终身名誉队长 Lemon 哥时隔多年回到新加坡，兄弟们用一场大胜和一件签名球衣欢迎他回家。</p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">阅读完整故事 →</span>
+                    </div>
+                </div>
+
+                <!-- Story 2: Championship Night -->
+                <div class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-red-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group">
+                    <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">冠军之夜</span>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">2024 联赛亚军之夜</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">经过一整个赛季的拼搏，STAR FC 在 UAFL 联赛中取得亚军——这是球队二十多年来最好的联赛成绩之一。</p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">阅读完整故事 →</span>
+                    </div>
+                </div>
+
+                <!-- Story 3: Epic Comeback -->
+                <div class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-green-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group">
+                    <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">经典战役</span>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">0–3 落后到 4–3 逆转</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">半场被打花，更衣室里没人说话。下半场开场 5 分钟追回一球，然后一发不可收拾——这是很多老队员心中 STAR FC 最燃的一战。</p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">阅读完整故事 →</span>
+                    </div>
+                </div>
+
+                <!-- Story 4: 20th Anniversary -->
+                <div class="w-[280px] md:w-[320px] flex-shrink-0 snap-start p-6 bg-gradient-to-br from-purple-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group">
+                    <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">20 周年</span>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">二十周年：老炮 vs 新锐</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">2022 年，球队成立 20 周年。我们组织了一场"元老队 vs 现役队"的内部对抗赛，场边站满了曾经穿过红色球衣的人。</p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">阅读完整故事 →</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="flex justify-center mt-6">
+                <span class="text-gray-500 text-sm">← 左右滑动查看更多 →</span>
+            </div>
+
+            <!-- Future Updates Note -->
+            <p class="text-center text-gray-600 text-sm mt-8">未来会在这里持续更新比赛战报、活动与球队故事。</p>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="py-24 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Join Us</span>
+                <h2 class="text-4xl font-bold text-white mt-2">我们一直在等</h2>
+                <p class="text-2xl text-gray-300 mt-4">那个会准时来训练的你</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                    <h3 class="text-lg font-bold text-white mb-4">🎯 所需位置</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>• 中后卫（优先）</li>
+                        <li>• 后腰</li>
+                        <li>• 守门员（轮换）</li>
+                        <li>• 边路球员</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                    <h3 class="text-lg font-bold text-white mb-4">📋 基本要求</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>• 年龄：18–38 岁为主</li>
+                        <li>• 每月至少 2–3 次出勤</li>
+                        <li>• 身体健康，无严重伤病</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                    <h3 class="text-lg font-bold text-white mb-4">⭐ 加分项</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>• 有正式联赛经验</li>
+                        <li>• 有剪辑/摄影/设计特长</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+                <h3 class="text-2xl font-bold text-white mb-6">试训报名表</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">姓名</label>
+                        <input type="text" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="你的姓名">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">联系方式</label>
+                        <input type="text" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="WhatsApp / 微信">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">擅长位置</label>
+                        <select class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors">
+                            <option>请选择</option>
+                            <option>门将</option>
+                            <option>后卫</option>
+                            <option>中场</option>
+                            <option>前锋</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">踢球经验</label>
+                        <select class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors">
+                            <option>请选择</option>
+                            <option>业余爱好</option>
+                            <option>校队/公司队</option>
+                            <option>正式联赛经验</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-400 text-sm mb-2">自我介绍（可选）</label>
+                        <textarea class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors h-32 resize-none" placeholder="简单介绍一下自己..."></textarea>
+                    </div>
+                </div>
+                <button class="mt-6 w-full py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl hover:from-red-500 hover:to-red-600 transition-all">
+                    提交报名
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Contact</span>
+                <h2 class="text-4xl font-bold text-white mt-2">联系我们</h2>
+                <p class="text-gray-400 mt-4">无论你是想加入球队、安排友谊赛，还是希望进行品牌合作</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <a href="mailto:contact@starfc.sg" class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+                        <span class="text-2xl">📧</span>
+                        <div>
+                            <p class="text-gray-400 text-sm">邮箱</p>
+                            <p class="text-white font-medium">contact@starfc.sg</p>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/6588888888" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+                        <span class="text-2xl">📱</span>
+                        <div>
+                            <p class="text-gray-400 text-sm">WhatsApp</p>
+                            <p class="text-white font-medium">+65 8888 8888</p>
+                        </div>
+                    </a>
+                    <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                        <span class="text-2xl">💬</span>
+                        <div>
+                            <p class="text-gray-400 text-sm">微信</p>
+                            <p class="text-white font-medium">STARFC-SG</p>
+                        </div>
+                    </div>
+                    <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+                        <span class="text-2xl">📕</span>
+                        <div>
+                            <p class="text-gray-400 text-sm">小红书</p>
+                            <p class="text-white font-medium">STAR FC 新加坡华人足球队</p>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/starfc.sg" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50 hover:border-amber-500/50 hover:bg-slate-800/50 transition-all">
+                        <span class="text-2xl">📸</span>
+                        <div>
+                            <p class="text-gray-400 text-sm">Instagram</p>
+                            <p class="text-white font-medium">@starfc.sg</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+                    <h3 class="text-lg font-bold text-white mb-4">🏟️ 常用球场</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-400">•</span>
+                            Dempsey Hill 天然草球场（主场）
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-400">•</span>
+                            Queenstown Stadium
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-400">•</span>
+                            Clementi / West Coast 社区球场
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="./starfclogo2.png" alt="STAR FC 官方队徽" class="w-12 h-12 object-contain drop-shadow-md">
+                        <div>
+                            <span class="text-white font-bold text-xl">STAR FC</span>
+                            <span class="block text-amber-400 text-xs tracking-widest">SINCE 2002</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-md">新加坡华人足球俱乐部。在异乡，也要踢出我们的主场。</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-amber-400 transition-colors">关于我们</a></li>
+                        <li><a href="#fixtures" class="hover:text-amber-400 transition-colors">赛程战绩</a></li>
+                        <li><a href="#media" class="hover:text-amber-400 transition-colors">媒体中心</a></li>
+                        <li><a href="#join" class="hover:text-amber-400 transition-colors">加入球队</a></li>
+                        <li><a href="#contact" class="hover:text-amber-400 transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">关注我们</h4>
+                    <div class="flex gap-3">
+                        <a href="https://wa.me/6588888888" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 hover:scale-110 transition-all">📱</a>
+                        <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" title="小红书" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 hover:scale-110 transition-all">📕</a>
+                        <a href="https://instagram.com/starfc.sg" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 hover:scale-110 transition-all">📸</a>
+                        <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" title="YouTube" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 hover:scale-110 transition-all">▶️</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-800 text-center text-gray-500 text-sm">
+                © 2025 STAR FC. All rights reserved. | 新加坡华人足球俱乐部
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-900/95', 'backdrop-blur-md', 'shadow-2xl');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'shadow-2xl');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body>
+</html>
