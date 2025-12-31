@@ -2419,7 +2419,40 @@
                     panel.classList.add('hidden');
                 }
             });
+
+            // Reset scroll position to leftmost (newest match)
+            resetFixturesScroll(year);
         }
+
+        // Reset fixtures horizontal scroll to leftmost position
+        function resetFixturesScroll(year) {
+            const panel = document.querySelector(`[data-year-panel="${year}"]`);
+            if (!panel) return;
+            const scroller = panel.querySelector('.hscroll.hscroll-fixtures');
+            if (!scroller) return;
+            scroller.scrollTo({ left: 0, behavior: 'auto' });
+            // Double-check with rAF for browser stability
+            requestAnimationFrame(() => {
+                scroller.scrollTo({ left: 0, behavior: 'auto' });
+            });
+        }
+
+        // Get currently visible year panel
+        function getCurrentVisibleYear() {
+            const visiblePanel = document.querySelector('[data-year-panel]:not(.hidden)');
+            return visiblePanel ? parseInt(visiblePanel.dataset.yearPanel) : 2026;
+        }
+
+        // Initialize fixtures scroll on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            resetFixturesScroll(2026);
+        });
+
+        // Handle bfcache (back-forward cache) restoration
+        window.addEventListener('pageshow', function(event) {
+            const currentYear = getCurrentVisibleYear();
+            resetFixturesScroll(currentYear);
+        });
     </script>
 
     <!-- ===================== CONTENT UPDATE ZONE ===================== -->
