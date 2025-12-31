@@ -78,6 +78,17 @@
         @media (min-width: 1024px) {
             .hscroll-player { grid-auto-columns: 180px; }
         }
+        /* Swipe hint - mobile/tablet only */
+        .swipe-hint {
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(156, 163, 175, 0.7);
+            margin-bottom: 0.5rem;
+            padding-right: 0.25rem;
+        }
+        @media (min-width: 1024px) {
+            .swipe-hint { display: none; }
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-white">
@@ -172,12 +183,6 @@
                 </a>
             </div>
         </div>
-
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-                <div class="w-1 h-2 bg-white/50 rounded-full animate-pulse"></div>
-            </div>
-        </div>
     </section>
 
     <!-- Fixtures Section - 2026 全年赛程 -->
@@ -197,6 +202,7 @@
             <!-- 2025 Year Panel -->
             <div data-year-panel="2025" class="hidden">
                 <!-- 2025 Matches Timeline -->
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll mb-10">
                     <!-- UAFL 决赛 - 2025-05-03 -->
                     <div class="rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-600/50 p-5 shadow-lg">
@@ -321,6 +327,7 @@
             <!-- 2026 Year Panel -->
             <div data-year-panel="2026">
                 <!-- 2026 Matches Timeline -->
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll mb-10">
                     <!-- 2026-01-12 友谊赛 -->
                     <div class="rounded-2xl bg-gradient-to-br from-red-900/30 to-slate-900 border border-red-800/50 p-5 shadow-lg">
@@ -458,6 +465,7 @@
                     <span class="px-3 py-1 bg-red-600/20 text-red-400 text-xs font-semibold rounded-full">视频</span>
                     <h3 class="text-xl md:text-2xl font-bold text-white">视频集锦</h3>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
             <div class="hscroll">
                 <!-- Video 1 -->
                 <div class="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all">
@@ -580,6 +588,7 @@
                     <span class="px-3 py-1 bg-blue-600/20 text-blue-400 text-xs font-semibold rounded-full">照片</span>
                     <h3 class="text-xl md:text-2xl font-bold text-white">比赛照片</h3>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll">
                     <a href="https://xhslink.com/example-photo-album-1" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-[4/3] bg-gradient-to-br from-amber-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
@@ -622,6 +631,7 @@
                     <span class="px-3 py-1 bg-green-600/20 text-green-400 text-xs font-semibold rounded-full">趣图</span>
                     <h3 class="text-xl md:text-2xl font-bold text-white">表情包</h3>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll">
                     <a href="https://xhslink.com/example-meme-pack-1" target="_blank" rel="noopener noreferrer" class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-amber-500/50 transition-all p-4 block group">
                         <div class="aspect-square bg-gradient-to-br from-green-900/30 to-slate-900 rounded-xl mb-3 flex items-center justify-center">
@@ -676,6 +686,7 @@
                     </div>
                     <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll hscroll-player">
                     <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
@@ -759,6 +770,7 @@
                     </div>
                     <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll hscroll-player">
                     <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col relative">
                         <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-slate-900 text-xs font-bold rounded z-10">队长</div>
@@ -843,6 +855,7 @@
                     </div>
                     <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll hscroll-player">
                     <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
@@ -926,6 +939,7 @@
                     </div>
                     <span class="text-gray-500 text-xs md:text-sm">共 10 人</span>
                 </div>
+                <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll hscroll-player">
                     <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
                         <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>
@@ -1012,6 +1026,7 @@
             </div>
 
             <!-- Hall of Fame Cards - Vertical Photo Style -->
+            <div class="swipe-hint">左右滑动查看更多</div>
             <div class="hscroll">
                 <!-- 创队队长 -->
                 <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-amber-500/50 hover:border-amber-500/80 transition-all duration-300 flex flex-col">
@@ -1110,10 +1125,6 @@
                 </div>
             </div>
 
-            <!-- Scroll Hint -->
-            <div class="flex justify-center mt-6">
-                <span class="text-gray-500 text-sm">← 左右滑动查看更多 →</span>
-            </div>
         </div>
     </section>
 
@@ -1267,6 +1278,7 @@
             </div>
 
             <!-- Horizontal Scrollable Stories -->
+            <div class="swipe-hint">左右滑动查看更多</div>
             <div class="hscroll">
                 <!-- Story 1: Lemon Homecoming -->
                 <a href="https://xhslink.com/example-story-lemon" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-gradient-to-br from-amber-600/20 to-slate-900 rounded-2xl border border-slate-700/50 hover:border-amber-500/30 transition-all cursor-pointer group block">
@@ -1307,11 +1319,6 @@
                         <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors">查看完整版 →</span>
                     </div>
                 </a>
-            </div>
-
-            <!-- Scroll Hint -->
-            <div class="flex justify-center mt-6">
-                <span class="text-gray-500 text-sm">← 左右滑动查看更多 →</span>
             </div>
 
             <!-- Future Updates Note -->
