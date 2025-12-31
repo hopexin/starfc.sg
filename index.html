@@ -89,6 +89,32 @@
         @media (min-width: 1024px) {
             .swipe-hint { display: none; }
         }
+        /* Mobile menu - nav height variable */
+        :root { --nav-h: 80px; }
+        /* Mobile menu animations */
+        #mobile-menu {
+            pointer-events: none;
+            height: 100vh;
+            height: 100dvh;
+        }
+        #mobile-menu.hidden { display: none; }
+        #mobile-menu.open { pointer-events: auto; }
+        #mobile-menu .menu-backdrop {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #mobile-menu.open .menu-backdrop { opacity: 1; }
+        #mobile-menu .menu-panel {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            will-change: transform;
+            padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+        }
+        #mobile-menu.open .menu-panel { transform: translateX(0); }
+        @media (prefers-reduced-motion: reduce) {
+            #mobile-menu .menu-backdrop,
+            #mobile-menu .menu-panel { transition-duration: 0.01s; }
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-white">
@@ -125,25 +151,26 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 z-40 hidden">
-            <!-- Backdrop -->
-            <div class="absolute inset-0 bg-black/40" onclick="closeMobileMenu()"></div>
-            <!-- Right Panel -->
-            <div class="absolute top-0 right-0 bottom-0 w-[80vw] max-w-[360px] bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col py-6 px-6 gap-1 overflow-y-auto">
-                <a href="#home" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">主页</a>
-                <a href="#fixtures" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">赛程战绩</a>
-                <a href="#media" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">媒体中心</a>
-                <a href="#team" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">球队成员</a>
-                <a href="#hall" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">名人堂</a>
-                <a href="#about" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">关于我们</a>
-                <a href="#history" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">队史荣誉</a>
-                <a href="#join" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">加入我们</a>
-                <a href="#contact" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">联系我们</a>
-                <button class="mt-4 text-sm font-medium text-gray-400 hover:text-amber-400 transition-colors px-4 py-2 border border-gray-700 rounded-full self-start">EN</button>
-            </div>
-        </div>
     </nav>
+
+    <!-- Mobile Menu Overlay (body direct child for proper stacking) -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden">
+        <!-- Backdrop -->
+        <div class="menu-backdrop absolute inset-0 bg-black/40" onclick="closeMobileMenu()"></div>
+        <!-- Right Panel -->
+        <div class="menu-panel absolute top-0 right-0 bottom-0 w-[80vw] max-w-[360px] bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col pb-6 px-6 gap-1 overflow-y-auto">
+            <a href="#home" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">主页</a>
+            <a href="#fixtures" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">赛程战绩</a>
+            <a href="#media" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">媒体中心</a>
+            <a href="#team" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">球队成员</a>
+            <a href="#hall" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">名人堂</a>
+            <a href="#about" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">关于我们</a>
+            <a href="#history" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">队史荣誉</a>
+            <a href="#join" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">加入我们</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-colors text-left">联系我们</a>
+            <button class="mt-4 text-sm font-medium text-gray-400 hover:text-amber-400 transition-colors px-4 py-2 border border-gray-700 rounded-full self-start">EN</button>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
@@ -1509,49 +1536,64 @@
         });
 
         // Mobile menu toggle
-        function toggleMobileMenu() {
+        function openMobileMenu() {
             const menu = document.getElementById('mobile-menu');
+            const panel = menu.querySelector('.menu-panel');
             const top = document.getElementById('hamburger-top');
             const mid = document.getElementById('hamburger-mid');
             const bot = document.getElementById('hamburger-bot');
 
-            const isHidden = menu.classList.contains('hidden');
-
-            if (isHidden) {
-                // Open menu
-                menu.classList.remove('hidden');
-                document.body.classList.add('overflow-hidden');
-                top.classList.add('rotate-45', 'translate-y-1.5');
-                mid.classList.add('opacity-0');
-                bot.classList.add('-rotate-45', '-translate-y-1.5');
-            } else {
-                // Close menu
-                menu.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-                top.classList.remove('rotate-45', 'translate-y-1.5');
-                mid.classList.remove('opacity-0');
-                bot.classList.remove('-rotate-45', '-translate-y-1.5');
-            }
+            // Remove hidden first, then add open on next frame for animation
+            menu.classList.remove('hidden');
+            requestAnimationFrame(function() {
+                menu.classList.add('open');
+            });
+            document.body.classList.add('overflow-hidden');
+            top.classList.add('rotate-45', 'translate-y-1.5');
+            mid.classList.add('opacity-0');
+            bot.classList.add('-rotate-45', '-translate-y-1.5');
         }
 
         function closeMobileMenu() {
             const menu = document.getElementById('mobile-menu');
+            const panel = menu.querySelector('.menu-panel');
             const top = document.getElementById('hamburger-top');
             const mid = document.getElementById('hamburger-mid');
             const bot = document.getElementById('hamburger-bot');
 
-            menu.classList.add('hidden');
+            if (!menu.classList.contains('open')) return;
+
+            menu.classList.remove('open');
             document.body.classList.remove('overflow-hidden');
             top.classList.remove('rotate-45', 'translate-y-1.5');
             mid.classList.remove('opacity-0');
             bot.classList.remove('-rotate-45', '-translate-y-1.5');
+
+            // Add hidden after transition ends
+            function onTransitionEnd(e) {
+                if (e.propertyName === 'transform') {
+                    menu.classList.add('hidden');
+                    panel.removeEventListener('transitionend', onTransitionEnd);
+                }
+            }
+            panel.addEventListener('transitionend', onTransitionEnd);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const isOpen = menu.classList.contains('open');
+            if (!isOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
         }
 
         // Close mobile menu on Esc key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobile-menu');
-                if (menu && !menu.classList.contains('hidden')) {
+                if (menu && menu.classList.contains('open')) {
                     closeMobileMenu();
                 }
             }
