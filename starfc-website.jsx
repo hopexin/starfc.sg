@@ -130,13 +130,13 @@ const HeroSection = ({ setCurrentPage }) => (
 
       <div className="mb-6 inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
         <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-        <span className="text-amber-400 text-xs md:text-sm font-medium tracking-wide">成立于 2002 · 新加坡华人业余足球队</span>
+        <span className="text-amber-400 text-xs md:text-sm font-medium tracking-wide">成立于 2002 · 新加坡草根足球队</span>
       </div>
 
       <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
         STAR <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">FC</span>
       </h1>
-      <p className="text-xl sm:text-2xl text-gray-300 mb-4 font-light">新加坡华人足球俱乐部</p>
+      <p className="text-xl sm:text-2xl text-gray-300 mb-4 font-light">新加坡 STAR 足球俱乐部</p>
       <p className="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-8 md:mb-12">
         在异乡，也要踢出我们的<span className="text-amber-400">主场</span>。
       </p>
@@ -335,7 +335,7 @@ const AboutPreview = ({ setCurrentPage }) => (
           <h2 className="text-4xl font-bold text-white mt-2 mb-6">我们是谁</h2>
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p>
-              STAR FC 成立于 2002 年，是新加坡历史最悠久的华人业余足球队之一。20 多年来，我们几乎风雨无阻地出现在每个周末的球场：女皇镇、金文泰、淡滨尼、义顺……
+              STAR FC 成立于 2002 年，是新加坡历史最悠久的草根足球队之一。20 多年来，我们几乎风雨无阻地出现在每个周末的球场：女皇镇、金文泰、淡滨尼、义顺……
             </p>
             <p>
               我们的队员来自各行各业：工程师、程序员、设计师、厨师、留学生、创业者。白天在办公室或工地忙碌，周末换上红色球衣，只有一个身份：<span className="text-amber-400 font-semibold">STAR FC 球员</span>。
@@ -404,14 +404,14 @@ const QuickLinks = ({ setCurrentPage }) => {
     },
     {
       title: '赞助与合作',
-      desc: '想把你的品牌印在新加坡华人圈最有历史的球队球衣上？STAR FC 提供灵活、务实的赞助方案。',
+      desc: '想把你的品牌印在新加坡最有历史的草根球队球衣上？STAR FC 提供灵活、务实的赞助方案。',
       icon: '🤝',
       page: 'sponsorship',
       color: 'from-amber-600 to-amber-800',
     },
     {
       title: '青训 & 社区',
-      desc: '从 2021 年起，我们开始为华人家庭的孩子开设兴趣训练营，用足球连接更多人。',
+      desc: '从 2021 年起，我们开始为家庭的孩子开设兴趣训练营，用足球连接更多人。',
       icon: '👶',
       page: 'community',
       color: 'from-emerald-600 to-emerald-800',
@@ -589,7 +589,7 @@ const HistoryPreviewSection = ({ setCurrentPage }) => (
         <div className="p-6 bg-slate-800/30 rounded-2xl border border-slate-700/50">
           <div className="text-4xl mb-4">📜</div>
           <h3 className="text-xl font-bold text-white mb-3">球队历史</h3>
-          <p className="text-gray-400 text-sm mb-4">2001 年浙江华人足球队诞生，2002 年正式成立 STAR FC，二十多年风雨同行。</p>
+          <p className="text-gray-400 text-sm mb-4">2001 年浙江足球队诞生，2002 年正式成立 STAR FC，二十多年风雨同行。</p>
           <span className="text-amber-400 text-sm">7 个重要时刻 →</span>
         </div>
 
@@ -650,13 +650,13 @@ const AboutPage = () => {
         <div className="max-w-4xl mx-auto px-4">
           <div className="prose prose-lg prose-invert max-w-none">
             <p className="text-gray-300 leading-relaxed text-lg">
-              <span className="text-white font-semibold">STAR FC</span> 创建于 <span className="text-amber-400 font-semibold">2002 年</span>，前身为「浙江华人足球队」，由终身名誉队长 <span className="text-amber-400 font-semibold">Lemon（9 号）</span> 发起。
+              <span className="text-white font-semibold">STAR FC</span> 创建于 <span className="text-amber-400 font-semibold">2002 年</span>，前身为「浙江足球队」，由终身名誉队长 <span className="text-amber-400 font-semibold">Lemon（9 号）</span> 发起。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
-              球队最早只是一群在新加坡打拼的华人，通过狮城华人论坛认识，约在一片烂泥地上踢球。后来与「狮城华人论坛队」合并，<span className="text-white font-semibold">STAR FC</span> 逐渐成为坡岛华人圈中历史最悠久的业余球队之一。
+              球队最早只是一群在新加坡打拼的朋友，通过狮城论坛认识，约在一片烂泥地上踢球。后来与「狮城论坛队」合并，<span className="text-white font-semibold">STAR FC</span> 逐渐成为坡岛历史最悠久的草根球队之一。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
-              STAR FC 是一支以华人为主的业余 11 人制球队，长期活跃在新加坡各大球场。
+              STAR FC 是一支草根 11 人制球队，长期活跃在新加坡各大球场。
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-6">
               经过二十多年的风雨，球队经历了无数次人员更替、工作压力、伤病和现实考验，但从来没有散。靠的是：
@@ -737,7 +737,7 @@ const AboutPage = () => {
             </p>
             <div className="p-6 bg-gradient-to-r from-red-900/30 to-slate-900 rounded-xl border border-red-800/50 mt-6">
               <p className="text-2xl text-white font-bold text-center">
-                做新加坡最好的业余华人足球俱乐部。
+                做新加坡最好的草根足球俱乐部。
               </p>
             </div>
           </div>
@@ -790,11 +790,11 @@ const clubStories = [
 // History Page - 精简版（移除 Badge Story 和 Honours）
 const HistoryPage = () => {
   const timeline = [
-    { year: '2001', title: '球队前身诞生', desc: '浙江华人足球队在新加坡自发成立，以在坡打拼的浙江华人为主，大家通过狮城华人论坛相约踢球。' },
-    { year: '2002', title: 'STAR 华人足球俱乐部成立', desc: '由 9 号前锋 Lemon 哥发起组队，在原有浙江华人足球队基础上扩展，吸引来自全国各地、不同背景的华人球员，正式使用「STAR 华人足球俱乐部」的名字。' },
-    { year: '200X', title: '与狮城华人论坛队合并', desc: '球队与另一支华人球队「狮城华人论坛队」合并，阵容进一步壮大，STAR FC 逐渐成为坡岛华人圈知名的业余 11 人制球队之一。' },
+    { year: '2001', title: '球队前身诞生', desc: '浙江足球队在新加坡自发成立，以在坡打拼的浙江老乡为主，大家通过狮城论坛相约踢球。' },
+    { year: '2002', title: 'STAR 足球俱乐部成立', desc: '由 9 号前锋 Lemon 哥发起组队，在原有浙江足球队基础上扩展，吸引来自全国各地、不同背景的球员，正式使用「STAR 足球俱乐部」的名字。' },
+    { year: '200X', title: '与狮城论坛队合并', desc: '球队与另一支球队「狮城论坛队」合并，阵容进一步壮大，STAR FC 逐渐成为坡岛知名的草根 11 人制球队之一。' },
     { year: '2008', title: '启用现版队徽', desc: '球队对队徽进行改动，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。' },
-    { year: '2010–2020', title: '稳定征战各类业余联赛', desc: 'STAR FC 长期征战新加坡各类周末 11 人制业余联赛，与来自不同国家、不同背景的球队对抗，在华人圈内积累了稳定口碑。' },
+    { year: '2010–2020', title: '稳定征战各类草根联赛', desc: 'STAR FC 长期征战新加坡各类周末 11 人制草根联赛，与来自不同国家、不同背景的球队对抗，积累了稳定口碑。' },
     { year: '2025', title: 'UAFL 联赛亚军 & 新一代崛起', desc: '球队在 UAFL 业余联赛中取得联赛第二名的佳绩。主力阵容以老带新，年轻一代多来自清华、武大、川大、重大、厦大、中财、上财等重点高校校队。' },
     { year: '现在', title: '把球队当成一个"家"继续走下去', desc: '依托 Dempsey Hill 天然草球场和 Veo3 等录像设备，STAR FC 正在更系统地记录比赛与训练，对很多队员来说，这里早已不只是球队，而是一个"家"。' },
   ];
@@ -1549,7 +1549,7 @@ const Footer = () => (
             </div>
           </div>
           <p className="text-gray-400 text-sm md:text-base max-w-md">
-            新加坡华人足球俱乐部。在异乡，也要踢出我们的主场。
+            新加坡 STAR 足球俱乐部。在异乡，也要踢出我们的主场。
           </p>
         </div>
 
@@ -1581,7 +1581,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-12 pt-8 border-t border-slate-800 text-center text-gray-500 text-sm">
-        © 2025 STAR FC. All rights reserved. | 新加坡华人足球俱乐部
+        © 2025 STAR FC. All rights reserved. | 新加坡 STAR 足球俱乐部
       </div>
     </div>
   </footer>
