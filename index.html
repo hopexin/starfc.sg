@@ -78,9 +78,6 @@
         @media (min-width: 1280px) {
             .hscroll.hscroll-fixtures { grid-auto-columns: calc((100% - 32px) / 3); }
         }
-        /* 2025 Fixtures 按日期降序（最新在左）：反转横滑方向 */
-        [data-year-panel="2025"] .hscroll-fixtures { direction: rtl; }
-        [data-year-panel="2025"] .hscroll-fixtures > * { direction: ltr; }
         /* 球员卡片横滑：窄卡片 2 张/3 张/整卡模式 */
         .hscroll-player {
             scroll-padding-inline: 16px;
@@ -250,34 +247,12 @@
                 <!-- 2025 Matches Timeline -->
                 <div class="swipe-hint">左右滑动查看更多</div>
                 <div class="hscroll hscroll-fixtures mb-10">
-                    <!-- 2025-01-12 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-01-12</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Zomi FC (缅甸)</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">2 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Guest; Liu Meihua</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 17:00</p>
-                    </div>
 
-                    <!-- 2025-01-19 友谊赛 -->
+                    <!-- 2025-12-28 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-01-19</span>
+                                <span class="text-gray-400 text-sm">📅 2025-12-28</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -286,435 +261,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Khalsa Rovers</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Feng Xin (4); Victor</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SIA Sports Club · 15:00</p>
-                    </div>
-
-                    <!-- 2025-01-26 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-01-26</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Nanyang FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">10 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Neo Kai Feng (4); Feng Xin (2); Jiang Chaoxiong (2); Zhang Xin (2)</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Hua Yi Secondary School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-02-02 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-02-02</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Jepun</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong; Sun Yumin; Huang Jaron Zijie</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Kent Ridge Secondary School · 15:00</p>
-                    </div>
-
-                    <!-- 2025-02-08 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-02-08</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Turf FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Nie Ziqin (2); OG; Feng Xin; Sun Yumin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-02-16 UAFL 第1轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-02-16</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第1轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>GAS</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 0</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Nie Ziqin (2); Feng Xin; Joel Loh Ziyang</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 GESS International School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-02-23 UAFL 第2轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-02-23</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第2轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>VFC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">0 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ -</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Hai Sing Catholic School · 03:00</p>
-                    </div>
-
-                    <!-- 2025-02-27 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-02-27</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>SCC二队</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">0 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ -</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Padang · 17:30</p>
-                    </div>
-
-                    <!-- 2025-03-02 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-03-02</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Komodo FC</span>
+                                <span>Big Boy FC</span>
                             </p>
                             <div class="mt-2">
                                 <span class="text-3xl font-bold text-green-400">7 - 3</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Xie Zinan (2); Zhang Xin (2); Jiang Chaoxiong; Feng Xin; Toyama Yuchiro</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3); Huang Jaron Zijie (2); Victor; Zhang Xin</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Tanjong Katong Secondary School · 13:00</p>
+                        <p class="text-gray-500 text-sm">📍 Bartley Sec Sch · 17:00</p>
                     </div>
 
-                    <!-- 2025-03-09 UAFL 第3轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-03-09</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第3轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Vikings</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">3 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Feng Xin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 17:00</p>
-                    </div>
-
-                    <!-- 2025-03-16 UAFL 第4轮 -->
+                    <!-- 2025-12-21 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-03-16</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第4轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>J-heat</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-gray-400">2 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2)</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 15:00</p>
-                    </div>
-
-                    <!-- 2025-03-23 UAFL 第5轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-03-23</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第5轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>7 STAR</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">2 - 0</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Neo Kai Feng (2)</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Fuhua Secondary School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-03-30 UAFL 第6轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-03-30</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第6轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>CPR</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-gray-400">3 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Nie Ziqin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
-                    </div>
-
-                    <!-- 2025-04-06 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-04-06</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>woodlands FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">3 - 4</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Wu Jinglong; Jiang Chaoxiong; Nie Ziqin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Boon Lay Secondary School · 15:00</p>
-                    </div>
-
-                    <!-- 2025-04-26 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-04-26</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Turf FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Guest; Feng Xin; Sa Baiyi</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-05-04 UAFL 第7轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-05-04</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第7轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Champon</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 0</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3); Joel Loh Ziyang (2)</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-05-11 UAFL 第8轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-05-11</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第8轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Resolute</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">7 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (3); Jiang Chaoxiong (2); Toyama Yuchiro; Victor</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 UWC Tampines · 17:00</p>
-                    </div>
-
-                    <!-- 2025-05-25 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-05-25</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>drive veterans</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 0</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Victor (2); Huang Jaron Zijie (2)</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-05-29 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-05-29</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>SCC二队</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Guest; Ling Ran; Jiang Chaoxiong</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:30</p>
-                    </div>
-
-                    <!-- 2025-05-31 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-05-31</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>CWFC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Liu Meihua (2); Sam</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Hua Yi Secondary School · 15:00</p>
-                    </div>
-
-                    <!-- 2025-06-08 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-06-08</span>
+                                <span class="text-gray-400 text-sm">📅 2025-12-21</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
@@ -723,67 +284,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>7coy FC</span>
+                                <span>Unity FC</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-gray-400">3 - 3</span>
+                                <span class="text-3xl font-bold text-gray-400">5 - 5</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3)</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Sun Haoyang; Victor; Huang Jaron Zijie; Jiang Chaoxiong; Liu Meihua</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 13:00</p>
+                        <p class="text-gray-500 text-sm">📍 Jurongville Sec Sch · 15:00</p>
                     </div>
 
-                    <!-- 2025-06-15 UAFL 第9轮 -->
+                    <!-- 2025-12-14 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-06-15</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第9轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>westland</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">8 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (3); Sa Baiyi (2); Ouyang Mingyu; Liu Meihua; Feng Xin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
-                    </div>
-
-                    <!-- 2025-06-22 UAFL 第10轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-06-22</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第10轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Sporting</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">2 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang; Jiang Chaoxiong</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-06-26 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-06-26</span>
+                                <span class="text-gray-400 text-sm">📅 2025-12-14</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -792,21 +307,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>SCC二队</span>
+                                <span>Victoria校友队</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
+                                <span class="text-3xl font-bold text-green-400">4 - 0</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Frank</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Lan Yihang (3); Victor</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:30</p>
+                        <p class="text-gray-500 text-sm">📍 Victoria School · 15:00</p>
                     </div>
 
-                    <!-- 2025-06-29 友谊赛 -->
+                    <!-- 2025-11-30 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-06-29</span>
+                                <span class="text-gray-400 text-sm">📅 2025-11-30</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -815,21 +330,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Fatanic</span>
+                                <span>西海岸</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">10 - 1</span>
+                                <span class="text-3xl font-bold text-green-400">6 - 3</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (5); HAN FENG 99 (2); Zhang Xin (2); Liu Zeyu</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Cui Zongyu; Zhang Xin; Jing Yilin; Li Qilin</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Boon Lay Secondary School · 15:00</p>
+                        <p class="text-gray-500 text-sm">📍 Seng Kang SS · 17:00</p>
                     </div>
 
-                    <!-- 2025-07-06 友谊赛 -->
+                    <!-- 2025-11-23 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-07-06</span>
+                                <span class="text-gray-400 text-sm">📅 2025-11-23</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -838,274 +353,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>PSA</span>
+                                <span>Warriors United</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
+                                <span class="text-3xl font-bold text-green-400">6 - 1</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Jiang Chaoxiong; Neo Kai Feng</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Lan Yihang (2); Zhang Xin; Victor</p>
                         </div>
                         <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
                     </div>
 
-                    <!-- 2025-07-13 UAFL 第11轮 -->
+                    <!-- 2025-11-15 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-07-13</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第11轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Sniper</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Frank; Sean Lim Minghui; Sa Baiyi; Feng Xin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
-                    </div>
-
-                    <!-- 2025-07-20 UAFL 第12轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-07-20</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第12轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>SAC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">2 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Ouyang Mingyu; Joel Loh Ziyang</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
-                    </div>
-
-                    <!-- 2025-07-27 UAFL 第13轮 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-07-27</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第13轮</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>MYK</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">2 - 5</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang; Feng Xin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
-                    </div>
-
-                    <!-- 2025-08-03 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-08-03</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>MIK</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">2 - 0</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin; Liu Meihua</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 15:00</p>
-                    </div>
-
-                    <!-- 2025-08-10 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-08-10</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Eastern United</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">10 - 4</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Sean Lim Minghui (2); Huang Jaron Zijie (2); Feng Xin (2); Xu Zhihe; You Wei; Liu Meihua; Zhang Wei</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-08-17 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-08-17</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>PSA</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Liu Meihua; Xu Zhihe</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-08-24 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-08-24</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Face</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">7 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Huang Jaron Zijie (2); Feng Xin (2); Jiang Chaoxiong; Xu Zhihe; Zhang Xin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
-                    </div>
-
-                    <!-- 2025-08-31 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-08-31</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Bishan park Rangers</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">13 - 4</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (4); Jiang Chaoxiong (4); Xu Zhihe (2); Feng Xin (2); Wu Ding</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
-                    </div>
-
-                    <!-- 2025-09-14 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-09-14</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Play united FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Bart; Zhang Xin; Jiang Chaoxiong; Xu Zhihe; Sean Lim Minghui</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
-                    </div>
-
-                    <!-- 2025-09-21 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-09-21</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>7 Star</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Zhang Xin; Sean Lim Minghui</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
-                    </div>
-
-                    <!-- 2025-09-28 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-09-28</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Sporting</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 1</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Jiang Chaoxiong (2); Sun Yumin</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
-                    </div>
-
-                    <!-- 2025-10-05 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-10-05</span>
+                                <span class="text-gray-400 text-sm">📅 2025-11-15</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1117,18 +379,64 @@
                                 <span>SUTD校队</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">5 - 2</span>
+                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Victor; Jiang Chaoxiong; Zhao Yu</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Ouyang Mingyu</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 SUTD学校 · 15:00</p>
+                        <p class="text-gray-500 text-sm">📍 SUTD · 19:30</p>
                     </div>
 
-                    <!-- 2025-10-12 友谊赛 -->
+                    <!-- 2025-11-09 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-11-09</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Champon FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Jing Yilin; Jiang Chaoxiong</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SIA · 15:00</p>
+                    </div>
+
+                    <!-- 2025-11-06 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-11-06</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>SCC二队</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">6 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhao Yu (2); Jiang Chaoxiong; Ouyang Mingyu; Gong Yiou; Wu Wei</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC · 17:30</p>
+                    </div>
+
+                    <!-- 2025-11-02 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-10-12</span>
+                                <span class="text-gray-400 text-sm">📅 2025-11-02</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
@@ -1137,12 +445,35 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Unity</span>
+                                <span>7 STAR</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">3 - 4</span>
+                                <span class="text-3xl font-bold text-red-400">1 - 4</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhao Yu; Jiang Chaoxiong; Xu Zhihe</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Kranji sec sch · 17:00</p>
+                    </div>
+
+                    <!-- 2025-10-26 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-10-26</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>BAGAN</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">4 - 6</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Lan Yihang (2); Ouyang Mingyu; Ling Ran</p>
                         </div>
                         <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
                     </div>
@@ -1170,11 +501,11 @@
                         <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
                     </div>
 
-                    <!-- 2025-10-26 友谊赛 -->
+                    <!-- 2025-10-12 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-10-26</span>
+                                <span class="text-gray-400 text-sm">📅 2025-10-12</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
@@ -1183,90 +514,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>BAGAN</span>
+                                <span>Unity</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">4 - 6</span>
+                                <span class="text-3xl font-bold text-red-400">3 - 4</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Lan Yihang (2); Ouyang Mingyu; Ling Ran</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhao Yu; Jiang Chaoxiong; Xu Zhihe</p>
                         </div>
                         <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
                     </div>
 
-                    <!-- 2025-11-02 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-02</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>7 STAR</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-red-400">1 - 4</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 Kranji sec sch · 17:00</p>
-                    </div>
-
-                    <!-- 2025-11-06 友谊赛 -->
+                    <!-- 2025-10-05 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-06</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>SCC二队</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 3</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhao Yu (2); Jiang Chaoxiong; Ouyang Mingyu; Gong Yiou; Wu Wei</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SCC · 17:30</p>
-                    </div>
-
-                    <!-- 2025-11-09 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-09</span>
-                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-white font-semibold text-lg">
-                                <span class="text-amber-400">STAR FC</span>
-                                <span class="text-gray-500 mx-2">vs</span>
-                                <span>Champon FC</span>
-                            </p>
-                            <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Jing Yilin; Jiang Chaoxiong</p>
-                        </div>
-                        <p class="text-gray-500 text-sm">📍 SIA · 15:00</p>
-                    </div>
-
-                    <!-- 2025-11-15 友谊赛 -->
-                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-15</span>
+                                <span class="text-gray-400 text-sm">📅 2025-10-05</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1278,18 +540,18 @@
                                 <span>SUTD校队</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
+                                <span class="text-3xl font-bold text-green-400">5 - 2</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Ouyang Mingyu</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Victor; Jiang Chaoxiong; Zhao Yu</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 SUTD · 19:30</p>
+                        <p class="text-gray-500 text-sm">📍 SUTD学校 · 15:00</p>
                     </div>
 
-                    <!-- 2025-11-23 友谊赛 -->
+                    <!-- 2025-09-28 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-23</span>
+                                <span class="text-gray-400 text-sm">📅 2025-09-28</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1298,21 +560,251 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Warriors United</span>
+                                <span>Sporting</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 1</span>
+                                <span class="text-3xl font-bold text-green-400">5 - 1</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Lan Yihang (2); Zhang Xin; Victor</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Xu Zhihe (2); Jiang Chaoxiong (2); Sun Yumin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
+                    </div>
+
+                    <!-- 2025-09-21 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-09-21</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>7 Star</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Zhang Xin; Sean Lim Minghui</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC · 15:00</p>
+                    </div>
+
+                    <!-- 2025-09-14 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-09-14</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Play united FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">5 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Bart; Zhang Xin; Jiang Chaoxiong; Xu Zhihe; Sean Lim Minghui</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-08-31 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-08-31</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Bishan park Rangers</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">13 - 4</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (4); Jiang Chaoxiong (4); Xu Zhihe (2); Feng Xin (2); Wu Ding</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-08-24 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-08-24</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Face</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">7 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Huang Jaron Zijie (2); Feng Xin (2); Jiang Chaoxiong; Xu Zhihe; Zhang Xin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
+                    </div>
+
+                    <!-- 2025-08-17 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-08-17</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>PSA</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">4 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Liu Meihua; Xu Zhihe</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-08-10 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-08-10</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Eastern United</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">10 - 4</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Sean Lim Minghui (2); Huang Jaron Zijie (2); Feng Xin (2); Xu Zhihe; You Wei; Liu Meihua; Zhang Wei</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-08-03 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-08-03</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>MIK</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">2 - 0</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin; Liu Meihua</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 15:00</p>
+                    </div>
+
+                    <!-- 2025-07-27 UAFL 第13轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-07-27</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第13轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>MYK</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">2 - 5</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang; Feng Xin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
+                    </div>
+
+                    <!-- 2025-07-20 UAFL 第12轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-07-20</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第12轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>SAC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">2 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Ouyang Mingyu; Joel Loh Ziyang</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
+                    </div>
+
+                    <!-- 2025-07-13 UAFL 第11轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-07-13</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第11轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Sniper</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">6 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Frank; Sean Lim Minghui; Sa Baiyi; Feng Xin</p>
                         </div>
                         <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
                     </div>
 
-                    <!-- 2025-11-30 友谊赛 -->
+                    <!-- 2025-07-06 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-11-30</span>
+                                <span class="text-gray-400 text-sm">📅 2025-07-06</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1321,21 +813,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>西海岸</span>
+                                <span>PSA</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">6 - 3</span>
+                                <span class="text-3xl font-bold text-green-400">4 - 2</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Cui Zongyu; Zhang Xin; Jing Yilin; Li Qilin</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Jiang Chaoxiong; Neo Kai Feng</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Seng Kang SS · 17:00</p>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
                     </div>
 
-                    <!-- 2025-12-14 友谊赛 -->
+                    <!-- 2025-06-29 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-12-14</span>
+                                <span class="text-gray-400 text-sm">📅 2025-06-29</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1344,21 +836,90 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Victoria校友队</span>
+                                <span>Fatanic</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-green-400">4 - 0</span>
+                                <span class="text-3xl font-bold text-green-400">10 - 1</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Lan Yihang (3); Victor</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (5); HAN FENG 99 (2); Zhang Xin (2); Liu Zeyu</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Victoria School · 15:00</p>
+                        <p class="text-gray-500 text-sm">📍 Boon Lay Secondary School · 15:00</p>
                     </div>
 
-                    <!-- 2025-12-21 友谊赛 -->
+                    <!-- 2025-06-26 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-06-26</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>SCC二队</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Frank</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:30</p>
+                    </div>
+
+                    <!-- 2025-06-22 UAFL 第10轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-06-22</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第10轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Sporting</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">2 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang; Jiang Chaoxiong</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-06-15 UAFL 第9轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-06-15</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第9轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>westland</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">8 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (3); Sa Baiyi (2); Ouyang Mingyu; Liu Meihua; Feng Xin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 15:00</p>
+                    </div>
+
+                    <!-- 2025-06-08 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-12-21</span>
+                                <span class="text-gray-400 text-sm">📅 2025-06-08</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
@@ -1367,21 +928,21 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Unity FC</span>
+                                <span>7coy FC</span>
                             </p>
                             <div class="mt-2">
-                                <span class="text-3xl font-bold text-gray-400">5 - 5</span>
+                                <span class="text-3xl font-bold text-gray-400">3 - 3</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Sun Haoyang; Victor; Huang Jaron Zijie; Jiang Chaoxiong; Liu Meihua</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3)</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Jurongville Sec Sch · 15:00</p>
+                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 13:00</p>
                     </div>
 
-                    <!-- 2025-12-28 友谊赛 -->
+                    <!-- 2025-05-31 友谊赛 -->
                     <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <span class="text-gray-400 text-sm">📅 2025-12-28</span>
+                                <span class="text-gray-400 text-sm">📅 2025-05-31</span>
                                 <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
                             </div>
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
@@ -1390,14 +951,450 @@
                             <p class="text-white font-semibold text-lg">
                                 <span class="text-amber-400">STAR FC</span>
                                 <span class="text-gray-500 mx-2">vs</span>
-                                <span>Big Boy FC</span>
+                                <span>CWFC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Liu Meihua (2); Sam</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Hua Yi Secondary School · 15:00</p>
+                    </div>
+
+                    <!-- 2025-05-29 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-05-29</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>SCC二队</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Guest; Ling Ran; Jiang Chaoxiong</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:30</p>
+                    </div>
+
+                    <!-- 2025-05-25 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-05-25</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>drive veterans</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">6 - 0</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Victor (2); Huang Jaron Zijie (2)</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-05-11 UAFL 第8轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-05-11</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第8轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Resolute</span>
                             </p>
                             <div class="mt-2">
                                 <span class="text-3xl font-bold text-green-400">7 - 3</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3); Huang Jaron Zijie (2); Victor; Zhang Xin</p>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (3); Jiang Chaoxiong (2); Toyama Yuchiro; Victor</p>
                         </div>
-                        <p class="text-gray-500 text-sm">📍 Bartley Sec Sch · 17:00</p>
+                        <p class="text-gray-500 text-sm">📍 UWC Tampines · 17:00</p>
+                    </div>
+
+                    <!-- 2025-05-04 UAFL 第7轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-05-04</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第7轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Champon</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">5 - 0</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (3); Joel Loh Ziyang (2)</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-04-26 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-04-26</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Turf FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong (2); Guest; Feng Xin; Sa Baiyi</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 17:00</p>
+                    </div>
+
+                    <!-- 2025-04-06 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-04-06</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>woodlands FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">3 - 4</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Wu Jinglong; Jiang Chaoxiong; Nie Ziqin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Boon Lay Secondary School · 15:00</p>
+                    </div>
+
+                    <!-- 2025-03-30 UAFL 第6轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-03-30</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第6轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>CPR</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-gray-400">3 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Nie Ziqin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Dempsey · 15:00</p>
+                    </div>
+
+                    <!-- 2025-03-23 UAFL 第5轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-03-23</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第5轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>7 STAR</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">2 - 0</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Neo Kai Feng (2)</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Fuhua Secondary School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-03-16 UAFL 第4轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-gray-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-03-16</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第4轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>J-heat</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-gray-400">2 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2)</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 15:00</p>
+                    </div>
+
+                    <!-- 2025-03-09 UAFL 第3轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-03-09</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第3轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Vikings</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">3 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Joel Loh Ziyang (2); Feng Xin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Old SIA Sports Club · 17:00</p>
+                    </div>
+
+                    <!-- 2025-03-02 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-03-02</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Komodo FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">7 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Xie Zinan (2); Zhang Xin (2); Jiang Chaoxiong; Feng Xin; Toyama Yuchiro</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Tanjong Katong Secondary School · 13:00</p>
+                    </div>
+
+                    <!-- 2025-02-27 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-02-27</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>SCC二队</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">0 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ -</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SCC Padang · 17:30</p>
+                    </div>
+
+                    <!-- 2025-02-23 UAFL 第2轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-02-23</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第2轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>VFC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">0 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ -</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Hai Sing Catholic School · 03:00</p>
+                    </div>
+
+                    <!-- 2025-02-16 UAFL 第1轮 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-02-16</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">UAFL 第1轮</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>GAS</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">6 - 0</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Zhang Xin (2); Nie Ziqin (2); Feng Xin; Joel Loh Ziyang</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 GESS International School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-02-08 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-02-08</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Turf FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Nie Ziqin (2); OG; Feng Xin; Sun Yumin</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Orchid Park Secondary School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-02-02 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-02-02</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Jepun</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">3 - 2</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Jiang Chaoxiong; Sun Yumin; Huang Jaron Zijie</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Kent Ridge Secondary School · 15:00</p>
+                    </div>
+
+                    <!-- 2025-01-26 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-01-26</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Nanyang FC</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">10 - 1</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Neo Kai Feng (4); Feng Xin (2); Jiang Chaoxiong (2); Zhang Xin (2)</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Hua Yi Secondary School · 17:00</p>
+                    </div>
+
+                    <!-- 2025-01-19 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-green-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-01-19</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Khalsa Rovers</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-green-400">5 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Feng Xin (4); Victor</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 SIA Sports Club · 15:00</p>
+                    </div>
+                    <!-- 2025-01-12 友谊赛 -->
+                    <div class="rounded-2xl bg-slate-800/70 border border-red-600/30 p-5 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-sm">📅 2025-01-12</span>
+                                <span class="px-2 py-0.5 bg-slate-700/80 text-amber-400 text-xs font-medium rounded">友谊赛</span>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400">完场</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold text-lg">
+                                <span class="text-amber-400">STAR FC</span>
+                                <span class="text-gray-500 mx-2">vs</span>
+                                <span>Zomi FC (缅甸)</span>
+                            </p>
+                            <div class="mt-2">
+                                <span class="text-3xl font-bold text-red-400">2 - 3</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-2">⚽ Guest; Liu Meihua</p>
+                        </div>
+                        <p class="text-gray-500 text-sm">📍 Safra Tampines · 17:00</p>
                     </div>
                 </div>
 
