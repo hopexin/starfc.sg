@@ -51,25 +51,29 @@
             overflow-x: auto;
             padding: 0 16px 16px;
             scroll-snap-type: x mandatory;
+            scroll-padding-inline: 16px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
         .hscroll::-webkit-scrollbar { display: none; }
         .hscroll > * { scroll-snap-align: start; }
-        /* 默认：1 张完整卡 */
-        .hscroll { grid-auto-columns: calc(100% - 32px); }
-        /* >= 640px：2 张完整卡 */
+        /* 默认：1 张完整卡（100% = content-box 宽度） */
+        .hscroll { grid-auto-columns: 100%; }
+        /* >= 640px：2 张完整卡（减 1 个 gap） */
         @media (min-width: 640px) {
-            .hscroll { grid-auto-columns: calc((100% - 48px) / 2); }
+            .hscroll { grid-auto-columns: calc((100% - 16px) / 2); }
         }
         /* >= 1024px：桌面固定卡宽 */
         @media (min-width: 1024px) {
             .hscroll { grid-auto-columns: 340px; }
         }
         /* 球员卡片横滑：窄卡片 2 张/3 张/固定宽 */
-        .hscroll-player { grid-auto-columns: calc((100% - 32px) / 2); }
+        .hscroll-player {
+            scroll-padding-inline: 16px;
+            grid-auto-columns: calc((100% - 16px) / 2);
+        }
         @media (min-width: 640px) {
-            .hscroll-player { grid-auto-columns: calc((100% - 48px) / 3); }
+            .hscroll-player { grid-auto-columns: calc((100% - 32px) / 3); }
         }
         @media (min-width: 1024px) {
             .hscroll-player { grid-auto-columns: 180px; }
@@ -111,18 +115,21 @@
             </div>
         </div>
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-slate-900/98 backdrop-blur-lg z-40 hidden">
-            <div class="flex flex-col items-center justify-center h-full gap-2 pb-20">
-                <a href="#home" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">主页</a>
-                <a href="#fixtures" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">赛程战绩</a>
-                <a href="#media" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">媒体中心</a>
-                <a href="#team" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">球队成员</a>
-                <a href="#hall" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">名人堂</a>
-                <a href="#about" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">关于我们</a>
-                <a href="#history" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">队史荣誉</a>
-                <a href="#join" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">加入我们</a>
-                <a href="#contact" onclick="closeMobileMenu()" class="text-xl font-medium text-gray-300 hover:text-amber-400 py-3 px-8 rounded-xl hover:bg-slate-800/50 transition-all">联系我们</a>
-                <button class="mt-4 text-sm font-medium text-gray-400 hover:text-amber-400 transition-colors px-4 py-2 border border-gray-700 rounded-full">EN</button>
+        <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 z-40 hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/40" onclick="closeMobileMenu()"></div>
+            <!-- Right Panel -->
+            <div class="absolute top-0 right-0 bottom-0 w-[80vw] max-w-[360px] bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col py-6 px-6 gap-1 overflow-y-auto">
+                <a href="#home" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">主页</a>
+                <a href="#fixtures" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">赛程战绩</a>
+                <a href="#media" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">媒体中心</a>
+                <a href="#team" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">球队成员</a>
+                <a href="#hall" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">名人堂</a>
+                <a href="#about" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">关于我们</a>
+                <a href="#history" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">队史荣誉</a>
+                <a href="#join" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">加入我们</a>
+                <a href="#contact" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all text-left">联系我们</a>
+                <button class="mt-4 text-sm font-medium text-gray-400 hover:text-amber-400 transition-colors px-4 py-2 border border-gray-700 rounded-full self-start">EN</button>
             </div>
         </div>
     </nav>
@@ -1501,15 +1508,19 @@
             const mid = document.getElementById('hamburger-mid');
             const bot = document.getElementById('hamburger-bot');
 
-            menu.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
+            const isHidden = menu.classList.contains('hidden');
 
-            // Animate hamburger to X
-            if (!menu.classList.contains('hidden')) {
+            if (isHidden) {
+                // Open menu
+                menu.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
                 top.classList.add('rotate-45', 'translate-y-1.5');
                 mid.classList.add('opacity-0');
                 bot.classList.add('-rotate-45', '-translate-y-1.5');
             } else {
+                // Close menu
+                menu.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
                 top.classList.remove('rotate-45', 'translate-y-1.5');
                 mid.classList.remove('opacity-0');
                 bot.classList.remove('-rotate-45', '-translate-y-1.5');
@@ -1528,6 +1539,16 @@
             mid.classList.remove('opacity-0');
             bot.classList.remove('-rotate-45', '-translate-y-1.5');
         }
+
+        // Close mobile menu on Esc key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobile-menu');
+                if (menu && !menu.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            }
+        });
 
         // Year toggle for Fixtures section
         function switchYear(year) {
