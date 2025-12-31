@@ -63,11 +63,15 @@
         @media (min-width: 640px) {
             .hscroll { grid-auto-columns: calc((100% - 16px) / 2); }
         }
-        /* >= 1024px：桌面固定卡宽 */
+        /* >= 1024px：桌面端 3 张整卡 */
         @media (min-width: 1024px) {
-            .hscroll { grid-auto-columns: 340px; }
+            .hscroll { grid-auto-columns: calc((100% - 32px) / 3); }
         }
-        /* 球员卡片横滑：窄卡片 2 张/3 张/固定宽 */
+        /* >= 1280px：大屏 4 张整卡 */
+        @media (min-width: 1280px) {
+            .hscroll { grid-auto-columns: calc((100% - 48px) / 4); }
+        }
+        /* 球员卡片横滑：窄卡片 2 张/3 张/整卡模式 */
         .hscroll-player {
             scroll-padding-inline: 16px;
             grid-auto-columns: calc((100% - 16px) / 2);
@@ -75,8 +79,13 @@
         @media (min-width: 640px) {
             .hscroll-player { grid-auto-columns: calc((100% - 32px) / 3); }
         }
+        /* >= 1024px：桌面端 5 张整卡 */
         @media (min-width: 1024px) {
-            .hscroll-player { grid-auto-columns: 180px; }
+            .hscroll-player { grid-auto-columns: calc((100% - 64px) / 5); }
+        }
+        /* >= 1280px：大屏 6 张整卡 */
+        @media (min-width: 1280px) {
+            .hscroll-player { grid-auto-columns: calc((100% - 80px) / 6); }
         }
         /* Swipe hint - mobile/tablet only */
         .swipe-hint {
@@ -711,12 +720,20 @@
 
     <script>
     (function() {
+        var captainId = 'liu-meihua';
+        var viceCaptainIds = { 'zhang-xin': true, 'feng-xin': true };
+        var nameOverrides = { 'victor-chukwuebuka-ebele': 'Victor' };
         var groupConfig = [
             { key: 'FWD', label: '前锋', labelEn: 'Forwards (FWD)', positions: ['WINGER', 'STRIKER'] },
             { key: 'MID', label: '中场', labelEn: 'Midfielders (MID)', positions: ['CM', 'DM'] },
             { key: 'DEF', label: '后卫', labelEn: 'Defenders (DEF)', positions: ['CB', 'FULL BACK'] },
             { key: 'GK', label: '门将', labelEn: 'Goalkeepers (GK)', positions: ['GK'] }
         ];
+        function getRank(p) {
+            if (p.id === captainId) return 0;
+            if (viceCaptainIds[p.id]) return 1;
+            return 2;
+        }
         function renderTeam() {
             var dataEl = document.getElementById('players-data');
             if (!dataEl) return;
@@ -728,7 +745,11 @@
             groupConfig.forEach(function(group, gIdx) {
                 var groupPlayers = players.filter(function(p) {
                     return group.positions.indexOf(p.position) !== -1;
-                }).sort(function(a, b) { return a.number - b.number; });
+                }).sort(function(a, b) {
+                    var ra = getRank(a), rb = getRank(b);
+                    if (ra !== rb) return ra - rb;
+                    return a.number - b.number;
+                });
                 if (groupPlayers.length === 0) return;
                 var isLast = gIdx === groupConfig.length - 1;
                 var wrapper = document.createElement('div');
@@ -746,20 +767,32 @@
                 groupPlayers.forEach(function(player) {
                     var card = document.createElement('div');
                     card.className = 'bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-amber-500/50 transition-all duration-300 flex flex-col min-w-0';
-                    var photoHtml = player.photo
-                        ? '<img src="' + player.photo + '" alt="' + player.name + '" class="w-full h-full object-cover">'
-                        : '<div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center text-slate-400 text-sm">球员照片占位</div>';
-                    if (!player.photo) {
-                        card.innerHTML = photoHtml;
-                    } else {
-                        var imgWrap = document.createElement('div');
-                        imgWrap.className = 'w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center overflow-hidden';
-                        imgWrap.innerHTML = photoHtml;
-                        card.appendChild(imgWrap);
+                    var photoWrap = document.createElement('div');
+                    photoWrap.className = 'w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center overflow-hidden relative';
+                    var placeholder = document.createElement('div');
+                    placeholder.className = 'absolute inset-0 flex items-center justify-center text-slate-400 text-sm';
+                    placeholder.textContent = '球员照片占位';
+                    photoWrap.appendChild(placeholder);
+                    var img = document.createElement('img');
+                    img.src = 'assets/img/players/' + player.id + '.jpg';
+                    img.alt = player.name;
+                    img.className = 'absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity';
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    img.onload = function() { img.classList.remove('opacity-0'); placeholder.style.display = 'none'; };
+                    img.onerror = function() { img.style.display = 'none'; };
+                    photoWrap.appendChild(img);
+                    card.appendChild(photoWrap);
+                    var badge = '';
+                    if (player.id === captainId) {
+                        badge = '<span class="px-2 py-0.5 text-[11px] font-bold rounded-full bg-amber-500/25 text-amber-300 border border-amber-400/40">C</span>';
+                    } else if (viceCaptainIds[player.id]) {
+                        badge = '<span class="px-2 py-0.5 text-[11px] font-bold rounded-full bg-slate-600/45 text-slate-100 border border-slate-500/40">VC</span>';
                     }
+                    var displayName = nameOverrides[player.id] || player.name;
                     var info = document.createElement('div');
                     info.className = 'p-3 space-y-1 min-w-0';
-                    info.innerHTML = '<div class="text-xs text-slate-400">#' + player.number + '</div><div class="font-semibold text-sm text-white line-clamp-2 break-words">' + player.name + '</div><div class="text-xs text-slate-400 tracking-wide uppercase">' + player.position + '</div>';
+                    info.innerHTML = '<div class="flex items-center justify-between gap-2"><span class="text-xs text-slate-400">#' + player.number + '</span>' + badge + '</div><div class="font-semibold text-sm text-white line-clamp-2 break-words">' + displayName + '</div><div class="text-xs text-slate-400 tracking-wide uppercase">' + player.position + '</div>';
                     card.appendChild(info);
                     hscroll.appendChild(card);
                 });
