@@ -64,7 +64,6 @@ bash scripts/import-player-photos.sh
 {
   "social": {
     "xiaohongshu": "https://www.xiaohongshu.com/user/profile/xxx",
-    "instagram": "https://instagram.com/starfc_sg",
     "youtube": "https://youtube.com/@starfc"
   },
   "forms": {
