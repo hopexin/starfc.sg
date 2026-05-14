@@ -3,6 +3,7 @@
 本文档说明如何更新网站内容。当前站点是静态单页发布，但部分维护入口已经拆出：
 
 - 比赛截图到战绩更新：优先看 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`
+- 媒体封面/球员照片/名人堂素材协作：优先看 `docs/CONTENT_ASSET_WORKFLOW.md`
 - 每周验收清单：优先看 `docs/WEEKLY_UPDATE_CHECKLIST.md`
 - 球员照片：优先看 `docs/PLAYER_PHOTO_GUIDE.md`
 - 球员名单数据：维护 `assets/js/data.js`
@@ -41,6 +42,12 @@ bash scripts/normalize-player-photos.sh
 4. 网站会读取 `assets/img/players/<id>/profile.jpg`。
 5. 如果是新增球员，再维护 `assets/js/data.js` 的 `window.STAR_FC_DATA.players`。
 
+如果只知道球员名字，也可以把照片放进 `player-photo-inbox/`，文件名写球员 id 或英文姓名，再运行：
+
+```bash
+bash scripts/import-player-photos.sh
+```
+
 ---
 
 ## 2. 更新社媒链接/报名表链接
@@ -76,24 +83,10 @@ bash scripts/normalize-player-photos.sh
 
 ### 步骤
 
-1. **准备照片**
-   - 格式：`jpg` 或 `webp`
-   - 尺寸：建议 400×500px（4:5 比例）
-   - 放入 `assets/img/hall/` 目录
-
-2. **更新数据**
-   - 找到 `<script id="hall-data">`
-   - 添加或修改条目：
-
-```json
-{
-  "id": "player-name",
-  "name": "球员姓名",
-  "period": "2020-2024",
-  "achievement": "最佳射手",
-  "photo": "assets/img/hall/player-name.jpg"
-}
-```
+1. 先把候选人的照片和文字资料放进 `hall-of-fame-inbox/`。
+2. 建议每个人一个文件夹，包含 `photo.jpg` 和 `info.md`。
+3. 确认人物、称号、年份和故事后，再更新 `index.html` 的 Hall of Fame Section。
+4. `hall-data` 目前是预留 JSON，不驱动页面渲染，不要只改 JSON。
 
 ---
 
@@ -120,6 +113,33 @@ bash scripts/normalize-player-photos.sh
   "link": "https://..."
 }
 ```
+
+---
+
+## 4.1 更新比赛集锦封面
+
+### 步骤
+
+1. 把封面原图放进 `media-cover-inbox/`，文件名尽量包含日期和对手。
+2. 目标发布路径为：
+
+```text
+assets/img/media/highlights/<match-id>/cover.jpg
+```
+
+3. 检查当前缺哪些封面：
+
+```bash
+python3 scripts/validate-media-covers.py
+```
+
+4. 初始化现有视频的封面目录：
+
+```bash
+python3 scripts/validate-media-covers.py --create-dirs
+```
+
+注意：当前 Media 视频卡尚未接入封面图，下一轮 UI 小改时再把 `cover.jpg` 接入卡片。
 
 ---
 

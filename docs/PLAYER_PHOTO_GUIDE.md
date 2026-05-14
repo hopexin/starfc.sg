@@ -11,6 +11,17 @@
 3. 在项目根目录运行：`bash scripts/normalize-player-photos.sh`
 4. 刷新网页，查看 Team 区块头像是否更新。
 
+## 操作步骤（更省事版）
+
+如果你不想找球员文件夹：
+
+1. 把照片拖进 `player-photo-inbox/`。
+2. 文件名写球员 id 或英文姓名，例如 `zhang-xin.jpg`、`Zhang Xin.png`。
+3. 在项目根目录运行：`bash scripts/import-player-photos.sh`。
+4. 如果要覆盖已有头像，运行：`OVERWRITE=1 bash scripts/import-player-photos.sh`。
+
+脚本会自动把照片生成到 `assets/img/players/<id>/profile.jpg`。
+
 ## 球员文件夹对照表
 
 | 姓名 | id | 照片文件夹 |

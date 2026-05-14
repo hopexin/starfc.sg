@@ -1,6 +1,6 @@
 # STAR FC 每周更新清单（Fixtures + 球员照片）
 
-适用范围：静态单页站点，仅维护 `index.html` 与 `assets/img/players/`。  
+适用范围：静态单页站点，维护 `index.html`、`assets/js/data.js` 与 `assets/img/`。
 目标：每周更新赛程/战绩和球员照片时，降低改坏页面风险。
 
 ---
@@ -56,6 +56,22 @@ bash scripts/validate-assets.sh
 - `OK` 表示该球员已有 `profile.jpg`。
 - `MISSING` 表示该球员还没有 `profile.jpg`。
 - 需要从随意文件名生成头像时，运行 `bash scripts/normalize-player-photos.sh`。
+- 如果照片统一放在 `player-photo-inbox/`，运行 `bash scripts/import-player-photos.sh`。
+
+---
+
+## 3.1 媒体封面检查（有新集锦时执行）
+
+命令：
+
+```bash
+python3 scripts/validate-media-covers.py
+```
+
+输出说明：
+- `OK` 表示该视频已有 `assets/img/media/highlights/<match-id>/cover.jpg`。
+- `MISSING` 表示该视频还没有发布封面。
+- 首次创建目录时可运行 `python3 scripts/validate-media-covers.py --create-dirs`。
 
 ---
 

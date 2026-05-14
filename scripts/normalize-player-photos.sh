@@ -8,6 +8,17 @@ if [[ ! -d "$ROOT_DIR" ]]; then
   exit 1
 fi
 
+write_jpeg() {
+  local src="$1"
+  local dest="$2"
+  if command -v sips >/dev/null 2>&1; then
+    sips -s format jpeg "$src" --out "$dest" >/dev/null
+  else
+    echo "[WARN] sips not found; copying without JPEG conversion: $src" >&2
+    cp -f "$src" "$dest"
+  fi
+}
+
 ok_count=0
 skipped_count=0
 missing_count=0
@@ -43,7 +54,7 @@ while IFS= read -r player_dir; do
   done < <(find "$player_dir" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | sort)
 
   if [[ -n "$latest_file" ]]; then
-    cp -f "$latest_file" "$profile_path"
+    write_jpeg "$latest_file" "$profile_path"
     echo "OK       $player_id  <- $(basename "$latest_file")"
     ok_count=$((ok_count + 1))
   else
