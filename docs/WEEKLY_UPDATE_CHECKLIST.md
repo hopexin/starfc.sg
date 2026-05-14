@@ -79,6 +79,7 @@ python3 scripts/validate-media-covers.py
 
 - [ ] 锚点导航：顶部菜单跳转 `#home/#fixtures/#media/#team/#about/#history/#join/#contact` 正常
 - [ ] 移动端菜单：可打开/关闭，遮罩点击与 `Esc` 关闭正常
+- [ ] 语言切换：默认中文，切换 EN 后导航、Fixtures、Media、Team、Hall、About、Join、Contact、Footer 无明显中文残留
 - [ ] 赛程切换：2025/2026 按钮可切换，显示对应 `data-year-panel`
 - [ ] 横向滚动：桌面箭头可滚动，左右边界隐藏逻辑正常
 - [ ] Team 渲染：`#team` 区块能正常渲染分组球员卡

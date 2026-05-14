@@ -226,7 +226,10 @@
                     <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">联系我们</a>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button class="hidden text-xs font-medium text-gray-400 hover:text-amber-400 transition-colors px-3 py-1 border border-gray-700 rounded-full">EN</button>
+                    <div class="inline-flex bg-slate-800/80 p-1 rounded-full border border-slate-700" aria-label="Language switcher">
+                        <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="px-3 py-1 rounded-full text-xs font-semibold transition-all bg-amber-500 text-slate-900 shadow-sm">中文</button>
+                        <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="px-3 py-1 rounded-full text-xs font-semibold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">EN</button>
+                    </div>
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-slate-800/50 border border-slate-700/50" onclick="toggleMobileMenu()">
                         <span id="hamburger-top" class="w-5 h-0.5 bg-white mb-1 transition-all duration-300"></span>
@@ -253,7 +256,10 @@
             <a href="#history" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left">队史荣誉</a>
             <a href="#join" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left">加入我们</a>
             <a href="#contact" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left">联系我们</a>
-            <button class="hidden mt-4 text-sm font-medium text-gray-400 hover:text-amber-400 transition-colors px-4 py-2 border border-gray-700 rounded-full self-start">EN</button>
+            <div class="mt-4 inline-flex bg-slate-800/80 p-1 rounded-full border border-slate-700 self-start" aria-label="Language switcher">
+                <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="px-4 py-2 rounded-full text-sm font-semibold transition-all bg-amber-500 text-slate-900 shadow-sm">中文</button>
+                <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="px-4 py-2 rounded-full text-sm font-semibold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">EN</button>
+            </div>
         </div>
     </div>
 
@@ -2265,14 +2271,254 @@
     <script src="assets/js/data.js"></script>
     <script>
     (function() {
+        var STORAGE_KEY = 'starfc-language';
+        var TRANSLATIONS = {
+            'STAR FC | 新加坡 STAR 足球俱乐部': 'STAR FC | Singapore STAR Football Club',
+            'STAR FC 官方队徽': 'STAR FC official crest',
+            '主页': 'Home',
+            '赛程战绩': 'Fixtures',
+            '媒体中心': 'Media',
+            '球队成员': 'Squad',
+            '名人堂': 'Hall of Fame',
+            '关于我们': 'About',
+            '队史荣誉': 'History',
+            '加入我们': 'Join Us',
+            '加入球队': 'Join the Team',
+            '联系我们': 'Contact',
+            '中文': '中文',
+            '成立于 2002 · 新加坡草根足球队': 'Founded in 2002 · Singapore grassroots football club',
+            '新加坡 STAR 足球俱乐部': 'Singapore STAR Football Club',
+            '在狮城，踢出我们的': 'In the Lion City, we play for our',
+            '主场': 'home ground',
+            '查看本周赛程': 'View Fixtures',
+            '了解 STAR FC 的故事': 'Explore Our Story',
+            '我要加入球队': 'Join the Team',
+            '赛程与战绩': 'Fixtures & Results',
+            '左右滑动查看更多': 'Swipe to view more',
+            '向左滚动': 'Scroll left',
+            '向右滚动': 'Scroll right',
+            '友谊赛': 'Friendly',
+            '比赛': 'Matches',
+            '胜': 'Wins',
+            '平': 'Draws',
+            '负': 'Losses',
+            '进球': 'Goals For',
+            '失球': 'Goals Against',
+            '2026 赛季进行中，赛程与战绩持续更新': 'The 2026 season is in progress. Fixtures and results are updated regularly.',
+            '每一场比赛，我们都用 Veo3 录像设备记录下来': 'Every match is recorded with our Veo3 camera setup.',
+            '视频': 'Video',
+            '比赛集锦': 'Match Highlights',
+            '在 YouTube 观看': 'Watch on YouTube',
+            '当前阵容': 'Current Squad',
+            '2026 赛季': '2026 Season',
+            '按位置浏览 STAR FC 当前阵容': 'Browse the current STAR FC squad by position',
+            '前锋': 'Forwards',
+            '中场': 'Midfielders',
+            '后卫': 'Defenders',
+            '门将': 'Goalkeepers',
+            '球员照片占位': 'Player photo coming soon',
+            '记录 STAR FC 的关键人物、功勋队员与名誉成员。': 'Honoring the key figures, contributors and honorary members of STAR FC.',
+            '敬请期待': 'Coming Soon',
+            '名人堂名单整理中': 'Hall of Fame list in progress',
+            '功勋队员资料收集中': 'Contributor profiles are being collected',
+            '图片与故事后续补充': 'Photos and stories will be added later',
+            '关于 STAR FC': 'About STAR FC',
+            '的雏形始于': 'began around',
+            '2001 年': '2001',
+            '，最初由 AIT 留学生队与浙江足球队等群体在新加坡的社区球场相聚踢球。': ', when groups including the AIT student team and Zhejiang football community gathered on local pitches in Singapore.',
+            '2002 年 9 月': 'September 2002',
+            '，各分支正式整合并更名为': ', the different groups formally came together and adopted the name',
+            '，由终身名誉队长': ', led by lifetime honorary captain',
+            'Lemon（9 号）': 'Lemon (No. 9)',
+            '牵头组建。': '.',
+            '二十余年来，STAR FC 作为一支草根 11 人制球队，在新加坡持续活跃，参与本地联赛与友谊赛，累计吸纳超过 200 名球员。球队保留了队徽、队规与纪念球衣等传统，一代带一代，从未散场。': 'For more than two decades, STAR FC has stayed active in Singapore as a grassroots 11-a-side team, playing local leagues and friendlies while welcoming more than 200 players. The club keeps its crest, rules, commemorative shirts and traditions alive, passed from one generation to the next.',
+            '年历史': 'Years of history',
+            '亚军': 'Runner-up',
+            '2025 UAFL 联赛': '2025 UAFL League',
+            '历史球员': 'Players all-time',
+            '活跃成员': 'Active members',
+            '团结、分享、乐趣、成长': 'Unity, Sharing, Fun, Growth',
+            '团结 Unity': 'Unity',
+            '我们把团队放在第一位：场上服从安排、彼此补位；场下尊重与沟通。一代带一代的传承，让球队在二十余年里持续延续。': 'We put the team first: disciplined shape on the pitch, cover for one another, and respect off it. That one-generation-to-the-next culture has kept STAR FC moving for more than 20 years.',
+            '分享 Share': 'Sharing',
+            '技术与经验不藏私：从配合跑位到比赛复盘，愿意讲、也愿意听。我们相信"把队友踢舒服"，比个人表现更重要。': 'We share technique and experience openly, from movement patterns to match reviews. Making teammates play better matters more than individual highlights.',
+            '乐趣 Fun': 'Fun',
+            '周末回到绿茵场，是忙碌生活里最放松的两小时。赢球一起开心，失利也不抱怨、不内耗，下一场再来。': 'Weekend football is the two-hour reset in a busy life. We enjoy wins together, handle losses without drama, and come back for the next match.',
+            '成长 Growth': 'Growth',
+            '我们欢迎不同水平，但重视态度与责任：准时、投入、认真对待训练和比赛。可以慢，但要愿意学、敢于改、愿意为队友付出。': 'We welcome different levels, but we value attitude and responsibility: be on time, stay engaged, and take training and matches seriously. Progress can be slow, but the willingness to learn and contribute matters.',
+            'STAR FC 大事记': 'STAR FC Timeline',
+            '从 2001 到今天，我们走过了这些年份': 'From 2001 to today, these are the years that shaped us',
+            '雏形形成': 'The Early Shape',
+            'AIT 留学生队、浙江足球队等群体在新加坡社区球场自发踢球，STAR FC 的雏形在这一年形成。': 'The AIT student team, Zhejiang football group and other communities began playing together on Singapore community pitches. STAR FC started to take shape.',
+            '整合更名为 STAR': 'United as STAR',
+            '各分支球队正式整合，由终身名誉队长 Lemon（9 号）牵头，更名为「STAR 足球俱乐部」。': 'The different groups formally united under lifetime honorary captain Lemon (No. 9) and became STAR Football Club.',
+            '队规第一版发布': 'First Club Rules',
+            '2005 年 8 月 8 日，球队正式发布第一版队规，明确管理规范与行为准则，奠定球队文化基础。': 'On 8 August 2005, the club published its first rules, setting clear standards for management, behavior and team culture.',
+            '启用现版队徽': 'Current Crest Introduced',
+            '球队对队徽进行改进，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。': 'The club refined its crest into the current shield with a dragon: red stands for passion, the two stars represent STAR, and the central dragon honors Chinese heritage.',
+            '一年多不败纪录': 'Long Unbeaten Run',
+            '2008 年至 2010 年间，球队创下一年多不败的历史纪录，成为 STAR FC 早期的巅峰时期。': 'Between 2008 and 2010, STAR FC recorded an unbeaten run lasting more than a year, one of the early peaks in club history.',
+            'UAFL 联赛亚军': 'UAFL League Runner-up',
+            '球队在 UAFL 业余联赛中取得联赛第二名的佳绩，主力阵容以老带新，新一代球员逐渐成长为中坚力量。': 'The team finished second in the UAFL amateur league, with senior players guiding a new generation into core roles.',
+            '现在': 'Now',
+            '继续记录与传承': 'Recording and Carrying On',
+            '依托 Veo3 等录像设备，STAR FC 正在更系统地记录比赛与训练。对很多队员来说，这里早已不只是球队，而是一个"家"。': 'With tools such as the Veo3 camera, STAR FC is recording matches and training more systematically. For many players, this is no longer just a team. It is home.',
+            '最新故事与动态': 'Latest Stories',
+            '二十多年，我们积累了太多值得记住的瞬间': 'After more than two decades, there are many moments worth keeping',
+            '小红书': 'Xiaohongshu',
+            '目标：新加坡最好的业余华人足球俱乐部': "Goal: Singapore's best amateur Chinese football club",
+            '一篇关于 STAR FC 目标与团队文化的记录。': 'A note on STAR FC goals and team culture.',
+            '查看原文 →': 'Read original →',
+            'STAR 人物志 ②：聂少归渝': 'STAR Profile ②: Nie Shao returns to Chongqing',
+            '记录一位关键球员聂少与 STAR FC 的故事。': 'A story about key player Nie Shao and STAR FC.',
+            'STAR FC 编年史': 'STAR FC Chronicle',
+            '从 2002 到今天：我们的起点与沿途。': 'From 2002 to today: where we started and what we have carried along.',
+            '未来会在这里持续更新比赛战报、活动与球队故事。': 'Match reports, events and club stories will continue to be updated here.',
+            '我们一直在等': 'We Are Always Looking',
+            '那个热爱足球的你': 'For players who love the game',
+            '试训报名表': 'Trial Registration',
+            '姓名': 'Name',
+            '你的姓名': 'Your name',
+            '联系方式': 'Contact',
+            '手机号 / 邮箱': 'Phone / email',
+            '擅长位置': 'Preferred position',
+            '请选择': 'Please select',
+            '踢球经验': 'Football experience',
+            '业余爱好': 'Recreational',
+            '校队/公司队': 'School / company team',
+            '正式联赛经验': 'League experience',
+            '自我介绍（可选）': 'Introduction (optional)',
+            '简单介绍一下自己...': 'Tell us briefly about yourself...',
+            '提交报名': 'Submit Registration',
+            '无论你是想加入球队、安排友谊赛，还是希望进行品牌合作': 'Whether you want to join the team, arrange a friendly, or discuss a partnership',
+            '邮箱': 'Email',
+            '新加坡STAR足球俱乐部': 'Singapore STAR Football Club',
+            '正在搭建中，敬请期待': 'Coming soon',
+            '常用球场': 'Common Venues',
+            '新加坡 STAR 足球俱乐部。在狮城，踢出我们的主场。': 'Singapore STAR Football Club. In the Lion City, we play for our home ground.',
+            '快速链接': 'Quick Links',
+            '关注我们': 'Follow Us',
+            '© 2025 STAR FC. All rights reserved. | 新加坡 STAR 足球俱乐部': '© 2025 STAR FC. All rights reserved. | Singapore STAR Football Club'
+        };
+        var PLAYER_NAME_TRANSLATIONS = {
+            '冯鑫': 'Feng Xin',
+            '张鑫': 'Zhang Xin',
+            '田添': 'Tian Tian',
+            '凌然': 'Ling Ran',
+            '刘美华': 'Liu Meihua',
+            '老孙': 'Lao Sun',
+            '小许': 'Xu Zhihe',
+            '雄': 'Jiang Chaoxiong',
+            '蓝一航': 'Lan Yihang',
+            '王一凡': 'Wang Yifan',
+            '萨百一': 'Sa Baiyi',
+            '李祺琳': 'Li Qilin',
+            '赵宇': 'Zhao Yu',
+            '干哥': 'Sun Gan',
+            'Jaron小杰': 'Huang Jaron Zijie'
+        };
+        function getSavedLanguage() {
+            var saved = localStorage.getItem(STORAGE_KEY);
+            return saved === 'en' ? 'en' : 'zh';
+        }
+        function translateValue(value, lang) {
+            if (lang === 'zh') return value;
+            var trimmed = value.trim();
+            var leading = value.match(/^\s*/)[0];
+            var trailing = value.match(/\s*$/)[0];
+            var translated = TRANSLATIONS[trimmed];
+            if (!translated && /^UAFL 第(\d+)轮$/.test(trimmed)) {
+                translated = trimmed.replace(/^UAFL 第(\d+)轮$/, 'UAFL Round $1');
+            }
+            if (!translated && trimmed.indexOf('⚽') === 0) {
+                translated = trimmed;
+                Object.keys(PLAYER_NAME_TRANSLATIONS).forEach(function(name) {
+                    translated = translated.split(name).join(PLAYER_NAME_TRANSLATIONS[name]);
+                });
+            }
+            if (!translated) return value;
+            return leading + translated + trailing;
+        }
+        function walkAndTranslate(root, lang) {
+            var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                acceptNode: function(node) {
+                    var parent = node.parentElement;
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    if (/^(SCRIPT|STYLE|SVG|PATH)$/.test(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+            var nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach(function(node) {
+                if (node.__starFcZhText === undefined) node.__starFcZhText = node.nodeValue;
+                node.nodeValue = translateValue(node.__starFcZhText, lang);
+            });
+        }
+        function translateAttributes(root, lang) {
+            var attrs = ['placeholder', 'aria-label', 'alt', 'title'];
+            root.querySelectorAll('*').forEach(function(el) {
+                attrs.forEach(function(attr) {
+                    if (!el.hasAttribute(attr)) return;
+                    var key = '__starFcZhAttr' + attr;
+                    if (el[key] === undefined) el[key] = el.getAttribute(attr);
+                    el.setAttribute(attr, translateValue(el[key], lang));
+                });
+            });
+        }
+        function updateLanguageButtons(lang) {
+            document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+                var active = btn.dataset.langBtn === lang;
+                btn.classList.toggle('bg-amber-500', active);
+                btn.classList.toggle('text-slate-900', active);
+                btn.classList.toggle('shadow-sm', active);
+                btn.classList.toggle('text-slate-400', !active);
+                btn.classList.toggle('hover:text-white', !active);
+                btn.classList.toggle('hover:bg-slate-700/50', !active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+        }
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+            document.title = translateValue('STAR FC | 新加坡 STAR 足球俱乐部', lang);
+            walkAndTranslate(document.body, lang);
+            translateAttributes(document.body, lang);
+            updateLanguageButtons(lang);
+        }
+        window.getStarFCLanguage = getSavedLanguage;
+        window.starFcTranslate = function(value) {
+            return translateValue(value, getSavedLanguage());
+        };
+        window.applyStarFCLanguage = applyLanguage;
+        window.setLanguage = function(lang) {
+            lang = lang === 'en' ? 'en' : 'zh';
+            localStorage.setItem(STORAGE_KEY, lang);
+            applyLanguage(lang);
+            if (window.renderStarFCTeam) window.renderStarFCTeam();
+            if (window.initStarFCScrollArrows) {
+                setTimeout(window.initStarFCScrollArrows, 100);
+            }
+        };
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                applyLanguage(getSavedLanguage());
+            });
+        } else {
+            applyLanguage(getSavedLanguage());
+        }
+    })();
+    </script>
+    <script>
+    (function() {
         var captainId = 'liu-meihua';
         var viceCaptainIds = { 'zhang-xin': true, 'feng-xin': true };
         var nameOverrides = { 'victor-chukwuebuka-ebele': 'Victor' };
         var groupConfig = [
-            { key: 'FWD', label: '前锋', labelEn: 'Forwards (FWD)', positions: ['WINGER', 'STRIKER'] },
-            { key: 'MID', label: '中场', labelEn: 'Midfielders (MID)', positions: ['CM', 'DM'] },
-            { key: 'DEF', label: '后卫', labelEn: 'Defenders (DEF)', positions: ['CB', 'FULL BACK'] },
-            { key: 'GK', label: '门将', labelEn: 'Goalkeepers (GK)', positions: ['GK'] }
+            { key: 'FWD', labelZh: '前锋', labelEn: 'Forwards', subZh: 'Forwards (FWD)', subEn: 'FWD', positions: ['WINGER', 'STRIKER'] },
+            { key: 'MID', labelZh: '中场', labelEn: 'Midfielders', subZh: 'Midfielders (MID)', subEn: 'MID', positions: ['CM', 'DM'] },
+            { key: 'DEF', labelZh: '后卫', labelEn: 'Defenders', subZh: 'Defenders (DEF)', subEn: 'DEF', positions: ['CB', 'FULL BACK'] },
+            { key: 'GK', labelZh: '门将', labelEn: 'Goalkeepers', subZh: 'Goalkeepers (GK)', subEn: 'GK', positions: ['GK'] }
         ];
         function getRank(p) {
             if (p.id === captainId) return 0;
@@ -2280,6 +2526,7 @@
             return 2;
         }
         function renderTeam() {
+            var lang = window.getStarFCLanguage ? window.getStarFCLanguage() : 'zh';
             var players = window.STAR_FC_DATA && window.STAR_FC_DATA.players;
             if (!players) {
                 console.error('[STAR FC] players data not found on window.STAR_FC_DATA.players');
@@ -2303,11 +2550,14 @@
                 wrapper.className = isLast ? '' : 'mb-10 md:mb-12';
                 var header = document.createElement('div');
                 header.className = 'flex items-center justify-between mb-4 md:mb-6';
-                header.innerHTML = '<div class="flex items-center gap-3"><h3 class="text-xl md:text-2xl font-bold text-white">' + group.label + '</h3><span class="text-gray-500 text-xs md:text-sm">' + group.labelEn + '</span></div><span class="text-gray-500 text-xs md:text-sm">共 ' + groupPlayers.length + ' 人</span>';
+                var groupTitle = lang === 'en' ? group.labelEn : group.labelZh;
+                var groupSub = lang === 'en' ? group.subEn : group.subZh;
+                var groupCount = lang === 'en' ? groupPlayers.length + ' players' : '共 ' + groupPlayers.length + ' 人';
+                header.innerHTML = '<div class="flex items-center gap-3"><h3 class="text-xl md:text-2xl font-bold text-white">' + groupTitle + '</h3><span class="text-gray-500 text-xs md:text-sm">' + groupSub + '</span></div><span class="text-gray-500 text-xs md:text-sm">' + groupCount + '</span>';
                 wrapper.appendChild(header);
                 var hint = document.createElement('div');
                 hint.className = 'swipe-hint';
-                hint.textContent = '左右滑动查看更多';
+                hint.textContent = lang === 'en' ? 'Swipe to view more' : '左右滑动查看更多';
                 wrapper.appendChild(hint);
                 var hscrollWrapper = document.createElement('div');
                 hscrollWrapper.className = 'hscroll-wrapper';
@@ -2317,11 +2567,11 @@
                 fadeRight.className = 'hscroll-fade-right';
                 var leftBtn = document.createElement('button');
                 leftBtn.className = 'scroll-arrow scroll-left';
-                leftBtn.setAttribute('aria-label', '向左滚动');
+                leftBtn.setAttribute('aria-label', lang === 'en' ? 'Scroll left' : '向左滚动');
                 leftBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
                 var rightBtn = document.createElement('button');
                 rightBtn.className = 'scroll-arrow scroll-right';
-                rightBtn.setAttribute('aria-label', '向右滚动');
+                rightBtn.setAttribute('aria-label', lang === 'en' ? 'Scroll right' : '向右滚动');
                 rightBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
                 var hscroll = document.createElement('div');
                 hscroll.className = 'hscroll hscroll-player';
@@ -2332,7 +2582,7 @@
                     photoWrap.className = 'w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center overflow-hidden relative';
                     var placeholder = document.createElement('div');
                     placeholder.className = 'absolute inset-0 flex items-center justify-center text-slate-400 text-sm';
-                    placeholder.textContent = '球员照片占位';
+                    placeholder.textContent = lang === 'en' ? 'Player photo coming soon' : '球员照片占位';
                     photoWrap.appendChild(placeholder);
                     var img = document.createElement('img');
                     img.src = 'assets/img/players/' + player.id + '/profile.jpg';
@@ -2371,6 +2621,7 @@
         } else {
             renderTeam();
         }
+        window.renderStarFCTeam = renderTeam;
     })();
     </script>
 
@@ -2988,6 +3239,7 @@
                 updateArrows();
             });
         }
+        window.initStarFCScrollArrows = initScrollArrows;
 
         // 页面加载后初始化箭头
         document.addEventListener('DOMContentLoaded', function() {
