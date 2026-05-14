@@ -1,6 +1,13 @@
 # STAR FC 网站内容维护指南
 
-本文档说明如何更新网站内容。所有更改都在 `index.html` 文件中完成。
+本文档说明如何更新网站内容。当前站点是静态单页发布，但部分维护入口已经拆出：
+
+- 比赛截图到战绩更新：优先看 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`
+- 每周验收清单：优先看 `docs/WEEKLY_UPDATE_CHECKLIST.md`
+- 球员照片：优先看 `docs/PLAYER_PHOTO_GUIDE.md`
+- 球员名单数据：维护 `assets/js/data.js`
+
+注意：`index.html` 里仍保留一些历史 JSON 块，但 Fixtures 当前主要由页面内卡片直接展示，不要把 `fixtures-data` 当作唯一渲染来源。
 
 ---
 
@@ -23,31 +30,16 @@ assets/
 
 ### 步骤
 
-1. **准备图片**
-   - 格式：`jpg` 或 `webp`（推荐 webp，体积更小）
-   - 尺寸：建议 400×500px（4:5 比例）
-   - 命名：使用拼音或英文，如 `liu-ziang.jpg`
+1. 在 `docs/PLAYER_PHOTO_GUIDE.md` 找到球员对应的 `id`。
+2. 把照片拖进 `assets/img/players/<id>/`。
+3. 运行：
 
-2. **放置文件**
-   - 将图片放入 `assets/img/players/` 目录
-
-3. **更新 index.html**
-   - 找到 `<!-- CONTENT UPDATE ZONE -->` 区域
-   - 在 `<script id="players-data">` 中添加或修改球员数据：
-
-```json
-{
-  "id": "liu-ziang",
-  "name": "刘子昂",
-  "number": 10,
-  "position": "前锋",
-  "photo": "assets/img/players/liu-ziang.jpg",
-  "stats": { "goals": 15, "assists": 8 }
-}
+```bash
+bash scripts/normalize-player-photos.sh
 ```
 
-4. **在页面中引用**
-   - 在球员展示区域的 HTML 中，使用相同的图片路径
+4. 网站会读取 `assets/img/players/<id>/profile.jpg`。
+5. 如果是新增球员，再维护 `assets/js/data.js` 的 `window.STAR_FC_DATA.players`。
 
 ---
 
@@ -135,32 +127,13 @@ assets/
 
 ### 步骤
 
-1. 找到 `<script id="fixtures-data">`
-2. 修改对应的赛事信息：
-
-```json
-{
-  "upcoming": [
-    {
-      "id": "match-001",
-      "date": "2024-02-01",
-      "time": "19:00",
-      "opponent": "对手球队",
-      "venue": "比赛场地",
-      "competition": "联赛名称"
-    }
-  ],
-  "results": [
-    {
-      "id": "result-001",
-      "date": "2024-01-20",
-      "opponent": "对手球队",
-      "score": "3-1",
-      "result": "win"
-    }
-  ]
-}
-```
+1. 截图录入先看 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`。
+2. 打开 `index.html`，找到对应年份注释区块：
+   - `FIXTURES_2025_START` 到 `FIXTURES_2025_END`
+   - `FIXTURES_2026_START` 到 `FIXTURES_2026_END`
+3. 复制同结果类型的现有卡片，替换日期、赛事、对手、比分、进球、地点。
+4. 同步更新该年份统计数字。
+5. 不要只修改 `<script id="fixtures-data">`，它不是当前 Fixtures 视觉卡片的唯一来源。
 
 ---
 

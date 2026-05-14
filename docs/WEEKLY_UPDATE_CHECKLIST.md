@@ -7,6 +7,8 @@
 
 ## 1. 每周更新赛程与战绩（Fixtures/Results）
 
+详细截图录入流程见：`docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`。
+
 1. 打开 `index.html`，定位 `#fixtures` 区域。
 2. 在注释标记区间内编辑卡片：
    - `FIXTURES_2025_START` 到 `FIXTURES_2025_END`
@@ -21,23 +23,24 @@
 
 注意：
 - 建议按日期从新到旧排列。
-- 胜/平/负视觉状态依赖卡片颜色：绿/灰/红（边框与比分颜色）。
+- 胜/平/负视觉状态依赖 Badge 与比分颜色：`WIN` / `DRAW` / `LOSS`。
+- 比分必须是单个 `font-mono` span，不要拆成多个 span。
 - 不要改动 `switchYear()`、`data-year`、`data-year-panel`。
 
 ---
 
-## 2. 球员照片命名规范（players-data -> assets）
+## 2. 球员照片命名规范（assets/js/data.js -> assets）
 
 页面读取规则：
-- 代码会按 `players-data` 的 `id` 拼接图片路径：
-  - `assets/img/players/<id>.jpg`
+- 代码会按 `assets/js/data.js` 中球员的 `id` 拼接图片路径：
+  - `assets/img/players/<id>/profile.jpg`
 - 示例：
-  - `{"id":"xu-zhihe", ...}` -> `assets/img/players/xu-zhihe.jpg`
+  - `{"id":"xu-zhihe", ...}` -> `assets/img/players/xu-zhihe/profile.jpg`
 
 规范要求：
 - 统一小写英文 + 连字符（kebab-case）。
-- 与 `players-data` 的 `id` 完全一致（包括连字符）。
-- 当前前端逻辑固定读取 `.jpg`，请优先使用 `.jpg`。
+- 与 `assets/js/data.js` 的 `id` 完全一致（包括连字符）。
+- 你只需要把照片拖进对应球员文件夹，再运行 `bash scripts/normalize-player-photos.sh`。
 
 ---
 
@@ -50,8 +53,9 @@ bash scripts/validate-assets.sh
 ```
 
 输出说明：
-- `missing` 列出 `players-data` 中缺失的球员图片（按 `<id>.jpg` 检查）。
-- `extra` 列出目录里存在但不在 `players-data` 的 `.jpg` 文件。
+- `OK` 表示该球员已有 `profile.jpg`。
+- `MISSING` 表示该球员还没有 `profile.jpg`。
+- 需要从随意文件名生成头像时，运行 `bash scripts/normalize-player-photos.sh`。
 
 ---
 
