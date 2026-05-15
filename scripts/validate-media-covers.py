@@ -18,7 +18,10 @@ def slugify(value: str) -> str:
 
 def extract_videos() -> list[tuple[str, str, str]]:
     html = INDEX.read_text()
-    pattern = re.compile(r"<h3[^>]*>(\d{4}-\d{2}-\d{2})\s+vs\s+(.+?)\s+\(Highlights\)</h3>")
+    pattern = re.compile(
+        r"<h3[^>]*>\s*(\d{4}-\d{2}-\d{2})\s+vs\s+(.+?)\s*(?:\(Highlights\)|（比赛集锦）)\s*</h3>",
+        re.S,
+    )
     videos = []
     for date, opponent in pattern.findall(html):
         opponent = re.sub(r"<[^>]+>", "", opponent).strip()
