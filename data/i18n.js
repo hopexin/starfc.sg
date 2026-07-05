@@ -45,6 +45,10 @@ window.STARFC.i18n = {
   // ---- Hero 最新战绩条 / 跑马灯 ----
   'hero.latestLabel': { zh: '最新战绩', en: 'Latest Result' },
   'hero.formLabel': { zh: '近 5 场', en: 'Last 5' },
+  'hero.nextLabel': { zh: '下一场', en: 'Next Match' },
+  'hero.nextInDays': { zh: '{n} 天后', en: 'In {n} days' },
+  'hero.nextToday': { zh: '今天开球', en: 'Kick-off today' },
+  'hero.nextTomorrow': { zh: '明天开球', en: 'Kick-off tomorrow' },
   'ticker.grassroots': { zh: '新加坡 11 人制草根球队', en: 'Singapore 11-a-side grassroots club' },
   'ticker.runnerUp': { zh: '2025 UAFL 联赛亚军', en: '2025 UAFL Runners-up' },
   'ticker.players': { zh: '200+ 历史球员', en: '200+ players all-time' },

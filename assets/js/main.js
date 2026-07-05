@@ -232,6 +232,45 @@
     el.classList.remove('hidden');
   }
 
+  /* ---------- 下一场预告（数据中有 score: null 的未来比赛时显示） ---------- */
+  function todayStr() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function nextMatch() {
+    var today = todayStr();
+    var next = null;
+    Object.keys(S.fixtures || {}).forEach(function (y) {
+      (S.fixtures[y] || []).forEach(function (m) {
+        if (m.score) return;               // 已有比分的不算
+        if (!m.date || m.date < today) return; // 过期的待录入比赛不预告
+        if (!next || m.date < next.date) next = m;
+      });
+    });
+    return next;
+  }
+
+  function renderHeroNext() {
+    var el = document.querySelector('[data-hero-next]');
+    if (!el) return;
+    var m = nextMatch();
+    if (!m) { el.classList.add('hidden'); el.innerHTML = ''; return; }
+    var days = Math.round((new Date(m.date + 'T00:00:00') - new Date(todayStr() + 'T00:00:00')) / 86400000);
+    var count = days === 0 ? t('hero.nextToday')
+      : days === 1 ? t('hero.nextTomorrow')
+      : t('hero.nextInDays', { n: days });
+    el.innerHTML =
+      '<span class="hero-next__label">' + esc(t('hero.nextLabel')) + '</span>' +
+      '<span class="hero-next__meta">' +
+        '<time class="hero-next__date" datetime="' + esc(m.date) + '">' + esc(m.date) + '</time>' +
+        '<span class="hero-next__teams"><span translate="no">STAR FC</span><span class="hero-next__vs">vs</span><span>' + esc(m.opponent) + '</span></span>' +
+        '<span class="hero-next__venue">' + esc(m.venue || '') + '</span>' +
+      '</span>' +
+      '<span class="hero-next__count">' + esc(count) + '</span>';
+    el.classList.remove('hidden');
+  }
+
   /* ---------- 品牌跑马灯 ---------- */
   function renderTicker() {
     var track = document.querySelector('[data-ticker]');
@@ -510,6 +549,7 @@
     renderFixtures();
     renderScorers();
     renderHeroLatest();
+    renderHeroNext();
     renderTicker();
     renderMedia();
     renderTeam();
@@ -528,6 +568,7 @@
     renderFixtures();
     renderScorers();
     renderHeroLatest();
+    renderHeroNext();
     renderTicker();
     renderMedia();
     renderTeam();
