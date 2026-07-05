@@ -400,6 +400,34 @@
     el.innerHTML = videos.map(videoCard).join('');
   }
 
+  /* ---------- 球队档案与故事（首页最新 6 篇，数据源 data/blog.js） ---------- */
+  function storyCard(p) {
+    var lang = getLang();
+    var external = p.type === 'external';
+    var href = external ? p.url : 'blog/' + p.slug + '.html';
+    var title = (lang === 'en' && p.titleEn) ? p.titleEn : p.titleZh;
+    var excerpt = (lang === 'en' && p.excerptEn) ? p.excerptEn : p.excerptZh;
+    var tag = (lang === 'en' && p.tagEn) ? p.tagEn : p.tagZh;
+    return '<a href="' + esc(href) + '"' + (external ? ' target="_blank" rel="noopener noreferrer"' : '') + ' class="story-card">' +
+      '<span><span class="chip chip--red">' + esc(tag) + '</span></span>' +
+      '<h3 class="story-card__title">' + esc(title) + '</h3>' +
+      '<p class="story-card__desc">' + esc(excerpt) + '</p>' +
+      '<div class="story-card__foot">' +
+        '<span class="story-card__date">' + esc(p.date) + '</span>' +
+        '<span class="story-card__more">' + esc(t(external ? 'stories.readMore' : 'stories.readPost')) + '</span>' +
+      '</div>' +
+    '</a>';
+  }
+
+  function renderStories() {
+    var el = document.querySelector('[data-stories-list]');
+    if (!el) return;
+    var posts = ((S.blog && S.blog.posts) || []).slice().sort(function (a, b) {
+      return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0);
+    });
+    el.innerHTML = posts.slice(0, 6).map(storyCard).join('');
+  }
+
   /* ---------- 球队成员 ---------- */
   var groupConfig = [
     { key: 'FWD', titleKey: 'team.groupFwd', sub: 'Forwards · FWD', positions: ['WINGER', 'STRIKER'] },
@@ -717,6 +745,7 @@
     renderHeroNext();
     renderTicker();
     renderMedia();
+    renderStories();
     renderTeam();
     refreshReveals(true); // 重渲染后：视口内元素直接就位，不重播动画
   }
@@ -738,6 +767,7 @@
     renderHeroNext();
     renderTicker();
     renderMedia();
+    renderStories();
     renderTeam();
     initFixturesToggles();
     refreshReveals(false);

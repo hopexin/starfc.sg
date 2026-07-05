@@ -1,6 +1,6 @@
 # STAR FC 每周更新清单（2026-07 重构后版本）
 
-适用范围：静态单页站点。**每周内容更新只改 `data/` 目录下的数据文件，不改 `index.html`、CSS、JS。**
+适用范围：静态站点（单页官网 + blog/ 文章页）。维护总纲见根目录 AGENTS.md。**每周内容更新只改 `data/` 目录下的数据文件，不改 `index.html`、CSS、JS。**
 
 架构一句话：`index.html` 是唯一页面骨架；比赛、视频、球员、双语文案分别存在
 `data/fixtures.js`、`data/media.js`、`data/players.js`、`data/i18n.js`；
@@ -45,6 +45,11 @@
 
 - 标题自动生成为「日期 vs 对手（比赛集锦）」，英文界面自动切换。
 - 有封面图时把图放到 `assets/img/media/highlights/<日期-对手slug>/cover.jpg`，并把 `cover` 填成该路径；没有就保持 `null`（显示默认深色播放占位）。
+
+## 2.5 发一篇博客/档案文章
+
+完整八步流程见根目录 **AGENTS.md 任务 C**（复制 blog/_template.html → 填 5 个占位符 →
+组件库写正文 → data/blog.js 加索引 → validate + update-sitemap → 预览 → 提交）。
 
 ## 3. 球员名册与照片
 

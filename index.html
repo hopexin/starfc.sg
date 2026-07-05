@@ -39,6 +39,7 @@
     <script src="data/players.js" defer></script>
     <script src="data/fixtures.js" defer></script>
     <script src="data/media.js" defer></script>
+    <script src="data/blog.js" defer></script>
     <script src="assets/js/main.js" defer></script>
 
     <!-- 结构化数据：球队信息（搜索引擎理解用） -->
@@ -416,34 +417,10 @@
                         <p class="section-desc" data-i18n="stories.desc">二十多年，留下的不只是比分</p>
                     </div>
                 </header>
-                <div class="stories-grid" data-reveal-stagger>
-                    <a href="http://xhslink.com/o/65x7g6P3zwi" target="_blank" rel="noopener noreferrer" class="story-card">
-                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
-                        <h3 class="story-card__title" data-i18n="stories.s1.title">目标：新加坡最好的业余华人足球俱乐部</h3>
-                        <p class="story-card__desc" data-i18n="stories.s1.desc">一篇关于 STAR FC 目标与团队文化的记录。</p>
-                        <div class="story-card__foot">
-                            <span class="story-card__date">2023-08-30</span>
-                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
-                        </div>
-                    </a>
-                    <a href="http://xhslink.com/o/10oC9XUIZrS" target="_blank" rel="noopener noreferrer" class="story-card">
-                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
-                        <h3 class="story-card__title" data-i18n="stories.s2.title">STAR 人物志 ②：聂少归渝</h3>
-                        <p class="story-card__desc" data-i18n="stories.s2.desc">记录一位关键球员聂少与 STAR FC 的故事。</p>
-                        <div class="story-card__foot">
-                            <span class="story-card__date">2023-05-27</span>
-                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
-                        </div>
-                    </a>
-                    <a href="http://xhslink.com/o/5vMCLE0YP3v" target="_blank" rel="noopener noreferrer" class="story-card">
-                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
-                        <h3 class="story-card__title" data-i18n="stories.s3.title">STAR FC 编年史</h3>
-                        <p class="story-card__desc" data-i18n="stories.s3.desc">从 2002 到今天：我们的起点与沿途。</p>
-                        <div class="story-card__foot">
-                            <span class="story-card__date">2023-04-12</span>
-                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
-                        </div>
-                    </a>
+                <!-- 文章卡片由 assets/js/main.js 从 data/blog.js 渲染（最新 6 篇） -->
+                <div class="stories-grid" data-stories-list data-reveal-stagger></div>
+                <div class="stories-more" data-reveal>
+                    <a href="blog/index.html" class="btn btn--secondary" data-i18n="stories.viewAll">查看全部文章</a>
                 </div>
                 <p class="stories-note" data-reveal data-i18n="stories.note">后续会继续补充比赛战报、活动与球队故事。</p>
             </div>

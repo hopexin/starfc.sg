@@ -142,14 +142,9 @@ window.STARFC.i18n = {
   // ---- 球队档案与故事 ----
   'stories.title': { zh: '球队档案与故事', en: 'Club Archive & Stories' },
   'stories.desc': { zh: '二十多年，留下的不只是比分', en: 'After more than two decades, the record is more than scores' },
-  'stories.tag': { zh: '小红书', en: 'Xiaohongshu' },
-  'stories.s1.title': { zh: '目标：新加坡最好的业余华人足球俱乐部', en: "Goal: Singapore's best amateur Chinese football club" },
-  'stories.s1.desc': { zh: '一篇关于 STAR FC 目标与团队文化的记录。', en: 'A note on STAR FC goals and team culture.' },
-  'stories.s2.title': { zh: 'STAR 人物志 ②：聂少归渝', en: 'STAR Profile ②: Nie Shao returns to Chongqing' },
-  'stories.s2.desc': { zh: '记录一位关键球员聂少与 STAR FC 的故事。', en: 'A story about key player Nie Shao and STAR FC.' },
-  'stories.s3.title': { zh: 'STAR FC 编年史', en: 'STAR FC Chronicle' },
-  'stories.s3.desc': { zh: '从 2002 到今天：我们的起点与沿途。', en: 'From 2002 to today: where we started and what we have carried along.' },
   'stories.readMore': { zh: '查看原文 →', en: 'Read original →' },
+  'stories.readPost': { zh: '阅读全文 →', en: 'Read post →' },
+  'stories.viewAll': { zh: '查看全部文章', en: 'All posts' },
   'stories.note': { zh: '后续会继续补充比赛战报、活动与球队故事。', en: 'Match reports, events and club stories will continue to be added here.' },
 
   // ---- 加入我们 ----

@@ -1525,3 +1525,120 @@ body.no-scroll { overflow: hidden; }
 /* 球队之约块与试训卡间距 */
 .join-code { margin-bottom: var(--sp-7); }
 .join-code .section-head { margin-bottom: var(--sp-5); }
+
+/* ---------- 13. 博客文章页（blog/*.html 复用本文件 + 以下补充） ---------- */
+.stories-more { display: flex; justify-content: center; margin-top: var(--sp-6); }
+
+.post-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 15, 17, 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.post-topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  height: 3.6rem;
+}
+.post-topbar .brand__crest { width: 1.9rem; height: 1.9rem; }
+.post-topbar .brand__name { font-size: 1.1rem; }
+.post-topbar__back {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-mut);
+  transition: color 0.15s ease;
+}
+.post-topbar__back:hover { color: var(--text-hi); }
+
+.post-main { padding: var(--sp-8) 0 var(--sp-9); }
+.post-head { margin-bottom: var(--sp-6); }
+.post-tag { margin-bottom: var(--sp-4); }
+.post-title {
+  font-size: var(--text-h2);
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--text-hi);
+  letter-spacing: -0.01em;
+}
+.post-meta {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.post-body { font-size: 1.05rem; line-height: 1.95; color: var(--text); }
+.post-body > * + * { margin-top: var(--sp-5); }
+.post-body h2 {
+  margin-top: var(--sp-7);
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--text-hi);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}
+.post-body h3 { margin-top: var(--sp-6); font-size: var(--text-lg); font-weight: 700; color: var(--text-hi); }
+.post-body strong { color: var(--text-hi); }
+.post-body a { color: var(--red-500); }
+.post-body a:hover { color: #ff6b6b; }
+.post-body ul { list-style: none; }
+.post-body ul li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-top: var(--sp-2);
+}
+.post-body ul li::before { content: '●'; position: absolute; left: 0; top: 0.72em; font-size: 0.45em; color: var(--red-500); }
+.post-body blockquote {
+  margin: var(--sp-6) 0;
+  padding: var(--sp-4) var(--sp-5);
+  border-left: 3px solid var(--red-600);
+  background: var(--surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--text-hi);
+}
+.post-body figure { margin: var(--sp-6) 0; }
+.post-body figure img { width: 100%; border-radius: var(--radius-lg); border: var(--border); }
+.post-body figcaption { margin-top: var(--sp-2); font-size: var(--text-xs); color: var(--text-faint); text-align: center; }
+
+/* 数据速览条（文章内） */
+.post-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+  margin: var(--sp-6) 0;
+}
+@media (min-width: 40rem) { .post-stats { grid-template-columns: repeat(4, 1fr); } }
+
+/* 视频内嵌（16:9） */
+.post-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: var(--sp-6) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--border);
+  background: var(--surface-2);
+}
+.post-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.post-footer {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+/* 博客索引页 */
+.post-list { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-6); }

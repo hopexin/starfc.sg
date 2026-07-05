@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | 加一场比赛 / 改比分 | `data/fixtures.js` | 统计自动计算，见 `WEEKLY_UPDATE_CHECKLIST.md` |
 | 加一条比赛集锦视频 | `data/media.js` | 标题自动生成，支持可选封面图 |
+| 发一篇博客/档案文章 | `blog/<slug>.html` + `data/blog.js` | 复制 `blog/_template.html`；流程见 AGENTS.md 任务 C |
 | 球员名册 / 队长 / 绰号表 | `data/players.js` | id 决定照片路径 |
 | 界面文案（中/英） | `data/i18n.js` | 每条 `{ zh, en }` 成对维护 |
 | 球员照片 | `assets/img/players/<id>/profile.jpg` | 见 `PLAYER_PHOTO_GUIDE.md` |

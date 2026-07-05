@@ -20,9 +20,9 @@ const warnings = [];
 function err(msg) { errors.push(msg); }
 function warn(msg) { warnings.push(msg); }
 
-// ---- 加载四个数据文件（模拟浏览器的 window 全局） ----
+// ---- 加载数据文件（模拟浏览器的 window 全局） ----
 global.window = {};
-for (const rel of ['data/i18n.js', 'data/players.js', 'data/fixtures.js', 'data/media.js']) {
+for (const rel of ['data/i18n.js', 'data/players.js', 'data/fixtures.js', 'data/media.js', 'data/blog.js']) {
   const file = path.join(ROOT, rel);
   try {
     // eslint-disable-next-line no-eval
@@ -115,6 +115,39 @@ if (!S.media || !Array.isArray(S.media.videos)) {
     if (!v.opponent) err(`${label}：缺少 opponent`);
     if (!/^https?:\/\//.test(v.url || '')) err(`${label}：url 必须是 http(s) 链接`);
     if (v.cover && !fs.existsSync(path.join(ROOT, v.cover))) warn(`${label}：cover 文件不存在：${v.cover}`);
+  });
+}
+
+// ---- blog ----
+if (!S.blog || !Array.isArray(S.blog.posts)) {
+  err('data/blog.js：window.STARFC.blog.posts 缺失');
+} else {
+  const seenSlugs = {};
+  S.blog.posts.forEach((p, i) => {
+    const label = `blog.posts[${i}]（${p && p.slug}）`;
+    if (!p.slug || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug)) err(`${label}：slug 必须是小写 kebab-case`);
+    if (seenSlugs[p.slug]) err(`${label}：slug 重复`);
+    seenSlugs[p.slug] = true;
+    if (!validDate(p.date)) err(`${label}：date 必须是有效的 YYYY-MM-DD`);
+    if (!p.titleZh) err(`${label}：缺少 titleZh`);
+    if (!p.excerptZh) warn(`${label}：建议补 excerptZh（首页卡片摘要）`);
+    if (!p.tagZh) warn(`${label}：建议补 tagZh（卡片分类标签）`);
+    if (p.type === 'post') {
+      const file = path.join(ROOT, 'blog', p.slug + '.html');
+      if (!fs.existsSync(file)) err(`${label}：找不到文章文件 blog/${p.slug}.html`);
+      else {
+        const htmlSrc = fs.readFileSync(file, 'utf8');
+        ['【标题】', '【描述】', '【日期】', '【SLUG】', '【标签】'].forEach(ph => {
+          if (htmlSrc.includes(ph)) err(`${label}：blog/${p.slug}.html 还留着模板占位符 ${ph}`);
+        });
+        if (!htmlSrc.includes('rel="canonical"')) warn(`${label}：文章缺 canonical`);
+        if (!htmlSrc.includes('og:title')) warn(`${label}：文章缺 Open Graph`);
+      }
+    } else if (p.type === 'external') {
+      if (!/^https?:\/\//.test(p.url || '')) err(`${label}：external 条目的 url 必须是 http(s) 链接`);
+    } else {
+      err(`${label}：type 必须是 "post" 或 "external"`);
+    }
   });
 }
 
