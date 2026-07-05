@@ -2,11 +2,11 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DATA_FILE="$ROOT_DIR/assets/js/data.js"
+DATA_FILE="$ROOT_DIR/data/players.js"
 PLAYER_DIR="$ROOT_DIR/assets/img/players"
 
 if [[ ! -f "$DATA_FILE" ]]; then
-  echo "ERROR: data.js not found at $DATA_FILE" >&2
+  echo "ERROR: players.js not found at $DATA_FILE" >&2
   exit 1
 fi
 
@@ -19,10 +19,10 @@ TMP_IDS="$(mktemp)"
 TMP_DIRS="$(mktemp)"
 trap 'rm -f "$TMP_IDS" "$TMP_DIRS"' EXIT
 
-sed -n 's/.*"id":"\([^"]*\)".*/\1/p' "$DATA_FILE" | sort -u > "$TMP_IDS"
+sed -n 's/.*"id"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$DATA_FILE" | sort -u > "$TMP_IDS"
 
 if [[ ! -s "$TMP_IDS" ]]; then
-  echo "ERROR: no player ids found in assets/js/data.js" >&2
+  echo "ERROR: no player ids found in data/players.js" >&2
   exit 1
 fi
 
@@ -56,7 +56,7 @@ echo
 echo "summary: total=$total present=$present missing=$missing"
 echo
 
-echo "extra player folders (not in assets/js/data.js):"
+echo "extra player folders (not in data/players.js):"
 extra_found=0
 while IFS= read -r folder_id; do
   [[ -z "$folder_id" ]] && continue

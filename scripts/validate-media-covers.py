@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "index.html"
+MEDIA_DATA = ROOT / "data" / "media.js"
 COVER_ROOT = ROOT / "assets" / "img" / "media" / "highlights"
 
 
@@ -17,14 +17,16 @@ def slugify(value: str) -> str:
 
 
 def extract_videos() -> list[tuple[str, str, str]]:
-    html = INDEX.read_text()
+    """Parse video entries from data/media.js (one JSON-style object per line)."""
+    lines = [
+        line for line in MEDIA_DATA.read_text().splitlines()
+        if not line.lstrip().startswith("//")
+    ]
     pattern = re.compile(
-        r"<h3[^>]*>\s*(\d{4}-\d{2}-\d{2})\s+vs\s+(.+?)\s*(?:\(Highlights\)|（比赛集锦）)\s*</h3>",
-        re.S,
+        r'"date"\s*:\s*"(\d{4}-\d{2}-\d{2})"\s*,\s*"opponent"\s*:\s*"([^"]+)"',
     )
     videos = []
-    for date, opponent in pattern.findall(html):
-        opponent = re.sub(r"<[^>]+>", "", opponent).strip()
+    for date, opponent in pattern.findall("\n".join(lines)):
         match_id = f"{date}-{slugify(opponent)}"
         videos.append((date, opponent, match_id))
     return videos
@@ -35,19 +37,19 @@ def main() -> int:
     parser.add_argument("--create-dirs", action="store_true", help="Create expected cover directories with .gitkeep files.")
     args = parser.parse_args()
 
-    if not INDEX.exists():
-        raise SystemExit(f"ERROR: index.html not found: {INDEX}")
+    if not MEDIA_DATA.exists():
+        raise SystemExit(f"ERROR: data/media.js not found: {MEDIA_DATA}")
 
     videos = extract_videos()
     if not videos:
-        raise SystemExit("ERROR: no highlight videos found in index.html")
+        raise SystemExit("ERROR: no highlight videos found in data/media.js")
 
     COVER_ROOT.mkdir(parents=True, exist_ok=True)
     ok = 0
     missing = 0
 
     print("=== STAR FC media cover validation ===")
-    print(f"index:  {INDEX}")
+    print(f"data:   {MEDIA_DATA}")
     print(f"covers: {COVER_ROOT}")
     print()
 
