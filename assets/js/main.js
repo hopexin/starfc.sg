@@ -275,7 +275,7 @@
   function renderTicker() {
     var track = document.querySelector('[data-ticker]');
     if (!track) return;
-    var items = ['STAR FC', 'SINCE 2002', t('ticker.grassroots'), t('ticker.motto'), t('ticker.runnerUp'), t('ticker.players')];
+    var items = ['STAR FC', 'SINCE 2002', t('ticker.motto'), t('ticker.seal'), t('ticker.sunday'), t('ticker.runnerUp')];
     var seq = items.map(function (s) {
       return '<span class="ticker__item">' + esc(s) + '</span><span class="ticker__star" aria-hidden="true">★</span>';
     }).join('');
@@ -323,6 +323,27 @@
   function currentSeasonYear() {
     var years = Object.keys(S.fixtures || {});
     return years.sort().pop();
+  }
+
+  /* ---------- 关于页数字自动化（成立年数 / 在册人数 / 记录场次） ---------- */
+  var FOUNDED = { year: 2002, month: 9 }; // 2002 年 9 月建队
+  function autoStats() {
+    document.querySelectorAll('[data-auto]').forEach(function (el) {
+      var kind = el.getAttribute('data-auto');
+      var value = null;
+      if (kind === 'years') {
+        var now = new Date();
+        value = now.getFullYear() - FOUNDED.year - ((now.getMonth() + 1) < FOUNDED.month ? 1 : 0);
+      } else if (kind === 'roster') {
+        value = (S.players || []).length;
+      } else if (kind === 'matches') {
+        value = allPlayedMatches().length;
+        el.removeAttribute('data-count-suffix'); // 记录在案取精确值
+      }
+      if (value === null) return;
+      el.setAttribute('data-count', value);
+      el.textContent = value + (el.getAttribute('data-count-suffix') || '');
+    });
   }
 
   function initFixturesToggles() {
@@ -710,6 +731,7 @@
   /* ---------- 初始化 ---------- */
   function init() {
     applyI18n();
+    autoStats();
     renderFixtures();
     renderScorers();
     renderHeroLatest();
