@@ -32,7 +32,7 @@ window.STARFC.i18n = {
 
   // ---- 主页 Hero ----
   'hero.badge': { zh: '自 2002 · 每周日开球', en: 'Since 2002 · We play every Sunday' },
-  'hero.subtitle': { zh: '有人来读书，有人来工作；有人离开，也有人留下来，成了一辈子的朋友。', en: 'Some come to study, some come to work. Some move on — and some stay, becoming friends for life.' },
+  'hero.subtitle': { zh: '五湖四海，因球相聚。', en: 'From far and wide, brought together by football.' },
   'hero.tagline1': { zh: '人来人往，', en: 'People come and go. ' },
   'hero.tagline2': { zh: '从未散场。', en: 'The game goes on.' },
   'hero.ctaFixtures': { zh: '查看赛程战绩', en: 'View Fixtures & Results' },
