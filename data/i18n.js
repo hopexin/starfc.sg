@@ -46,6 +46,8 @@ window.STARFC.i18n = {
   'fixtures.title': { zh: '赛程与战绩', en: 'Fixtures & Results' },
   'fixtures.note2026': { zh: '2026 赛季进行中，赛程与战绩持续更新', en: 'The 2026 season is in progress. Fixtures and results are updated regularly.' },
   'fixtures.upcoming': { zh: '即将开球', en: 'Upcoming' },
+  'fixtures.showAll': { zh: '显示全部 {n} 场比赛', en: 'Show all {n} matches' },
+  'fixtures.showLess': { zh: '收起', en: 'Show less' },
   'comp.friendly': { zh: '友谊赛', en: 'Friendly' },
   'comp.cup': { zh: '杯赛', en: 'Cup' },
   'comp.uaflRound': { zh: 'UAFL 第{n}轮', en: 'UAFL Round {n}' },

@@ -6,830 +6,511 @@
     <title>STAR FC | 新加坡 STAR 足球俱乐部</title>
     <link rel="icon" type="image/png" href="assets/img/club/starfclogo2.png">
     <link rel="apple-touch-icon" href="assets/img/club/starfclogo2.png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <!-- 站点数据（唯一维护入口）与渲染脚本 -->
     <script src="data/i18n.js" defer></script>
     <script src="data/players.js" defer></script>
     <script src="data/fixtures.js" defer></script>
     <script src="data/media.js" defer></script>
     <script src="assets/js/main.js" defer></script>
-    <style>
-        * { font-family: 'Noto Sans SC', sans-serif; }
-        html { scroll-behavior: smooth; }
-        .hero-gradient {
-            background:
-                linear-gradient(135deg, rgba(2, 6, 23, 0.92) 0%, rgba(15, 23, 42, 0.92) 48%, rgba(69, 10, 10, 0.88) 100%),
-                linear-gradient(90deg, rgba(251, 191, 36, 0.10) 0 1px, transparent 1px 100%),
-                linear-gradient(0deg, rgba(251, 191, 36, 0.08) 0 1px, transparent 1px 100%);
-            background-size: auto, 72px 72px, 72px 72px;
-        }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        /* Custom scrollbar for horizontal scroll */
-        .scroll-container::-webkit-scrollbar {
-            height: 6px;
-        }
-        .scroll-container::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 3px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 3px;
-        }
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-        /* 统一横滑：移动端 1 卡 / 小平板 2 卡 / 桌面固定宽 */
-        .hscroll {
-            display: grid;
-            grid-auto-flow: column;
-            gap: 16px;
-            overflow-x: auto;
-            padding: 0 16px 16px;
-            scroll-snap-type: x mandatory;
-            scroll-padding-inline: 16px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .hscroll::-webkit-scrollbar { display: none; }
-        .hscroll > * { scroll-snap-align: start; }
-        /* 桌面端恢复横向滚动条（>=1024px），移动端保持隐藏 */
-        @media (min-width: 1024px) {
-            .hscroll { scrollbar-width: thin; scrollbar-color: rgba(100,116,139,0.9) rgba(30,41,59,0.6); }
-            .hscroll::-webkit-scrollbar { display: block; height: 8px; }
-            .hscroll::-webkit-scrollbar-track { background: rgba(30,41,59,0.6); border-radius: 999px; }
-            .hscroll::-webkit-scrollbar-thumb { background: rgba(100,116,139,0.9); border-radius: 999px; }
-        }
-        /* 默认：1 张完整卡（100% = content-box 宽度） */
-        .hscroll { grid-auto-columns: 100%; }
-        /* >= 640px：2 张完整卡（减 1 个 gap） */
-        @media (min-width: 640px) {
-            .hscroll { grid-auto-columns: calc((100% - 16px) / 2); }
-        }
-        /* >= 1024px：桌面端 3 张整卡 */
-        @media (min-width: 1024px) {
-            .hscroll { grid-auto-columns: calc((100% - 32px) / 3); }
-        }
-        /* >= 1280px：大屏 4 张整卡 */
-        @media (min-width: 1280px) {
-            .hscroll { grid-auto-columns: calc((100% - 48px) / 4); }
-        }
-        /* Fixtures 专用：桌面端始终 3-up（信息密集型模块） */
-        @media (min-width: 1024px) {
-            .hscroll.hscroll-fixtures { grid-auto-columns: calc((100% - 32px) / 3); }
-        }
-        @media (min-width: 1280px) {
-            .hscroll.hscroll-fixtures { grid-auto-columns: calc((100% - 32px) / 3); }
-        }
-        /* 球员卡片横滑：窄卡片 2 张/3 张/整卡模式 */
-        .hscroll-player {
-            scroll-padding-inline: 16px;
-            grid-auto-columns: calc((100% - 16px) / 2);
-        }
-        @media (min-width: 640px) {
-            .hscroll-player { grid-auto-columns: calc((100% - 32px) / 3); }
-        }
-        /* >= 1024px：桌面端 5 张整卡 */
-        @media (min-width: 1024px) {
-            .hscroll-player { grid-auto-columns: calc((100% - 64px) / 5); }
-        }
-        /* >= 1280px：大屏 6 张整卡 */
-        @media (min-width: 1280px) {
-            .hscroll-player { grid-auto-columns: calc((100% - 80px) / 6); }
-        }
-        /* Swipe hint - mobile/tablet only */
-        .swipe-hint {
-            text-align: right;
-            font-size: 0.75rem;
-            color: rgba(156, 163, 175, 0.7);
-            margin-bottom: 0.5rem;
-            padding-right: 0.25rem;
-        }
-        @media (min-width: 1024px) {
-            .swipe-hint { display: none; }
-        }
-        /* 横滑箭头按钮 - 仅桌面端显示 */
-        .hscroll-wrapper { position: relative; }
-        /* 渐隐遮罩 - 仅桌面端 */
-        .hscroll-fade-left, .hscroll-fade-right {
-            display: none;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 64px;
-            pointer-events: none;
-            z-index: 5;
-        }
-        .hscroll-fade-left {
-            left: 0;
-            background: linear-gradient(to right, rgba(15, 23, 42, 0.95), transparent);
-        }
-        .hscroll-fade-right {
-            right: 0;
-            background: linear-gradient(to left, rgba(15, 23, 42, 0.95), transparent);
-        }
-        .hscroll-fade-left.hidden, .hscroll-fade-right.hidden { opacity: 0; }
-        @media (min-width: 1024px) {
-            .hscroll-fade-left, .hscroll-fade-right { display: block; }
-        }
-        /* 箭头按钮 */
-        .scroll-arrow {
-            display: none;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-            color: rgba(255, 255, 255, 0.85);
-            cursor: pointer;
-            z-index: 15;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, border-color 0.2s, opacity 0.2s;
-        }
-        .scroll-arrow svg {
-            width: 20px;
-            height: 20px;
-        }
-        .scroll-arrow:hover {
-            background: rgba(30, 41, 59, 0.75);
-            border-color: rgba(148, 163, 184, 0.5);
-        }
-        .scroll-arrow.scroll-left { left: 16px; }
-        .scroll-arrow.scroll-right { right: 16px; }
-        .scroll-arrow.hidden { display: none !important; }
-        @media (min-width: 1024px) {
-            .scroll-arrow { display: flex; }
-        }
-        /* 桌面端滚动条 hover 增强 */
-        @media (min-width: 1024px) {
-            .hscroll::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.5); }
-            .hscroll-wrapper:hover .hscroll::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.9); }
-        }
-        /* Mobile menu - nav height variable */
-        :root { --nav-h: 80px; }
-        /* Mobile menu animations */
-        #mobile-menu {
-            pointer-events: none;
-            height: 100vh;
-            height: 100dvh;
-        }
-        #mobile-menu.hidden { display: none; }
-        #mobile-menu.open { pointer-events: auto; }
-        #mobile-menu .menu-backdrop {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        #mobile-menu.open .menu-backdrop { opacity: 1; }
-        #mobile-menu .menu-panel {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            will-change: transform;
-            padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
-        }
-        #mobile-menu.open .menu-panel { transform: translateX(0); }
-        @media (prefers-reduced-motion: reduce) {
-            #mobile-menu .menu-backdrop,
-            #mobile-menu .menu-panel { transition-duration: 0.01s; }
-        }
-    </style>
 </head>
-<body class="bg-slate-900 text-white">
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="#home" class="flex items-center gap-3">
-                    <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="w-10 h-10 object-contain drop-shadow-md">
-                    <div>
-                        <span class="text-white font-bold text-xl tracking-wide">STAR FC</span>
-                        <span class="block text-amber-400 text-xs tracking-widest">SINCE 2002</span>
-                    </div>
-                </a>
-                <div class="hidden lg:flex items-center gap-1">
-                    <a href="#home" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.home">主页</a>
-                    <a href="#fixtures" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.fixtures">赛程战绩</a>
-                    <a href="#media" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.media">媒体中心</a>
-                    <a href="#team" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.team">球队成员</a>
-                    <a href="#hall" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.hall">名人堂</a>
-                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.about">关于我们</a>
-                    <a href="#history" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.history">队史大事记</a>
-                    <a href="#join" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.join">加入我们</a>
-                    <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all" data-i18n="nav.contact">联系我们</a>
+<body>
+    <!-- ===== 顶部导航 ===== -->
+    <header id="navbar" class="site-header">
+        <div class="container site-header__inner">
+            <a href="#home" class="brand">
+                <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38">
+                <span>
+                    <span class="brand__name" translate="no">STAR FC</span>
+                    <span class="brand__since">SINCE 2002</span>
+                </span>
+            </a>
+            <nav class="site-nav" aria-label="主导航">
+                <a href="#home" class="site-nav__link" data-i18n="nav.home">主页</a>
+                <a href="#fixtures" class="site-nav__link" data-i18n="nav.fixtures">赛程战绩</a>
+                <a href="#media" class="site-nav__link" data-i18n="nav.media">媒体中心</a>
+                <a href="#team" class="site-nav__link" data-i18n="nav.team">球队成员</a>
+                <a href="#hall" class="site-nav__link" data-i18n="nav.hall">名人堂</a>
+                <a href="#about" class="site-nav__link" data-i18n="nav.about">关于我们</a>
+                <a href="#history" class="site-nav__link" data-i18n="nav.history">队史大事记</a>
+                <a href="#join" class="site-nav__link" data-i18n="nav.join">加入我们</a>
+                <a href="#contact" class="site-nav__link" data-i18n="nav.contact">联系我们</a>
+            </nav>
+            <div class="header-tools">
+                <div class="segmented" aria-label="Language switcher" data-i18n-attr="aria-label:a11y.langSwitcher">
+                    <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="segmented__btn is-active">中文</button>
+                    <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="segmented__btn">EN</button>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="inline-flex bg-slate-800/80 p-1 rounded-full border border-slate-700" aria-label="Language switcher" data-i18n-attr="aria-label:a11y.langSwitcher">
-                        <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="px-3 py-1 rounded-full text-xs font-semibold transition-all bg-amber-500 text-slate-900 shadow-sm">中文</button>
-                        <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="px-3 py-1 rounded-full text-xs font-semibold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">EN</button>
-                    </div>
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-slate-800/50 border border-slate-700/50" onclick="toggleMobileMenu()" aria-label="打开菜单" data-i18n-attr="aria-label:a11y.menuOpen">
-                        <span id="hamburger-top" class="w-5 h-0.5 bg-white mb-1 transition-all duration-300"></span>
-                        <span id="hamburger-mid" class="w-5 h-0.5 bg-white mb-1 transition-all duration-300"></span>
-                        <span id="hamburger-bot" class="w-5 h-0.5 bg-white transition-all duration-300"></span>
-                    </button>
-                </div>
+                <button id="mobile-menu-btn" class="menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单" data-i18n-attr="aria-label:a11y.menuOpen" aria-expanded="false" aria-controls="mobile-menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Menu Overlay (body direct child for proper stacking) -->
-    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden">
-        <!-- Backdrop -->
-        <div class="menu-backdrop absolute inset-0 bg-black/40" onclick="closeMobileMenu()"></div>
-        <!-- Right Panel -->
-        <div class="menu-panel absolute top-0 right-0 bottom-0 w-[80vw] max-w-[360px] bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col pb-6 px-6 gap-1 overflow-y-auto">
-            <a href="#home" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.home">主页</a>
-            <a href="#fixtures" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.fixtures">赛程战绩</a>
-            <a href="#media" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.media">媒体中心</a>
-            <a href="#team" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.team">球队成员</a>
-            <a href="#hall" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.hall">名人堂</a>
-            <a href="#about" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.about">关于我们</a>
-            <a href="#history" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.history">队史大事记</a>
-            <a href="#join" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.join">加入我们</a>
-            <a href="#contact" onclick="closeMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-amber-400 py-3 px-4 rounded-lg hover:bg-slate-800/70 transition-colors text-left" data-i18n="nav.contact">联系我们</a>
-            <div class="mt-4 inline-flex bg-slate-800/80 p-1 rounded-full border border-slate-700 self-start" aria-label="Language switcher" data-i18n-attr="aria-label:a11y.langSwitcher">
-                <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="px-4 py-2 rounded-full text-sm font-semibold transition-all bg-amber-500 text-slate-900 shadow-sm">中文</button>
-                <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="px-4 py-2 rounded-full text-sm font-semibold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">EN</button>
+    <!-- ===== 移动端菜单 ===== -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <div class="mobile-menu__backdrop" onclick="closeMobileMenu()"></div>
+        <nav class="mobile-menu__panel" aria-label="移动端导航">
+            <a href="#home" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.home">主页</a>
+            <a href="#fixtures" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.fixtures">赛程战绩</a>
+            <a href="#media" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.media">媒体中心</a>
+            <a href="#team" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.team">球队成员</a>
+            <a href="#hall" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.hall">名人堂</a>
+            <a href="#about" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.about">关于我们</a>
+            <a href="#history" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.history">队史大事记</a>
+            <a href="#join" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.join">加入我们</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="mobile-menu__link" data-i18n="nav.contact">联系我们</a>
+            <div class="mobile-menu__lang">
+                <div class="segmented" aria-label="Language switcher" data-i18n-attr="aria-label:a11y.langSwitcher">
+                    <button type="button" data-lang-btn="zh" onclick="setLanguage('zh')" class="segmented__btn is-active">中文</button>
+                    <button type="button" data-lang-btn="en" onclick="setLanguage('en')" class="segmented__btn">EN</button>
+                </div>
             </div>
-        </div>
+        </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
-        <div class="absolute inset-0 opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-
-        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
-            <!-- Hero Logo -->
-            <div class="mb-8 flex justify-center">
-                <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="w-28 h-28 sm:w-32 sm:h-32 object-contain" style="filter: drop-shadow(0 0 30px rgba(251,191,36,0.3));">
-            </div>
-
-            <div class="mb-6 inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-                <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
-                <span class="text-amber-400 text-xs md:text-sm font-medium tracking-wide" data-i18n="hero.badge">成立于 2002 · 新加坡 11 人制草根球队</span>
-            </div>
-
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
-                STAR <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">FC</span>
-            </h1>
-            <p class="text-xl sm:text-2xl text-gray-300 mb-4 font-light" data-i18n="hero.subtitle">新加坡 STAR 足球俱乐部</p>
-            <p class="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-8 md:mb-12">
-                <span data-i18n="hero.tagline1">从 2002 到今天，</span><span class="text-amber-400" data-i18n="hero.tagline2">继续上场。</span>
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
-                <a href="#fixtures" class="group px-6 md:px-8 py-3 md:py-4 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-500 transition-all duration-300 shadow-lg shadow-red-900/40 hover:shadow-red-800/50 hover:-translate-y-1 text-sm md:text-base">
-                    <span data-i18n="hero.ctaFixtures">查看赛程战绩</span>
-                    <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-                <a href="#history" class="px-6 md:px-8 py-3 md:py-4 bg-slate-800/50 backdrop-blur-sm text-white font-semibold rounded-xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all duration-300 text-sm md:text-base" data-i18n="hero.ctaStory">
-                    了解 STAR FC 的故事
-                </a>
-                <a href="#join" class="px-6 md:px-8 py-3 md:py-4 bg-amber-500/10 backdrop-blur-sm text-amber-400 font-semibold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 hover:border-amber-400/50 transition-all duration-300 text-sm md:text-base" data-i18n="hero.ctaJoin">
-                    我要加入球队
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fixtures Section - 赛程与战绩（数据驱动：data/fixtures.js） -->
-    <section id="fixtures" class="py-16 md:py-20 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Fixtures & Results</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="fixtures.title">赛程与战绩</h2>
-            </div>
-
-            <!-- Year Toggle -->
-            <div class="mx-auto mb-8 w-fit inline-flex gap-1 p-1 rounded-full border border-slate-700 bg-slate-800/80">
-                <button data-year="2025" onclick="switchYear(2025)" class="year-btn px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-transparent text-slate-400 hover:text-white hover:bg-slate-700/50">2025</button>
-                <button data-year="2026" onclick="switchYear(2026)" class="year-btn px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-amber-500 text-slate-900 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/20">2026</button>
-            </div>
-
-            <!-- 2025 Year Panel -->
-            <div data-year-panel="2025" class="hidden">
-                <div class="swipe-hint" data-i18n="common.swipeHint">左右滑动查看更多</div>
-                <div class="hscroll-wrapper">
-                <div class="hscroll-fade-left"></div>
-                <div class="hscroll-fade-right"></div>
-                <button class="scroll-arrow scroll-left" aria-label="向左滚动" data-i18n-attr="aria-label:common.scrollLeft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                <button class="scroll-arrow scroll-right" aria-label="向右滚动" data-i18n-attr="aria-label:common.scrollRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                <!-- 比赛卡片由 assets/js/main.js 从 data/fixtures.js 渲染 -->
-                <div class="hscroll hscroll-fixtures mb-10" data-fixtures-list="2025"></div>
-                </div>
-
-                <!-- 2025 赛季统计：由比赛数据自动计算，无需手工维护 -->
-                <div class="grid grid-cols-2 md:grid-cols-6 gap-4" data-fixtures-stats="2025"></div>
-            </div>
-
-            <!-- 2026 Year Panel -->
-            <div data-year-panel="2026">
-                <div class="swipe-hint" data-i18n="common.swipeHint">左右滑动查看更多</div>
-                <div class="hscroll-wrapper">
-                <div class="hscroll-fade-left"></div>
-                <div class="hscroll-fade-right"></div>
-                <button class="scroll-arrow scroll-left" aria-label="向左滚动" data-i18n-attr="aria-label:common.scrollLeft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                <button class="scroll-arrow scroll-right" aria-label="向右滚动" data-i18n-attr="aria-label:common.scrollRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                <!-- 比赛卡片由 assets/js/main.js 从 data/fixtures.js 渲染 -->
-                <div class="hscroll hscroll-fixtures mb-10" data-fixtures-list="2026"></div>
-                </div>
-
-                <!-- 2026 赛季统计：由比赛数据自动计算，无需手工维护 -->
-                <div class="grid grid-cols-2 md:grid-cols-6 gap-4" data-fixtures-stats="2026"></div>
-                <p class="text-center text-gray-500 text-sm mt-4" data-i18n="fixtures.note2026">2026 赛季进行中，赛程与战绩持续更新</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Media Section - 比赛集锦（数据驱动：data/media.js） -->
-    <section id="media" class="py-16 md:py-20 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Media Center</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="media.title">媒体中心</h2>
-                <p class="text-gray-400 mt-4" data-i18n="media.desc">持续记录比赛集锦与关键瞬间</p>
-            </div>
-
-            <!-- Videos -->
-            <div class="mb-10 md:mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="px-3 py-1 bg-red-600/20 text-red-400 text-xs font-semibold rounded-full" data-i18n="media.videoTag">视频</span>
-                    <h3 class="text-xl md:text-2xl font-bold text-white" data-i18n="media.videosTitle">比赛集锦</h3>
-                </div>
-                <div class="swipe-hint" data-i18n="common.swipeHint">左右滑动查看更多</div>
-            <div class="hscroll-wrapper">
-            <div class="hscroll-fade-left"></div>
-            <div class="hscroll-fade-right"></div>
-            <button class="scroll-arrow scroll-left" aria-label="向左滚动" data-i18n-attr="aria-label:common.scrollLeft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-            <button class="scroll-arrow scroll-right" aria-label="向右滚动" data-i18n-attr="aria-label:common.scrollRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-            <!-- 视频卡片由 assets/js/main.js 从 data/media.js 渲染 -->
-            <div class="hscroll" data-media-list></div>
-            </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Team Section - 按位置分组 -->
-    <section id="team" class="py-16 md:py-20 bg-slate-900">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Current Squad</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="team.title">当前阵容</h2>
-                <p class="text-gray-400 mt-4" data-i18n="team.season">2026 赛季</p>
-                <p class="text-gray-500 text-sm mt-2" data-i18n="team.desc">按位置浏览 STAR FC 当前阵容</p>
-            </div>
-
-            <!-- Dynamic player groups container -->
-            <div id="team-groups"></div>
-        </div>
-    </section>
-
-    <!-- Hall of Fame Section -->
-    <section id="hall" class="py-16 md:py-20 bg-slate-950">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Hall of Fame</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="hall.title">名人堂</h2>
-                <p class="text-gray-400 mt-4" data-i18n="hall.desc">记录 STAR FC 的关键人物、功勋队员与名誉成员。</p>
-            </div>
-
-            <!-- Hall of Fame Cards - Placeholder -->
-            <div class="swipe-hint" data-i18n="common.swipeHint">左右滑动查看更多</div>
-            <div class="hscroll">
-                <!-- 敬请期待 1 -->
-                <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-slate-600 transition-all duration-300 flex flex-col">
-                    <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center">
-                        <img src="assets/img/club/star_logo.jpg" alt="首批名单整理中" data-i18n-attr="alt:hall.card1.title" class="w-full h-full object-cover opacity-40">
-                    </div>
-                    <div class="p-4 space-y-1">
-                        <div class="text-gray-500 text-xs font-semibold" data-i18n="hall.card1.tag">名人堂</div>
-                        <div class="font-semibold text-lg text-gray-400" data-i18n="hall.card1.title">首批名单整理中</div>
-                        <div class="text-sm text-slate-500" data-i18n="hall.card1.sub">确认后正式发布</div>
-                    </div>
-                </div>
-
-                <!-- 敬请期待 2 -->
-                <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-slate-600 transition-all duration-300 flex flex-col">
-                    <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center">
-                        <img src="assets/img/club/star_logo.jpg" alt="功勋队员资料确认中" data-i18n-attr="alt:hall.card2.title" class="w-full h-full object-cover opacity-40">
-                    </div>
-                    <div class="p-4 space-y-1">
-                        <div class="text-gray-500 text-xs font-semibold" data-i18n="hall.card2.tag">资料整理</div>
-                        <div class="font-semibold text-lg text-gray-400" data-i18n="hall.card2.title">功勋队员资料确认中</div>
-                        <div class="text-sm text-slate-500" data-i18n="hall.card2.sub">照片与故事待补充</div>
-                    </div>
-                </div>
-
-                <!-- 敬请期待 3 -->
-                <div class="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-slate-600 transition-all duration-300 flex flex-col">
-                    <div class="w-full aspect-[3/4] bg-slate-700/60 flex items-center justify-center">
-                        <img src="assets/img/club/star_logo.jpg" alt="更多人物待补充" data-i18n-attr="alt:hall.card3.title" class="w-full h-full object-cover opacity-40">
-                    </div>
-                    <div class="p-4 space-y-1">
-                        <div class="text-gray-500 text-xs font-semibold" data-i18n="hall.card3.tag">持续更新</div>
-                        <div class="font-semibold text-lg text-gray-400" data-i18n="hall.card3.title">更多人物待补充</div>
-                        <div class="text-sm text-slate-500" data-i18n="hall.card3.sub">欢迎提供历史照片与资料</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-20 bg-slate-900 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-red-900/10 to-transparent"></div>
-        <div class="max-w-4xl mx-auto px-4 relative">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">About Us</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="about.title">关于 STAR FC</h2>
-            </div>
-
-            <div class="prose prose-lg prose-invert max-w-none">
-                <p class="text-gray-300 leading-relaxed text-lg">
-                    <span class="text-white font-semibold">STAR FC</span><span data-i18n="about.p1a"> 的雏形始于 </span><span class="text-amber-400 font-semibold" data-i18n="about.p1b">2001 年</span><span data-i18n="about.p1c">，最初由 AIT 留学生队与浙江足球队等群体在新加坡的社区球场相聚踢球。</span><span class="text-amber-400 font-semibold" data-i18n="about.p1d">2002 年 9 月</span><span data-i18n="about.p1e">，各分支正式整合并更名为 </span><span class="text-white font-semibold">STAR FC</span><span data-i18n="about.p1f">，由终身名誉队长 </span><span class="text-amber-400 font-semibold" data-i18n="about.p1g">Lemon（9 号）</span><span data-i18n="about.p1h"> 牵头组建。</span>
-                </p>
-                <p class="text-gray-300 leading-relaxed text-lg mt-6" data-i18n="about.p2">
-                    二十余年来，STAR FC 作为一支草根 11 人制球队，在新加坡持续活跃，参与本地联赛与友谊赛，累计吸纳超过 200 名球员。球队保留了队徽、队规与纪念球衣等传统，一代带一代，从未散场。
-                </p>
-            </div>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-12 md:mt-16">
-                <div class="text-center p-4 md:p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                    <p class="text-2xl md:text-4xl font-bold text-amber-400">23+</p>
-                    <p class="text-gray-400 text-xs md:text-sm mt-1" data-i18n="about.stat1Label">年历史</p>
-                </div>
-                <div class="text-center p-4 md:p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                    <p class="text-2xl md:text-4xl font-bold text-amber-400" data-i18n="about.stat2Value">亚军</p>
-                    <p class="text-gray-400 text-xs md:text-sm mt-1" data-i18n="about.stat2Label">2025 UAFL 联赛</p>
-                </div>
-                <div class="text-center p-4 md:p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                    <p class="text-2xl md:text-4xl font-bold text-amber-400">200+</p>
-                    <p class="text-gray-400 text-xs md:text-sm mt-1" data-i18n="about.stat3Label">历史球员</p>
-                </div>
-                <div class="text-center p-4 md:p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                    <p class="text-2xl md:text-4xl font-bold text-amber-400">30+</p>
-                    <p class="text-gray-400 text-xs md:text-sm mt-1" data-i18n="about.stat4Label">活跃成员</p>
-                </div>
-            </div>
-
-            <!-- Values -->
-            <div class="mt-12 md:mt-20">
-                <div class="text-center mb-8 md:mb-12">
-                    <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Our Values</span>
-                    <h3 class="text-xl md:text-3xl font-bold text-white mt-2" data-i18n="about.valuesTitle">团结、分享、乐趣、成长</h3>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-                    <div class="p-5 md:p-8 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">🤝</div>
-                        <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3" data-i18n="about.v1.title">团结 Unity</h4>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed" data-i18n="about.v1.body">我们把团队放在第一位：场上服从安排、彼此补位；场下尊重与沟通。一代带一代的传承，让球队在二十余年里持续延续。</p>
-                    </div>
-                    <div class="p-5 md:p-8 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">💡</div>
-                        <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3" data-i18n="about.v2.title">分享 Share</h4>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed" data-i18n="about.v2.body">技术与经验不藏私：从配合跑位到比赛复盘，愿意讲、也愿意听。我们相信“让队友更容易发挥”，比个人表现更重要。</p>
-                    </div>
-                    <div class="p-5 md:p-8 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">⚽</div>
-                        <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3" data-i18n="about.v3.title">乐趣 Fun</h4>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed" data-i18n="about.v3.body">周末回到绿茵场，是忙碌生活里最放松的两小时。赢球一起开心，失利也不抱怨、不内耗，下一场再来。</p>
-                    </div>
-                    <div class="p-5 md:p-8 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">📈</div>
-                        <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3" data-i18n="about.v4.title">成长 Growth</h4>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed" data-i18n="about.v4.body">我们欢迎不同水平，但重视态度与责任：准时、投入、认真对待训练和比赛。可以慢，但要愿意学、敢于改、愿意为队友付出。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- History Section - 精简版 -->
-    <section id="history" class="py-16 md:py-20 bg-slate-950">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">History</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="history.title">STAR FC 大事记</h2>
-                <p class="text-gray-400 mt-4" data-i18n="history.desc">从 2001 到今天，我们走过了这些年份</p>
-            </div>
-
-            <div class="relative">
-                <div class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500 via-red-600 to-slate-700"></div>
-
-                <div class="space-y-12">
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2001</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i1.title">雏形形成</h3>
-                            <p class="text-gray-400" data-i18n="history.i1.body">AIT 留学生队、浙江足球队等群体在新加坡社区球场自发踢球，STAR FC 的雏形在这一年形成。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2002.09</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i2.title">整合更名为 STAR</h3>
-                            <p class="text-gray-400" data-i18n="history.i2.body">各分支球队正式整合，由终身名誉队长 Lemon（9 号）牵头，更名为「STAR 足球俱乐部」。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2005.08</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i3.title">队规第一版发布</h3>
-                            <p class="text-gray-400" data-i18n="history.i3.body">2005 年 8 月 8 日，球队正式发布第一版队规，明确管理规范与行为准则，奠定球队文化基础。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2008</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i4.title">启用现版队徽</h3>
-                            <p class="text-gray-400" data-i18n="history.i4.body">球队对队徽进行改进，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">08–10</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i5.title">一年多不败纪录</h3>
-                            <p class="text-gray-400" data-i18n="history.i5.body">2008 年至 2010 年间，球队创下一年多不败的历史纪录，成为 STAR FC 早期的巅峰时期。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight">2025</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i6.title">UAFL 联赛亚军</h3>
-                            <p class="text-gray-400" data-i18n="history.i6.body">球队在 UAFL 业余联赛中取得联赛第二名的佳绩，主力阵容以老带新，新一代球员逐渐成长为中坚力量。</p>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-20">
-                        <div class="absolute left-0 w-16 h-16 bg-slate-800 border-2 border-amber-500 rounded-full flex items-center justify-center">
-                            <span class="text-amber-400 font-bold text-xs text-center leading-tight" data-i18n="history.i7.year">现在</span>
-                        </div>
-                        <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                            <h3 class="text-xl font-bold text-white mb-2" data-i18n="history.i7.title">继续记录与传承</h3>
-                            <p class="text-gray-400" data-i18n="history.i7.body">依托 Veo3 等录像设备，STAR FC 正在更系统地记录比赛与训练。对很多队员来说，这里早已是一群人长期相聚的地方。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Club Stories Section - 文章栏 -->
-    <section id="stories" class="py-16 md:py-20 bg-slate-900">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-12">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Stories</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="stories.title">球队档案与故事</h2>
-                <p class="text-gray-400 mt-4" data-i18n="stories.desc">二十多年，留下的不只是比分</p>
-            </div>
-
-            <!-- Horizontal Scrollable Stories -->
-            <div class="swipe-hint" data-i18n="common.swipeHint">左右滑动查看更多</div>
-            <div class="hscroll">
-                <!-- Story 1: 2023-08-30 -->
-                <a href="http://xhslink.com/o/65x7g6P3zwi" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all cursor-pointer group block">
-                    <span class="inline-block px-3 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded-full mb-4" data-i18n="stories.tag">小红书</span>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors" data-i18n="stories.s1.title">目标：新加坡最好的业余华人足球俱乐部</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="stories.s1.desc">一篇关于 STAR FC 目标与团队文化的记录。</p>
-                    <div class="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <span class="text-gray-500 text-xs">📅 2023-08-30</span>
-                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors" data-i18n="stories.readMore">查看原文 →</span>
-                    </div>
-                </a>
-
-                <!-- Story 2: 2023-05-27 -->
-                <a href="http://xhslink.com/o/10oC9XUIZrS" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all cursor-pointer group block">
-                    <span class="inline-block px-3 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded-full mb-4" data-i18n="stories.tag">小红书</span>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors" data-i18n="stories.s2.title">STAR 人物志 ②：聂少归渝</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="stories.s2.desc">记录一位关键球员聂少与 STAR FC 的故事。</p>
-                    <div class="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <span class="text-gray-500 text-xs">📅 2023-05-27</span>
-                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors" data-i18n="stories.readMore">查看原文 →</span>
-                    </div>
-                </a>
-
-                <!-- Story 3: 2023-04-12 -->
-                <a href="http://xhslink.com/o/5vMCLE0YP3v" target="_blank" rel="noopener noreferrer" class="p-5 md:p-6 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all cursor-pointer group block">
-                    <span class="inline-block px-3 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded-full mb-4" data-i18n="stories.tag">小红书</span>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors" data-i18n="stories.s3.title">STAR FC 编年史</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="stories.s3.desc">从 2002 到今天：我们的起点与沿途。</p>
-                    <div class="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                        <span class="text-gray-500 text-xs">📅 2023-04-12</span>
-                        <span class="text-amber-400 text-sm font-medium group-hover:text-amber-300 transition-colors" data-i18n="stories.readMore">查看原文 →</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Future Updates Note -->
-            <p class="text-center text-gray-600 text-sm mt-8" data-i18n="stories.note">后续会继续补充比赛战报、活动与球队故事。</p>
-        </div>
-    </section>
-
-    <!-- Join Section -->
-    <section id="join" class="py-16 md:py-20 bg-slate-950">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-16">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Join Us</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="join.title">我们一直在等</h2>
-                <p class="text-lg md:text-2xl text-gray-300 mt-4" data-i18n="join.subtitle">那个热爱足球的你</p>
-            </div>
-
-            <div class="p-5 md:p-8 bg-slate-800/60 rounded-2xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6" data-i18n="join.formTitle">试训联系信息</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-gray-400 text-sm mb-2" data-i18n="join.name">姓名</label>
-                        <input type="text" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="你的姓名" data-i18n-attr="placeholder:join.namePh">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-sm mb-2" data-i18n="join.contact">联系方式</label>
-                        <input type="text" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="手机号 / 邮箱" data-i18n-attr="placeholder:join.contactPh">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-sm mb-2" data-i18n="join.position">擅长位置</label>
-                        <select class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors">
-                            <option data-i18n="join.select">请选择</option>
-                            <option data-i18n="team.groupGk">门将</option>
-                            <option data-i18n="team.groupDef">后卫</option>
-                            <option data-i18n="team.groupMid">中场</option>
-                            <option data-i18n="team.groupFwd">前锋</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-sm mb-2" data-i18n="join.exp">踢球经验</label>
-                        <select class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors">
-                            <option data-i18n="join.select">请选择</option>
-                            <option data-i18n="join.exp1">业余爱好</option>
-                            <option data-i18n="join.exp2">校队/公司队</option>
-                            <option data-i18n="join.exp3">正式联赛经验</option>
-                        </select>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-gray-400 text-sm mb-2" data-i18n="join.intro">自我介绍（可选）</label>
-                        <textarea class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white focus:border-amber-500 focus:outline-none transition-colors h-32 resize-none" placeholder="简单介绍一下自己..." data-i18n-attr="placeholder:join.introPh"></textarea>
-                    </div>
-                </div>
-                <a href="mailto:account@starfc.sg?subject=STAR%20FC%20Trial%20Enquiry" class="block text-center mt-6 w-full py-4 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-500 shadow-lg shadow-red-900/30 hover:shadow-red-800/40 transition-all" data-i18n="join.cta">
-                    发送邮件咨询试训
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 bg-slate-900">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-10 md:mb-16">
-                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Contact</span>
-                <h2 class="text-2xl md:text-4xl font-bold text-white mt-2" data-i18n="contact.title">联系我们</h2>
-                <p class="text-gray-400 text-sm md:text-base mt-4" data-i18n="contact.desc">无论你是想加入球队、安排友谊赛，还是进行球队合作或活动沟通</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                    <a href="mailto:account@starfc.sg" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-slate-700 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm" data-i18n="contact.email">邮箱</p>
-                            <p class="text-white font-medium">account@starfc.sg</p>
-                        </div>
-                    </a>
-                    <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22.405 9.879c0.002 0.016 0.01 0.02 0.07 0.019h0.725a0.797 0.797 0 0 0 0.78 -0.972 0.794 0.794 0 0 0 -0.884 -0.618 0.795 0.795 0 0 0 -0.692 0.794c0 0.101 -0.002 0.666 0.001 0.777zm-11.509 4.808c-0.203 0.001 -1.353 0.004 -1.685 0.003a2.528 2.528 0 0 1 -0.766 -0.126 0.025 0.025 0 0 0 -0.03 0.014L7.7 16.127a0.025 0.025 0 0 0 0.01 0.032c0.111 0.06 0.336 0.124 0.495 0.124 0.66 0.01 1.32 0.002 1.981 0 0.01 0 0.02 -0.006 0.023 -0.015l0.712 -1.545a0.025 0.025 0 0 0 -0.024 -0.036zM0.477 9.91c-0.071 0 -0.076 0.002 -0.076 0.01a0.834 0.834 0 0 0 -0.01 0.08c-0.027 0.397 -0.038 0.495 -0.234 3.06 -0.012 0.24 -0.034 0.389 -0.135 0.607 -0.026 0.057 -0.033 0.042 0.003 0.112 0.046 0.092 0.681 1.523 0.787 1.74 0.008 0.015 0.011 0.02 0.017 0.02 0.008 0 0.033 -0.026 0.047 -0.044 0.147 -0.187 0.268 -0.391 0.371 -0.606 0.306 -0.635 0.44 -1.325 0.486 -1.706 0.014 -0.11 0.021 -0.22 0.03 -0.33l0.204 -2.616 0.022 -0.293c0.003 -0.029 0 -0.033 -0.03 -0.034zm7.203 3.757a1.427 1.427 0 0 1 -0.135 -0.607c-0.004 -0.084 -0.031 -0.39 -0.235 -3.06a0.443 0.443 0 0 0 -0.01 -0.082c-0.004 -0.011 -0.052 -0.008 -0.076 -0.008h-1.48c-0.03 0.001 -0.034 0.005 -0.03 0.034l0.021 0.293c0.076 0.982 0.153 1.964 0.233 2.946 0.05 0.4 0.186 1.085 0.487 1.706 0.103 0.215 0.223 0.419 0.37 0.606 0.015 0.018 0.037 0.051 0.048 0.049 0.02 -0.003 0.742 -1.642 0.804 -1.765 0.036 -0.07 0.03 -0.055 0.003 -0.112zm3.861 -0.913h-0.872a0.126 0.126 0 0 1 -0.116 -0.178l1.178 -2.625a0.025 0.025 0 0 0 -0.023 -0.035l-1.318 -0.003a0.148 0.148 0 0 1 -0.135 -0.21l0.876 -1.954a0.025 0.025 0 0 0 -0.023 -0.035h-1.56c-0.01 0 -0.02 0.006 -0.024 0.015l-0.926 2.068c-0.085 0.169 -0.314 0.634 -0.399 0.938a0.534 0.534 0 0 0 -0.02 0.191 0.46 0.46 0 0 0 0.23 0.378 0.981 0.981 0 0 0 0.46 0.119h0.59c0.041 0 -0.688 1.482 -0.834 1.972a0.53 0.53 0 0 0 -0.023 0.172 0.465 0.465 0 0 0 0.23 0.398c0.15 0.092 0.342 0.12 0.475 0.12l1.66 -0.001c0.01 0 0.02 -0.006 0.023 -0.015l0.575 -1.28a0.025 0.025 0 0 0 -0.024 -0.035zm-6.93 -4.937H3.1a0.032 0.032 0 0 0 -0.034 0.033c0 1.048 -0.01 2.795 -0.01 6.829 0 0.288 -0.269 0.262 -0.28 0.262h-0.74c-0.04 0.001 -0.044 0.004 -0.04 0.047 0.001 0.037 0.465 1.064 0.555 1.263 0.01 0.02 0.03 0.033 0.051 0.033 0.157 0.003 0.767 0.009 0.938 -0.014 0.153 -0.02 0.3 -0.06 0.438 -0.132 0.3 -0.156 0.49 -0.419 0.595 -0.765 0.052 -0.172 0.075 -0.353 0.075 -0.533 0.002 -2.33 0 -4.66 -0.007 -6.991a0.032 0.032 0 0 0 -0.032 -0.032zm11.784 6.896c0 -0.014 -0.01 -0.021 -0.024 -0.022h-1.465c-0.048 -0.001 -0.049 -0.002 -0.05 -0.049v-4.66c0 -0.072 -0.005 -0.07 0.07 -0.07h0.863c0.08 0 0.075 0.004 0.075 -0.074V8.393c0 -0.082 0.006 -0.076 -0.08 -0.076h-3.5c-0.064 0 -0.075 -0.006 -0.075 0.073v1.445c0 0.083 -0.006 0.077 0.08 0.077h0.854c0.075 0 0.07 -0.004 0.07 0.07v4.624c0 0.095 0.008 0.084 -0.085 0.084 -0.37 0 -1.11 -0.002 -1.304 0 -0.048 0.001 -0.06 0.03 -0.06 0.03l-0.697 1.519s-0.014 0.025 -0.008 0.036c0.006 0.01 0.013 0.008 0.058 0.008 1.748 0.003 3.495 0.002 5.243 0.002 0.03 -0.001 0.034 -0.006 0.035 -0.033v-1.539zm4.177 -3.43c0 0.013 -0.007 0.023 -0.02 0.024 -0.346 0.006 -0.692 0.004 -1.037 0.004 -0.014 -0.002 -0.022 -0.01 -0.022 -0.024 -0.005 -0.434 -0.007 -0.869 -0.01 -1.303 0 -0.072 -0.006 -0.071 0.07 -0.07l0.733 -0.003c0.041 0 0.081 0.002 0.12 0.015 0.093 0.025 0.16 0.107 0.165 0.204 0.006 0.431 0.002 1.153 0.001 1.153zm2.67 0.244a1.953 1.953 0 0 0 -0.883 -0.222h-0.18c-0.04 -0.001 -0.04 -0.003 -0.042 -0.04V10.21c0 -0.132 -0.007 -0.263 -0.025 -0.394a1.823 1.823 0 0 0 -0.153 -0.53 1.533 1.533 0 0 0 -0.677 -0.71 2.167 2.167 0 0 0 -1 -0.258c-0.153 -0.003 -0.567 0 -0.72 0 -0.07 0 -0.068 0.004 -0.068 -0.065V7.76c0 -0.031 -0.01 -0.041 -0.046 -0.039H17.93s-0.016 0 -0.023 0.007c-0.006 0.006 -0.008 0.012 -0.008 0.023v0.546c-0.008 0.036 -0.057 0.015 -0.082 0.022h-0.95c-0.022 0.002 -0.028 0.008 -0.03 0.032v1.481c0 0.09 -0.004 0.082 0.082 0.082h0.913c0.082 0 0.072 0.128 0.072 0.128v1.148s0.003 0.117 -0.06 0.117h-1.482c-0.068 0 -0.06 0.082 -0.06 0.082v1.445s-0.01 0.068 0.064 0.068h1.457c0.082 0 0.076 -0.006 0.076 0.079v3.225c0 0.088 -0.007 0.081 0.082 0.081h1.43c0.09 0 0.082 0.007 0.082 -0.08v-3.27c0 -0.029 0.006 -0.035 0.033 -0.035l2.323 -0.003c0.098 0 0.191 0.02 0.28 0.061a0.46 0.46 0 0 1 0.274 0.407c0.008 0.395 0.003 0.79 0.003 1.185 0 0.259 -0.107 0.367 -0.33 0.367h-1.218c-0.023 0.002 -0.029 0.008 -0.028 0.033 0.184 0.437 0.374 0.871 0.57 1.303a0.045 0.045 0 0 0 0.04 0.026c0.17 0.005 0.34 0.002 0.51 0.003 0.15 -0.002 0.517 0.004 0.666 -0.01a2.03 2.03 0 0 0 0.408 -0.075c0.59 -0.18 0.975 -0.698 0.976 -1.313v-1.981c0 -0.128 -0.01 -0.254 -0.034 -0.38 0 0.078 -0.029 -0.641 -0.724 -0.998z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm" data-i18n="contact.xhs">小红书</p>
-                            <p class="text-white font-medium" data-i18n="contact.xhsName">新加坡STAR足球俱乐部</p>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/70 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm">YouTube</p>
-                            <p class="text-white font-medium">Singapore Star FC</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-slate-600 transition-all">
-                    <h3 class="text-lg font-bold text-white mb-4" data-i18n="contact.venues">常用球场</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            SCC Dempsey
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            SCC Padang
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            Safra Tampines
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            SIA Sports Club
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            Orchid Park Secondary School
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            Hua Yi Secondary School
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-amber-400">•</span>
-                            Boon Lay Secondary School
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="col-span-2 md:col-span-2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
-                        <div>
-                            <span class="text-white font-bold text-lg md:text-xl">STAR FC</span>
-                            <span class="block text-amber-400 text-xs tracking-widest">SINCE 2002</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-sm md:text-base max-w-md" data-i18n="footer.tagline">新加坡 STAR 足球俱乐部。从 2002 到今天，继续上场。</p>
-                </div>
-
+    <main>
+        <!-- ===== Hero ===== -->
+        <section id="home" class="hero">
+            <div class="container hero__inner">
+                <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="hero__crest" width="104" height="104">
                 <div>
-                    <h4 class="text-white font-semibold mb-4" data-i18n="footer.quickLinks">快速链接</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#about" class="hover:text-amber-400 transition-colors" data-i18n="nav.about">关于我们</a></li>
-                        <li><a href="#fixtures" class="hover:text-amber-400 transition-colors" data-i18n="nav.fixtures">赛程战绩</a></li>
-                        <li><a href="#media" class="hover:text-amber-400 transition-colors" data-i18n="nav.media">媒体中心</a></li>
-                        <li><a href="#join" class="hover:text-amber-400 transition-colors" data-i18n="footer.joinTeam">加入球队</a></li>
-                        <li><a href="#contact" class="hover:text-amber-400 transition-colors" data-i18n="nav.contact">联系我们</a></li>
-                    </ul>
+                    <span class="hero__badge">
+                        <span class="hero__badge-dot" aria-hidden="true"></span>
+                        <span data-i18n="hero.badge">成立于 2002 · 新加坡 11 人制草根球队</span>
+                    </span>
+                </div>
+                <h1 class="hero__title" translate="no">STAR <span class="hero__title-accent">FC</span></h1>
+                <p class="hero__subtitle" data-i18n="hero.subtitle">新加坡 STAR 足球俱乐部</p>
+                <p class="hero__tagline"><span data-i18n="hero.tagline1">从 2002 到今天，</span><span class="hero__tagline-accent" data-i18n="hero.tagline2">继续上场。</span></p>
+                <div class="hero__actions">
+                    <a href="#fixtures" class="btn btn--primary">
+                        <span data-i18n="hero.ctaFixtures">查看赛程战绩</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a href="#history" class="btn btn--secondary" data-i18n="hero.ctaStory">了解 STAR FC 的故事</a>
+                    <a href="#join" class="btn btn--ghost" data-i18n="hero.ctaJoin">我要加入球队</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 赛程战绩（数据驱动：data/fixtures.js） ===== -->
+        <section id="fixtures" class="section section--alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow">Fixtures & Results</span>
+                    <h2 class="section-title" data-i18n="fixtures.title">赛程与战绩</h2>
                 </div>
 
-                <div>
-                    <h4 class="text-white font-semibold mb-4" data-i18n="footer.follow">关注我们</h4>
-                    <div class="flex gap-3">
-                        <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" title="小红书" class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22.405 9.879c0.002 0.016 0.01 0.02 0.07 0.019h0.725a0.797 0.797 0 0 0 0.78 -0.972 0.794 0.794 0 0 0 -0.884 -0.618 0.795 0.795 0 0 0 -0.692 0.794c0 0.101 -0.002 0.666 0.001 0.777zm-11.509 4.808c-0.203 0.001 -1.353 0.004 -1.685 0.003a2.528 2.528 0 0 1 -0.766 -0.126 0.025 0.025 0 0 0 -0.03 0.014L7.7 16.127a0.025 0.025 0 0 0 0.01 0.032c0.111 0.06 0.336 0.124 0.495 0.124 0.66 0.01 1.32 0.002 1.981 0 0.01 0 0.02 -0.006 0.023 -0.015l0.712 -1.545a0.025 0.025 0 0 0 -0.024 -0.036zM0.477 9.91c-0.071 0 -0.076 0.002 -0.076 0.01a0.834 0.834 0 0 0 -0.01 0.08c-0.027 0.397 -0.038 0.495 -0.234 3.06 -0.012 0.24 -0.034 0.389 -0.135 0.607 -0.026 0.057 -0.033 0.042 0.003 0.112 0.046 0.092 0.681 1.523 0.787 1.74 0.008 0.015 0.011 0.02 0.017 0.02 0.008 0 0.033 -0.026 0.047 -0.044 0.147 -0.187 0.268 -0.391 0.371 -0.606 0.306 -0.635 0.44 -1.325 0.486 -1.706 0.014 -0.11 0.021 -0.22 0.03 -0.33l0.204 -2.616 0.022 -0.293c0.003 -0.029 0 -0.033 -0.03 -0.034zm7.203 3.757a1.427 1.427 0 0 1 -0.135 -0.607c-0.004 -0.084 -0.031 -0.39 -0.235 -3.06a0.443 0.443 0 0 0 -0.01 -0.082c-0.004 -0.011 -0.052 -0.008 -0.076 -0.008h-1.48c-0.03 0.001 -0.034 0.005 -0.03 0.034l0.021 0.293c0.076 0.982 0.153 1.964 0.233 2.946 0.05 0.4 0.186 1.085 0.487 1.706 0.103 0.215 0.223 0.419 0.37 0.606 0.015 0.018 0.037 0.051 0.048 0.049 0.02 -0.003 0.742 -1.642 0.804 -1.765 0.036 -0.07 0.03 -0.055 0.003 -0.112zm3.861 -0.913h-0.872a0.126 0.126 0 0 1 -0.116 -0.178l1.178 -2.625a0.025 0.025 0 0 0 -0.023 -0.035l-1.318 -0.003a0.148 0.148 0 0 1 -0.135 -0.21l0.876 -1.954a0.025 0.025 0 0 0 -0.023 -0.035h-1.56c-0.01 0 -0.02 0.006 -0.024 0.015l-0.926 2.068c-0.085 0.169 -0.314 0.634 -0.399 0.938a0.534 0.534 0 0 0 -0.02 0.191 0.46 0.46 0 0 0 0.23 0.378 0.981 0.981 0 0 0 0.46 0.119h0.59c0.041 0 -0.688 1.482 -0.834 1.972a0.53 0.53 0 0 0 -0.023 0.172 0.465 0.465 0 0 0 0.23 0.398c0.15 0.092 0.342 0.12 0.475 0.12l1.66 -0.001c0.01 0 0.02 -0.006 0.023 -0.015l0.575 -1.28a0.025 0.025 0 0 0 -0.024 -0.035zm-6.93 -4.937H3.1a0.032 0.032 0 0 0 -0.034 0.033c0 1.048 -0.01 2.795 -0.01 6.829 0 0.288 -0.269 0.262 -0.28 0.262h-0.74c-0.04 0.001 -0.044 0.004 -0.04 0.047 0.001 0.037 0.465 1.064 0.555 1.263 0.01 0.02 0.03 0.033 0.051 0.033 0.157 0.003 0.767 0.009 0.938 -0.014 0.153 -0.02 0.3 -0.06 0.438 -0.132 0.3 -0.156 0.49 -0.419 0.595 -0.765 0.052 -0.172 0.075 -0.353 0.075 -0.533 0.002 -2.33 0 -4.66 -0.007 -6.991a0.032 0.032 0 0 0 -0.032 -0.032zm11.784 6.896c0 -0.014 -0.01 -0.021 -0.024 -0.022h-1.465c-0.048 -0.001 -0.049 -0.002 -0.05 -0.049v-4.66c0 -0.072 -0.005 -0.07 0.07 -0.07h0.863c0.08 0 0.075 0.004 0.075 -0.074V8.393c0 -0.082 0.006 -0.076 -0.08 -0.076h-3.5c-0.064 0 -0.075 -0.006 -0.075 0.073v1.445c0 0.083 -0.006 0.077 0.08 0.077h0.854c0.075 0 0.07 -0.004 0.07 0.07v4.624c0 0.095 0.008 0.084 -0.085 0.084 -0.37 0 -1.11 -0.002 -1.304 0 -0.048 0.001 -0.06 0.03 -0.06 0.03l-0.697 1.519s-0.014 0.025 -0.008 0.036c0.006 0.01 0.013 0.008 0.058 0.008 1.748 0.003 3.495 0.002 5.243 0.002 0.03 -0.001 0.034 -0.006 0.035 -0.033v-1.539zm4.177 -3.43c0 0.013 -0.007 0.023 -0.02 0.024 -0.346 0.006 -0.692 0.004 -1.037 0.004 -0.014 -0.002 -0.022 -0.01 -0.022 -0.024 -0.005 -0.434 -0.007 -0.869 -0.01 -1.303 0 -0.072 -0.006 -0.071 0.07 -0.07l0.733 -0.003c0.041 0 0.081 0.002 0.12 0.015 0.093 0.025 0.16 0.107 0.165 0.204 0.006 0.431 0.002 1.153 0.001 1.153zm2.67 0.244a1.953 1.953 0 0 0 -0.883 -0.222h-0.18c-0.04 -0.001 -0.04 -0.003 -0.042 -0.04V10.21c0 -0.132 -0.007 -0.263 -0.025 -0.394a1.823 1.823 0 0 0 -0.153 -0.53 1.533 1.533 0 0 0 -0.677 -0.71 2.167 2.167 0 0 0 -1 -0.258c-0.153 -0.003 -0.567 0 -0.72 0 -0.07 0 -0.068 0.004 -0.068 -0.065V7.76c0 -0.031 -0.01 -0.041 -0.046 -0.039H17.93s-0.016 0 -0.023 0.007c-0.006 0.006 -0.008 0.012 -0.008 0.023v0.546c-0.008 0.036 -0.057 0.015 -0.082 0.022h-0.95c-0.022 0.002 -0.028 0.008 -0.03 0.032v1.481c0 0.09 -0.004 0.082 0.082 0.082h0.913c0.082 0 0.072 0.128 0.072 0.128v1.148s0.003 0.117 -0.06 0.117h-1.482c-0.068 0 -0.06 0.082 -0.06 0.082v1.445s-0.01 0.068 0.064 0.068h1.457c0.082 0 0.076 -0.006 0.076 0.079v3.225c0 0.088 -0.007 0.081 0.082 0.081h1.43c0.09 0 0.082 0.007 0.082 -0.08v-3.27c0 -0.029 0.006 -0.035 0.033 -0.035l2.323 -0.003c0.098 0 0.191 0.02 0.28 0.061a0.46 0.46 0 0 1 0.274 0.407c0.008 0.395 0.003 0.79 0.003 1.185 0 0.259 -0.107 0.367 -0.33 0.367h-1.218c-0.023 0.002 -0.029 0.008 -0.028 0.033 0.184 0.437 0.374 0.871 0.57 1.303a0.045 0.045 0 0 0 0.04 0.026c0.17 0.005 0.34 0.002 0.51 0.003 0.15 -0.002 0.517 0.004 0.666 -0.01a2.03 2.03 0 0 0 0.408 -0.075c0.59 -0.18 0.975 -0.698 0.976 -1.313v-1.981c0 -0.128 -0.01 -0.254 -0.034 -0.38 0 0.078 -0.029 -0.641 -0.724 -0.998z"/></svg>
+                <div class="year-toggle">
+                    <div class="segmented segmented--lg" role="group" aria-label="Season">
+                        <button type="button" data-year="2025" onclick="switchYear(2025)" class="segmented__btn year-btn">2025</button>
+                        <button type="button" data-year="2026" onclick="switchYear(2026)" class="segmented__btn year-btn is-active">2026</button>
+                    </div>
+                </div>
+
+                <!-- 2025 赛季 -->
+                <div data-year-panel="2025" class="hidden">
+                    <!-- 比赛卡片由 assets/js/main.js 从 data/fixtures.js 渲染 -->
+                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2025"></div>
+                    <div class="fixtures-more">
+                        <button type="button" class="btn btn--secondary" data-fixtures-toggle="2025"></button>
+                    </div>
+                    <!-- 赛季统计：由比赛数据自动计算 -->
+                    <div class="season-stats" data-fixtures-stats="2025"></div>
+                </div>
+
+                <!-- 2026 赛季 -->
+                <div data-year-panel="2026">
+                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2026"></div>
+                    <div class="fixtures-more">
+                        <button type="button" class="btn btn--secondary" data-fixtures-toggle="2026"></button>
+                    </div>
+                    <div class="season-stats" data-fixtures-stats="2026"></div>
+                    <p class="fixtures-note" data-i18n="fixtures.note2026">2026 赛季进行中，赛程与战绩持续更新</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 媒体中心（数据驱动：data/media.js） ===== -->
+        <section id="media" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow">Media Center</span>
+                    <h2 class="section-title" data-i18n="media.title">媒体中心</h2>
+                    <p class="section-desc" data-i18n="media.desc">持续记录比赛集锦与关键瞬间</p>
+                </div>
+                <div class="media-head">
+                    <span class="chip chip--red" data-i18n="media.videoTag">视频</span>
+                    <h3 class="media-head__title" data-i18n="media.videosTitle">比赛集锦</h3>
+                </div>
+                <!-- 视频卡片由 assets/js/main.js 从 data/media.js 渲染 -->
+                <div class="media-grid" data-media-list></div>
+            </div>
+        </section>
+
+        <!-- ===== 球队成员（数据驱动：data/players.js） ===== -->
+        <section id="team" class="section section--alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow">Current Squad</span>
+                    <h2 class="section-title" data-i18n="team.title">当前阵容</h2>
+                    <p class="section-desc"><span data-i18n="team.season">2026 赛季</span> · <span data-i18n="team.desc">按位置浏览 STAR FC 当前阵容</span></p>
+                </div>
+                <div id="team-groups"></div>
+            </div>
+        </section>
+
+        <!-- ===== 名人堂 ===== -->
+        <section id="hall" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow">Hall of Fame</span>
+                    <h2 class="section-title" data-i18n="hall.title">名人堂</h2>
+                    <p class="section-desc" data-i18n="hall.desc">记录 STAR FC 的关键人物、功勋队员与名誉成员。</p>
+                </div>
+                <div class="hall-grid">
+                    <article class="hall-card">
+                        <div class="hall-card__photo">
+                            <img src="assets/img/club/star_logo.jpg" alt="首批名单整理中" data-i18n-attr="alt:hall.card1.title" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hall-card__body">
+                            <div class="hall-card__tag" data-i18n="hall.card1.tag">名人堂</div>
+                            <div class="hall-card__title" data-i18n="hall.card1.title">首批名单整理中</div>
+                            <div class="hall-card__sub" data-i18n="hall.card1.sub">确认后正式发布</div>
+                        </div>
+                    </article>
+                    <article class="hall-card">
+                        <div class="hall-card__photo">
+                            <img src="assets/img/club/star_logo.jpg" alt="功勋队员资料确认中" data-i18n-attr="alt:hall.card2.title" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hall-card__body">
+                            <div class="hall-card__tag" data-i18n="hall.card2.tag">资料整理</div>
+                            <div class="hall-card__title" data-i18n="hall.card2.title">功勋队员资料确认中</div>
+                            <div class="hall-card__sub" data-i18n="hall.card2.sub">照片与故事待补充</div>
+                        </div>
+                    </article>
+                    <article class="hall-card">
+                        <div class="hall-card__photo">
+                            <img src="assets/img/club/star_logo.jpg" alt="更多人物待补充" data-i18n-attr="alt:hall.card3.title" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hall-card__body">
+                            <div class="hall-card__tag" data-i18n="hall.card3.tag">持续更新</div>
+                            <div class="hall-card__title" data-i18n="hall.card3.title">更多人物待补充</div>
+                            <div class="hall-card__sub" data-i18n="hall.card3.sub">欢迎提供历史照片与资料</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 关于我们 ===== -->
+        <section id="about" class="section section--alt">
+            <div class="container container--narrow">
+                <div class="section-head">
+                    <span class="eyebrow">About Us</span>
+                    <h2 class="section-title" data-i18n="about.title">关于 STAR FC</h2>
+                </div>
+                <div class="about-prose">
+                    <p><span class="em-ink" translate="no">STAR FC</span><span data-i18n="about.p1a"> 的雏形始于 </span><span class="em-red" data-i18n="about.p1b">2001 年</span><span data-i18n="about.p1c">，最初由 AIT 留学生队与浙江足球队等群体在新加坡的社区球场相聚踢球。</span><span class="em-red" data-i18n="about.p1d">2002 年 9 月</span><span data-i18n="about.p1e">，各分支正式整合并更名为 </span><span class="em-ink" translate="no">STAR FC</span><span data-i18n="about.p1f">，由终身名誉队长 </span><span class="em-red" data-i18n="about.p1g">Lemon（9 号）</span><span data-i18n="about.p1h"> 牵头组建。</span></p>
+                    <p data-i18n="about.p2">二十余年来，STAR FC 作为一支草根 11 人制球队，在新加坡持续活跃，参与本地联赛与友谊赛，累计吸纳超过 200 名球员。球队保留了队徽、队规与纪念球衣等传统，一代带一代，从未散场。</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-tile stat-tile--accent">
+                        <p class="stat-tile__value">23+</p>
+                        <p class="stat-tile__label" data-i18n="about.stat1Label">年历史</p>
+                    </div>
+                    <div class="stat-tile stat-tile--accent">
+                        <p class="stat-tile__value" data-i18n="about.stat2Value">亚军</p>
+                        <p class="stat-tile__label" data-i18n="about.stat2Label">2025 UAFL 联赛</p>
+                    </div>
+                    <div class="stat-tile stat-tile--accent">
+                        <p class="stat-tile__value">200+</p>
+                        <p class="stat-tile__label" data-i18n="about.stat3Label">历史球员</p>
+                    </div>
+                    <div class="stat-tile stat-tile--accent">
+                        <p class="stat-tile__value">30+</p>
+                        <p class="stat-tile__label" data-i18n="about.stat4Label">活跃成员</p>
+                    </div>
+                </div>
+                <div class="values">
+                    <div class="section-head">
+                        <span class="eyebrow">Our Values</span>
+                        <h3 class="section-title" data-i18n="about.valuesTitle">团结、分享、乐趣、成长</h3>
+                    </div>
+                    <div class="values-grid">
+                        <article class="value-card">
+                            <div class="value-card__emoji" aria-hidden="true">🤝</div>
+                            <h4 class="value-card__title" data-i18n="about.v1.title">团结 Unity</h4>
+                            <p class="value-card__body" data-i18n="about.v1.body">我们把团队放在第一位：场上服从安排、彼此补位；场下尊重与沟通。一代带一代的传承，让球队在二十余年里持续延续。</p>
+                        </article>
+                        <article class="value-card">
+                            <div class="value-card__emoji" aria-hidden="true">💡</div>
+                            <h4 class="value-card__title" data-i18n="about.v2.title">分享 Share</h4>
+                            <p class="value-card__body" data-i18n="about.v2.body">技术与经验不藏私：从配合跑位到比赛复盘，愿意讲、也愿意听。我们相信“让队友更容易发挥”，比个人表现更重要。</p>
+                        </article>
+                        <article class="value-card">
+                            <div class="value-card__emoji" aria-hidden="true">⚽</div>
+                            <h4 class="value-card__title" data-i18n="about.v3.title">乐趣 Fun</h4>
+                            <p class="value-card__body" data-i18n="about.v3.body">周末回到绿茵场，是忙碌生活里最放松的两小时。赢球一起开心，失利也不抱怨、不内耗，下一场再来。</p>
+                        </article>
+                        <article class="value-card">
+                            <div class="value-card__emoji" aria-hidden="true">📈</div>
+                            <h4 class="value-card__title" data-i18n="about.v4.title">成长 Growth</h4>
+                            <p class="value-card__body" data-i18n="about.v4.body">我们欢迎不同水平，但重视态度与责任：准时、投入、认真对待训练和比赛。可以慢，但要愿意学、敢于改、愿意为队友付出。</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 队史大事记 ===== -->
+        <section id="history" class="section">
+            <div class="container container--narrow">
+                <div class="section-head">
+                    <span class="eyebrow">History</span>
+                    <h2 class="section-title" data-i18n="history.title">STAR FC 大事记</h2>
+                    <p class="section-desc" data-i18n="history.desc">从 2001 到今天，我们走过了这些年份</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline__item">
+                        <div class="timeline__year">2001</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i1.title">雏形形成</h3>
+                            <p class="timeline__body" data-i18n="history.i1.body">AIT 留学生队、浙江足球队等群体在新加坡社区球场自发踢球，STAR FC 的雏形在这一年形成。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year">2002.09</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i2.title">整合更名为 STAR</h3>
+                            <p class="timeline__body" data-i18n="history.i2.body">各分支球队正式整合，由终身名誉队长 Lemon（9 号）牵头，更名为「STAR 足球俱乐部」。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year">2005.08</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i3.title">队规第一版发布</h3>
+                            <p class="timeline__body" data-i18n="history.i3.body">2005 年 8 月 8 日，球队正式发布第一版队规，明确管理规范与行为准则，奠定球队文化基础。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year">2008</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i4.title">启用现版队徽</h3>
+                            <p class="timeline__body" data-i18n="history.i4.body">球队对队徽进行改进，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year">08–10</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i5.title">一年多不败纪录</h3>
+                            <p class="timeline__body" data-i18n="history.i5.body">2008 年至 2010 年间，球队创下一年多不败的历史纪录，成为 STAR FC 早期的巅峰时期。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year">2025</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i6.title">UAFL 联赛亚军</h3>
+                            <p class="timeline__body" data-i18n="history.i6.body">球队在 UAFL 业余联赛中取得联赛第二名的佳绩，主力阵容以老带新，新一代球员逐渐成长为中坚力量。</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__year" data-i18n="history.i7.year">现在</div>
+                        <div class="timeline__card">
+                            <h3 class="timeline__title" data-i18n="history.i7.title">继续记录与传承</h3>
+                            <p class="timeline__body" data-i18n="history.i7.body">依托 Veo3 等录像设备，STAR FC 正在更系统地记录比赛与训练。对很多队员来说，这里早已是一群人长期相聚的地方。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 球队档案与故事 ===== -->
+        <section id="stories" class="section section--alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow">Stories</span>
+                    <h2 class="section-title" data-i18n="stories.title">球队档案与故事</h2>
+                    <p class="section-desc" data-i18n="stories.desc">二十多年，留下的不只是比分</p>
+                </div>
+                <div class="stories-grid">
+                    <a href="http://xhslink.com/o/65x7g6P3zwi" target="_blank" rel="noopener noreferrer" class="story-card">
+                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
+                        <h3 class="story-card__title" data-i18n="stories.s1.title">目标：新加坡最好的业余华人足球俱乐部</h3>
+                        <p class="story-card__desc" data-i18n="stories.s1.desc">一篇关于 STAR FC 目标与团队文化的记录。</p>
+                        <div class="story-card__foot">
+                            <span class="story-card__date">2023-08-30</span>
+                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
+                        </div>
+                    </a>
+                    <a href="http://xhslink.com/o/10oC9XUIZrS" target="_blank" rel="noopener noreferrer" class="story-card">
+                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
+                        <h3 class="story-card__title" data-i18n="stories.s2.title">STAR 人物志 ②：聂少归渝</h3>
+                        <p class="story-card__desc" data-i18n="stories.s2.desc">记录一位关键球员聂少与 STAR FC 的故事。</p>
+                        <div class="story-card__foot">
+                            <span class="story-card__date">2023-05-27</span>
+                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
+                        </div>
+                    </a>
+                    <a href="http://xhslink.com/o/5vMCLE0YP3v" target="_blank" rel="noopener noreferrer" class="story-card">
+                        <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
+                        <h3 class="story-card__title" data-i18n="stories.s3.title">STAR FC 编年史</h3>
+                        <p class="story-card__desc" data-i18n="stories.s3.desc">从 2002 到今天：我们的起点与沿途。</p>
+                        <div class="story-card__foot">
+                            <span class="story-card__date">2023-04-12</span>
+                            <span class="story-card__more" data-i18n="stories.readMore">查看原文 →</span>
+                        </div>
+                    </a>
+                </div>
+                <p class="stories-note" data-i18n="stories.note">后续会继续补充比赛战报、活动与球队故事。</p>
+            </div>
+        </section>
+
+        <!-- ===== 加入我们 ===== -->
+        <section id="join" class="section">
+            <div class="container container--narrow">
+                <div class="section-head">
+                    <span class="eyebrow">Join Us</span>
+                    <h2 class="section-title" data-i18n="join.title">我们一直在等</h2>
+                    <p class="section-desc" data-i18n="join.subtitle">那个热爱足球的你</p>
+                </div>
+                <div class="join-card">
+                    <h3 class="join-card__title" data-i18n="join.formTitle">试训联系信息</h3>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="join-name" data-i18n="join.name">姓名</label>
+                            <input id="join-name" type="text" placeholder="你的姓名" data-i18n-attr="placeholder:join.namePh">
+                        </div>
+                        <div class="form-field">
+                            <label for="join-contact" data-i18n="join.contact">联系方式</label>
+                            <input id="join-contact" type="text" placeholder="手机号 / 邮箱" data-i18n-attr="placeholder:join.contactPh">
+                        </div>
+                        <div class="form-field">
+                            <label for="join-position" data-i18n="join.position">擅长位置</label>
+                            <select id="join-position">
+                                <option data-i18n="join.select">请选择</option>
+                                <option data-i18n="team.groupGk">门将</option>
+                                <option data-i18n="team.groupDef">后卫</option>
+                                <option data-i18n="team.groupMid">中场</option>
+                                <option data-i18n="team.groupFwd">前锋</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="join-exp" data-i18n="join.exp">踢球经验</label>
+                            <select id="join-exp">
+                                <option data-i18n="join.select">请选择</option>
+                                <option data-i18n="join.exp1">业余爱好</option>
+                                <option data-i18n="join.exp2">校队/公司队</option>
+                                <option data-i18n="join.exp3">正式联赛经验</option>
+                            </select>
+                        </div>
+                        <div class="form-field form-field--full">
+                            <label for="join-intro" data-i18n="join.intro">自我介绍（可选）</label>
+                            <textarea id="join-intro" placeholder="简单介绍一下自己..." data-i18n-attr="placeholder:join.introPh"></textarea>
+                        </div>
+                    </div>
+                    <a href="mailto:account@starfc.sg?subject=STAR%20FC%20Trial%20Enquiry" class="btn btn--primary" data-i18n="join.cta">发送邮件咨询试训</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 联系我们 ===== -->
+        <section id="contact" class="section section--alt">
+            <div class="container container--narrow">
+                <div class="section-head">
+                    <span class="eyebrow">Contact</span>
+                    <h2 class="section-title" data-i18n="contact.title">联系我们</h2>
+                    <p class="section-desc" data-i18n="contact.desc">无论你是想加入球队、安排友谊赛，还是进行球队合作或活动沟通</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-list">
+                        <a href="mailto:account@starfc.sg" class="contact-item">
+                            <span class="contact-item__icon contact-item__icon--ink" aria-hidden="true">
+                                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </span>
+                            <span>
+                                <span class="contact-item__label" data-i18n="contact.email">邮箱</span>
+                                <span class="contact-item__value" style="display:block">account@starfc.sg</span>
+                            </span>
                         </a>
-                        <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" title="YouTube" class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <span class="contact-item__icon contact-item__icon--red" aria-hidden="true">
+                                <svg viewBox="0 0 24 24"><path d="M22.405 9.879c0.002 0.016 0.01 0.02 0.07 0.019h0.725a0.797 0.797 0 0 0 0.78 -0.972 0.794 0.794 0 0 0 -0.884 -0.618 0.795 0.795 0 0 0 -0.692 0.794c0 0.101 -0.002 0.666 0.001 0.777zm-11.509 4.808c-0.203 0.001 -1.353 0.004 -1.685 0.003a2.528 2.528 0 0 1 -0.766 -0.126 0.025 0.025 0 0 0 -0.03 0.014L7.7 16.127a0.025 0.025 0 0 0 0.01 0.032c0.111 0.06 0.336 0.124 0.495 0.124 0.66 0.01 1.32 0.002 1.981 0 0.01 0 0.02 -0.006 0.023 -0.015l0.712 -1.545a0.025 0.025 0 0 0 -0.024 -0.036zM0.477 9.91c-0.071 0 -0.076 0.002 -0.076 0.01a0.834 0.834 0 0 0 -0.01 0.08c-0.027 0.397 -0.038 0.495 -0.234 3.06 -0.012 0.24 -0.034 0.389 -0.135 0.607 -0.026 0.057 -0.033 0.042 0.003 0.112 0.046 0.092 0.681 1.523 0.787 1.74 0.008 0.015 0.011 0.02 0.017 0.02 0.008 0 0.033 -0.026 0.047 -0.044 0.147 -0.187 0.268 -0.391 0.371 -0.606 0.306 -0.635 0.44 -1.325 0.486 -1.706 0.014 -0.11 0.021 -0.22 0.03 -0.33l0.204 -2.616 0.022 -0.293c0.003 -0.029 0 -0.033 -0.03 -0.034zm7.203 3.757a1.427 1.427 0 0 1 -0.135 -0.607c-0.004 -0.084 -0.031 -0.39 -0.235 -3.06a0.443 0.443 0 0 0 -0.01 -0.082c-0.004 -0.011 -0.052 -0.008 -0.076 -0.008h-1.48c-0.03 0.001 -0.034 0.005 -0.03 0.034l0.021 0.293c0.076 0.982 0.153 1.964 0.233 2.946 0.05 0.4 0.186 1.085 0.487 1.706 0.103 0.215 0.223 0.419 0.37 0.606 0.015 0.018 0.037 0.051 0.048 0.049 0.02 -0.003 0.742 -1.642 0.804 -1.765 0.036 -0.07 0.03 -0.055 0.003 -0.112zm3.861 -0.913h-0.872a0.126 0.126 0 0 1 -0.116 -0.178l1.178 -2.625a0.025 0.025 0 0 0 -0.023 -0.035l-1.318 -0.003a0.148 0.148 0 0 1 -0.135 -0.21l0.876 -1.954a0.025 0.025 0 0 0 -0.023 -0.035h-1.56c-0.01 0 -0.02 0.006 -0.024 0.015l-0.926 2.068c-0.085 0.169 -0.314 0.634 -0.399 0.938a0.534 0.534 0 0 0 -0.02 0.191 0.46 0.46 0 0 0 0.23 0.378 0.981 0.981 0 0 0 0.46 0.119h0.59c0.041 0 -0.688 1.482 -0.834 1.972a0.53 0.53 0 0 0 -0.023 0.172 0.465 0.465 0 0 0 0.23 0.398c0.15 0.092 0.342 0.12 0.475 0.12l1.66 -0.001c0.01 0 0.02 -0.006 0.023 -0.015l0.575 -1.28a0.025 0.025 0 0 0 -0.024 -0.035zm-6.93 -4.937H3.1a0.032 0.032 0 0 0 -0.034 0.033c0 1.048 -0.01 2.795 -0.01 6.829 0 0.288 -0.269 0.262 -0.28 0.262h-0.74c-0.04 0.001 -0.044 0.004 -0.04 0.047 0.001 0.037 0.465 1.064 0.555 1.263 0.01 0.02 0.03 0.033 0.051 0.033 0.157 0.003 0.767 0.009 0.938 -0.014 0.153 -0.02 0.3 -0.06 0.438 -0.132 0.3 -0.156 0.49 -0.419 0.595 -0.765 0.052 -0.172 0.075 -0.353 0.075 -0.533 0.002 -2.33 0 -4.66 -0.007 -6.991a0.032 0.032 0 0 0 -0.032 -0.032zm11.784 6.896c0 -0.014 -0.01 -0.021 -0.024 -0.022h-1.465c-0.048 -0.001 -0.049 -0.002 -0.05 -0.049v-4.66c0 -0.072 -0.005 -0.07 0.07 -0.07h0.863c0.08 0 0.075 0.004 0.075 -0.074V8.393c0 -0.082 0.006 -0.076 -0.08 -0.076h-3.5c-0.064 0 -0.075 -0.006 -0.075 0.073v1.445c0 0.083 -0.006 0.077 0.08 0.077h0.854c0.075 0 0.07 -0.004 0.07 0.07v4.624c0 0.095 0.008 0.084 -0.085 0.084 -0.37 0 -1.11 -0.002 -1.304 0 -0.048 0.001 -0.06 0.03 -0.06 0.03l-0.697 1.519s-0.014 0.025 -0.008 0.036c0.006 0.01 0.013 0.008 0.058 0.008 1.748 0.003 3.495 0.002 5.243 0.002 0.03 -0.001 0.034 -0.006 0.035 -0.033v-1.539zm4.177 -3.43c0 0.013 -0.007 0.023 -0.02 0.024 -0.346 0.006 -0.692 0.004 -1.037 0.004 -0.014 -0.002 -0.022 -0.01 -0.022 -0.024 -0.005 -0.434 -0.007 -0.869 -0.01 -1.303 0 -0.072 -0.006 -0.071 0.07 -0.07l0.733 -0.003c0.041 0 0.081 0.002 0.12 0.015 0.093 0.025 0.16 0.107 0.165 0.204 0.006 0.431 0.002 1.153 0.001 1.153zm2.67 0.244a1.953 1.953 0 0 0 -0.883 -0.222h-0.18c-0.04 -0.001 -0.04 -0.003 -0.042 -0.04V10.21c0 -0.132 -0.007 -0.263 -0.025 -0.394a1.823 1.823 0 0 0 -0.153 -0.53 1.533 1.533 0 0 0 -0.677 -0.71 2.167 2.167 0 0 0 -1 -0.258c-0.153 -0.003 -0.567 0 -0.72 0 -0.07 0 -0.068 0.004 -0.068 -0.065V7.76c0 -0.031 -0.01 -0.041 -0.046 -0.039H17.93s-0.016 0 -0.023 0.007c-0.006 0.006 -0.008 0.012 -0.008 0.023v0.546c-0.008 0.036 -0.057 0.015 -0.082 0.022h-0.95c-0.022 0.002 -0.028 0.008 -0.03 0.032v1.481c0 0.09 -0.004 0.082 0.082 0.082h0.913c0.082 0 0.072 0.128 0.072 0.128v1.148s0.003 0.117 -0.06 0.117h-1.482c-0.068 0 -0.06 0.082 -0.06 0.082v1.445s-0.01 0.068 0.064 0.068h1.457c0.082 0 0.076 -0.006 0.076 0.079v3.225c0 0.088 -0.007 0.081 0.082 0.081h1.43c0.09 0 0.082 0.007 0.082 -0.08v-3.27c0 -0.029 0.006 -0.035 0.033 -0.035l2.323 -0.003c0.098 0 0.191 0.02 0.28 0.061a0.46 0.46 0 0 1 0.274 0.407c0.008 0.395 0.003 0.79 0.003 1.185 0 0.259 -0.107 0.367 -0.33 0.367h-1.218c-0.023 0.002 -0.029 0.008 -0.028 0.033 0.184 0.437 0.374 0.871 0.57 1.303a0.045 0.045 0 0 0 0.04 0.026c0.17 0.005 0.34 0.002 0.51 0.003 0.15 -0.002 0.517 0.004 0.666 -0.01a2.03 2.03 0 0 0 0.408 -0.075c0.59 -0.18 0.975 -0.698 0.976 -1.313v-1.981c0 -0.128 -0.01 -0.254 -0.034 -0.38 0 0.078 -0.029 -0.641 -0.724 -0.998z"/></svg>
+                            </span>
+                            <span>
+                                <span class="contact-item__label" data-i18n="contact.xhs">小红书</span>
+                                <span class="contact-item__value" style="display:block" data-i18n="contact.xhsName">新加坡STAR足球俱乐部</span>
+                            </span>
+                        </a>
+                        <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <span class="contact-item__icon contact-item__icon--red" aria-hidden="true">
+                                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </span>
+                            <span>
+                                <span class="contact-item__label">YouTube</span>
+                                <span class="contact-item__value" style="display:block">Singapore Star FC</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="venues-card">
+                        <h3 class="venues-card__title" data-i18n="contact.venues">常用球场</h3>
+                        <ul>
+                            <li>SCC Dempsey</li>
+                            <li>SCC Padang</li>
+                            <li>Safra Tampines</li>
+                            <li>SIA Sports Club</li>
+                            <li>Orchid Park Secondary School</li>
+                            <li>Hua Yi Secondary School</li>
+                            <li>Boon Lay Secondary School</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div>
+                    <div class="brand">
+                        <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38" loading="lazy">
+                        <span>
+                            <span class="brand__name" translate="no">STAR FC</span>
+                            <span class="brand__since">SINCE 2002</span>
+                        </span>
+                    </div>
+                    <p class="site-footer__tagline" data-i18n="footer.tagline">新加坡 STAR 足球俱乐部。从 2002 到今天，继续上场。</p>
+                </div>
+                <nav aria-label="页脚导航">
+                    <h4 class="site-footer__heading" data-i18n="footer.quickLinks">快速链接</h4>
+                    <ul class="site-footer__links">
+                        <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
+                        <li><a href="#fixtures" data-i18n="nav.fixtures">赛程战绩</a></li>
+                        <li><a href="#media" data-i18n="nav.media">媒体中心</a></li>
+                        <li><a href="#join" data-i18n="footer.joinTeam">加入球队</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">联系我们</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h4 class="site-footer__heading" data-i18n="footer.follow">关注我们</h4>
+                    <div class="site-footer__social">
+                        <a href="https://xhslink.com/m/8BgWbanhmVq" target="_blank" rel="noopener noreferrer" title="小红书" aria-label="小红书">
+                            <svg viewBox="0 0 24 24"><path d="M22.405 9.879c0.002 0.016 0.01 0.02 0.07 0.019h0.725a0.797 0.797 0 0 0 0.78 -0.972 0.794 0.794 0 0 0 -0.884 -0.618 0.795 0.795 0 0 0 -0.692 0.794c0 0.101 -0.002 0.666 0.001 0.777zm-11.509 4.808c-0.203 0.001 -1.353 0.004 -1.685 0.003a2.528 2.528 0 0 1 -0.766 -0.126 0.025 0.025 0 0 0 -0.03 0.014L7.7 16.127a0.025 0.025 0 0 0 0.01 0.032c0.111 0.06 0.336 0.124 0.495 0.124 0.66 0.01 1.32 0.002 1.981 0 0.01 0 0.02 -0.006 0.023 -0.015l0.712 -1.545a0.025 0.025 0 0 0 -0.024 -0.036zM0.477 9.91c-0.071 0 -0.076 0.002 -0.076 0.01a0.834 0.834 0 0 0 -0.01 0.08c-0.027 0.397 -0.038 0.495 -0.234 3.06 -0.012 0.24 -0.034 0.389 -0.135 0.607 -0.026 0.057 -0.033 0.042 0.003 0.112 0.046 0.092 0.681 1.523 0.787 1.74 0.008 0.015 0.011 0.02 0.017 0.02 0.008 0 0.033 -0.026 0.047 -0.044 0.147 -0.187 0.268 -0.391 0.371 -0.606 0.306 -0.635 0.44 -1.325 0.486 -1.706 0.014 -0.11 0.021 -0.22 0.03 -0.33l0.204 -2.616 0.022 -0.293c0.003 -0.029 0 -0.033 -0.03 -0.034zm7.203 3.757a1.427 1.427 0 0 1 -0.135 -0.607c-0.004 -0.084 -0.031 -0.39 -0.235 -3.06a0.443 0.443 0 0 0 -0.01 -0.082c-0.004 -0.011 -0.052 -0.008 -0.076 -0.008h-1.48c-0.03 0.001 -0.034 0.005 -0.03 0.034l0.021 0.293c0.076 0.982 0.153 1.964 0.233 2.946 0.05 0.4 0.186 1.085 0.487 1.706 0.103 0.215 0.223 0.419 0.37 0.606 0.015 0.018 0.037 0.051 0.048 0.049 0.02 -0.003 0.742 -1.642 0.804 -1.765 0.036 -0.07 0.03 -0.055 0.003 -0.112zm3.861 -0.913h-0.872a0.126 0.126 0 0 1 -0.116 -0.178l1.178 -2.625a0.025 0.025 0 0 0 -0.023 -0.035l-1.318 -0.003a0.148 0.148 0 0 1 -0.135 -0.21l0.876 -1.954a0.025 0.025 0 0 0 -0.023 -0.035h-1.56c-0.01 0 -0.02 0.006 -0.024 0.015l-0.926 2.068c-0.085 0.169 -0.314 0.634 -0.399 0.938a0.534 0.534 0 0 0 -0.02 0.191 0.46 0.46 0 0 0 0.23 0.378 0.981 0.981 0 0 0 0.46 0.119h0.59c0.041 0 -0.688 1.482 -0.834 1.972a0.53 0.53 0 0 0 -0.023 0.172 0.465 0.465 0 0 0 0.23 0.398c0.15 0.092 0.342 0.12 0.475 0.12l1.66 -0.001c0.01 0 0.02 -0.006 0.023 -0.015l0.575 -1.28a0.025 0.025 0 0 0 -0.024 -0.035zm-6.93 -4.937H3.1a0.032 0.032 0 0 0 -0.034 0.033c0 1.048 -0.01 2.795 -0.01 6.829 0 0.288 -0.269 0.262 -0.28 0.262h-0.74c-0.04 0.001 -0.044 0.004 -0.04 0.047 0.001 0.037 0.465 1.064 0.555 1.263 0.01 0.02 0.03 0.033 0.051 0.033 0.157 0.003 0.767 0.009 0.938 -0.014 0.153 -0.02 0.3 -0.06 0.438 -0.132 0.3 -0.156 0.49 -0.419 0.595 -0.765 0.052 -0.172 0.075 -0.353 0.075 -0.533 0.002 -2.33 0 -4.66 -0.007 -6.991a0.032 0.032 0 0 0 -0.032 -0.032zm11.784 6.896c0 -0.014 -0.01 -0.021 -0.024 -0.022h-1.465c-0.048 -0.001 -0.049 -0.002 -0.05 -0.049v-4.66c0 -0.072 -0.005 -0.07 0.07 -0.07h0.863c0.08 0 0.075 0.004 0.075 -0.074V8.393c0 -0.082 0.006 -0.076 -0.08 -0.076h-3.5c-0.064 0 -0.075 -0.006 -0.075 0.073v1.445c0 0.083 -0.006 0.077 0.08 0.077h0.854c0.075 0 0.07 -0.004 0.07 0.07v4.624c0 0.095 0.008 0.084 -0.085 0.084 -0.37 0 -1.11 -0.002 -1.304 0 -0.048 0.001 -0.06 0.03 -0.06 0.03l-0.697 1.519s-0.014 0.025 -0.008 0.036c0.006 0.01 0.013 0.008 0.058 0.008 1.748 0.003 3.495 0.002 5.243 0.002 0.03 -0.001 0.034 -0.006 0.035 -0.033v-1.539zm4.177 -3.43c0 0.013 -0.007 0.023 -0.02 0.024 -0.346 0.006 -0.692 0.004 -1.037 0.004 -0.014 -0.002 -0.022 -0.01 -0.022 -0.024 -0.005 -0.434 -0.007 -0.869 -0.01 -1.303 0 -0.072 -0.006 -0.071 0.07 -0.07l0.733 -0.003c0.041 0 0.081 0.002 0.12 0.015 0.093 0.025 0.16 0.107 0.165 0.204 0.006 0.431 0.002 1.153 0.001 1.153zm2.67 0.244a1.953 1.953 0 0 0 -0.883 -0.222h-0.18c-0.04 -0.001 -0.04 -0.003 -0.042 -0.04V10.21c0 -0.132 -0.007 -0.263 -0.025 -0.394a1.823 1.823 0 0 0 -0.153 -0.53 1.533 1.533 0 0 0 -0.677 -0.71 2.167 2.167 0 0 0 -1 -0.258c-0.153 -0.003 -0.567 0 -0.72 0 -0.07 0 -0.068 0.004 -0.068 -0.065V7.76c0 -0.031 -0.01 -0.041 -0.046 -0.039H17.93s-0.016 0 -0.023 0.007c-0.006 0.006 -0.008 0.012 -0.008 0.023v0.546c-0.008 0.036 -0.057 0.015 -0.082 0.022h-0.95c-0.022 0.002 -0.028 0.008 -0.03 0.032v1.481c0 0.09 -0.004 0.082 0.082 0.082h0.913c0.082 0 0.072 0.128 0.072 0.128v1.148s0.003 0.117 -0.06 0.117h-1.482c-0.068 0 -0.06 0.082 -0.06 0.082v1.445s-0.01 0.068 0.064 0.068h1.457c0.082 0 0.076 -0.006 0.076 0.079v3.225c0 0.088 -0.007 0.081 0.082 0.081h1.43c0.09 0 0.082 0.007 0.082 -0.08v-3.27c0 -0.029 0.006 -0.035 0.033 -0.035l2.323 -0.003c0.098 0 0.191 0.02 0.28 0.061a0.46 0.46 0 0 1 0.274 0.407c0.008 0.395 0.003 0.79 0.003 1.185 0 0.259 -0.107 0.367 -0.33 0.367h-1.218c-0.023 0.002 -0.029 0.008 -0.028 0.033 0.184 0.437 0.374 0.871 0.57 1.303a0.045 0.045 0 0 0 0.04 0.026c0.17 0.005 0.34 0.002 0.51 0.003 0.15 -0.002 0.517 0.004 0.666 -0.01a2.03 2.03 0 0 0 0.408 -0.075c0.59 -0.18 0.975 -0.698 0.976 -1.313v-1.981c0 -0.128 -0.01 -0.254 -0.034 -0.38 0 0.078 -0.029 -0.641 -0.724 -0.998z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@SingaporeStarFC" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-12 pt-8 border-t border-slate-800 text-center text-gray-500 text-sm" data-i18n="footer.copyright">
-                © 2002-2026 STAR FC. All rights reserved. | 新加坡 STAR 足球俱乐部
-            </div>
+            <div class="site-footer__bottom" data-i18n="footer.copyright">© 2002-2026 STAR FC. All rights reserved. | 新加坡 STAR 足球俱乐部</div>
         </div>
     </footer>
 
@@ -840,9 +521,8 @@
     2. 加一条比赛集锦   → data/media.js
     3. 球员名册/队长    → data/players.js（照片放 assets/img/players/<id>/profile.jpg）
     4. 界面文案中英文   → data/i18n.js
+    改完运行: node scripts/validate-data.js
     详细流程见 docs/WEEKLY_UPDATE_CHECKLIST.md 与 docs/CONTENT_MAINTENANCE.md
     ===================================================================== -->
-
-
 </body>
 </html>
