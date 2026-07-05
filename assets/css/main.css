@@ -156,7 +156,36 @@ body.no-scroll { overflow: hidden; }
 .section { padding-block: var(--section-y); background: var(--bg); }
 .section--alt { background: var(--bg-alt); }
 
-.section-head { text-align: center; margin-bottom: clamp(2.5rem, 2rem + 2.5vw, 4rem); }
+/* 编辑风章节头：幽灵编号 + 左对齐 + 右侧辅助位 */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin-bottom: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+}
+@media (min-width: 48rem) {
+  .section-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--sp-6);
+  }
+}
+.section-head__main { min-width: 0; }
+.section-head__aux { flex-shrink: 0; }
+.section-head__index {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 2.6rem + 3vw, 5.2rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.05);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  margin-bottom: var(--sp-3);
+  user-select: none;
+}
+.section-head--sub .section-head__main { text-align: left; }
 .eyebrow {
   display: inline-block;
   font-family: var(--font-display);
@@ -175,10 +204,9 @@ body.no-scroll { overflow: hidden; }
   letter-spacing: -0.01em;
 }
 .section-desc {
-  margin-top: var(--sp-4);
+  margin-top: var(--sp-3);
   color: var(--text-mut);
   max-width: 38em;
-  margin-inline: auto;
 }
 
 .btn {
@@ -485,9 +513,130 @@ body.no-scroll { overflow: hidden; }
 }
 @media (min-width: 40rem) { .hero__actions { flex-direction: row; } }
 
-/* ---------- 6. 赛程战绩 ---------- */
-.year-toggle { display: flex; justify-content: center; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem); }
+/* 最新战绩条（Match Center 入口） */
+.hero-latest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: clamp(2.5rem, 2rem + 2.5vw, 4rem) auto 0;
+  padding: var(--sp-4) var(--sp-5);
+  max-width: 46rem;
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.035);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+}
+.hero-latest:hover {
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.055);
+  transform: translateY(-2px);
+}
+@media (min-width: 48rem) {
+  .hero-latest { flex-direction: row; justify-content: space-between; gap: var(--sp-5); }
+}
+.hero-latest__label {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red-500);
+}
+.hero-latest__match {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+.hero-latest__date {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+.hero-latest__teams {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-hi);
+  white-space: nowrap;
+}
+.hero-latest__score {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  padding-inline: var(--sp-1);
+}
+.hero-latest__score--win { color: var(--win); }
+.hero-latest__score--draw { color: var(--draw); }
+.hero-latest__score--loss { color: var(--loss); }
+.hero-latest__form {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.hero-latest__form-label {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+}
+.form-dots { display: inline-flex; align-items: center; gap: 6px; }
+.form-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+}
+.form-dot--win { background: var(--win); }
+.form-dot--draw { background: var(--draw); }
+.form-dot--loss { background: var(--loss); }
+.form-dot--latest { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12); }
 
+/* ---------- 品牌跑马灯 ---------- */
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--bg-deep);
+  padding-block: var(--sp-3);
+}
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 32s linear infinite;
+}
+.ticker__seq {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding-inline: var(--sp-4);
+}
+.ticker__item {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-mut);
+  white-space: nowrap;
+}
+.ticker__star { color: var(--red-500); font-size: var(--text-xs); }
+@keyframes ticker-scroll {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none; }
+}
+
+/* ---------- 6. 赛程战绩 ---------- */
 .fixtures-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -585,15 +734,24 @@ body.no-scroll { overflow: hidden; }
 .result-pill--draw { color: var(--draw); background: var(--draw-bg); border-color: var(--draw-border); }
 .result-pill--loss { color: var(--loss); background: var(--loss-bg); border-color: var(--loss-border); }
 
+/* 赛季总结：统计 + 射手榜双栏（移动端堆叠） */
+.season-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+}
+@media (min-width: 64rem) {
+  .season-summary { grid-template-columns: 1.15fr 0.85fr; align-items: start; }
+}
+
 /* 赛季统计 */
 .season-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--sp-3);
-  margin-top: var(--sp-7);
 }
-@media (min-width: 40rem) { .season-stats { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 64rem) { .season-stats { grid-template-columns: repeat(6, 1fr); gap: var(--sp-4); } }
+@media (min-width: 40rem) { .season-stats { grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); } }
 .stat-tile {
   text-align: center;
   padding: var(--sp-5) var(--sp-3);
@@ -621,6 +779,72 @@ body.no-scroll { overflow: hidden; }
   font-size: var(--text-sm);
   color: var(--text-faint);
 }
+
+/* 射手榜 */
+.scorers-board {
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5) var(--sp-6);
+}
+.scorers-board__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--border);
+}
+.scorers-board__title { font-size: var(--text-lg); font-weight: 700; color: var(--text-hi); }
+.scorers-board__sub { font-size: var(--text-xs); color: var(--text-faint); }
+.scorers-board__list { display: flex; flex-direction: column; }
+.scorers-board__row {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding-block: var(--sp-3);
+}
+.scorers-board__row + .scorers-board__row { border-top: 1px solid var(--line-soft); }
+.scorers-board__rank {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.scorers-board__row.is-top .scorers-board__rank { color: var(--red-500); }
+.scorers-board__player { min-width: 0; }
+.scorers-board__name {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-hi);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.scorers-board__bar {
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.scorers-board__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--red-600), var(--red-500));
+}
+.scorers-board__goals {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-hi);
+}
+.scorers-board__row.is-top .scorers-board__goals { color: var(--red-500); font-size: 1.4rem; }
 
 /* ---------- 7. 媒体中心 ---------- */
 .media-head {
@@ -778,6 +1002,21 @@ body.no-scroll { overflow: hidden; }
   transition: opacity 0.3s ease;
 }
 .player-card__photo img.is-loaded { opacity: 1; }
+.player-card__goals {
+  position: absolute;
+  bottom: var(--sp-2);
+  left: var(--sp-2);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(10, 11, 12, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--line-soft);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-hi);
+}
 .player-card__info { padding: var(--sp-3); }
 .player-card__meta {
   display: flex;

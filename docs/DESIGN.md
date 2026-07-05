@@ -53,8 +53,12 @@
 
 | 组件 | 类 | 说明 |
 | --- | --- | --- |
-| 区块 | `.section` / `.section--alt` | 白与浅灰交替 |
-| 区块标题组 | `.section-head` + `.eyebrow` + `.section-title` + `.section-desc` | eyebrow 是红色 condensed 大写 |
+| 区块 | `.section` / `.section--alt` | 深浅碳色交替 |
+| 区块标题组 | `.section-head`（编辑风） | 幽灵描边编号 `.section-head__index`（01-09）+ 左对齐 eyebrow/标题/描述 + 右侧 `.section-head__aux` 辅助位（如年份切换） |
+| 最新战绩条 | `.hero-latest` + `.form-dots` | Hero 底部：最近一场比分 + 近 5 场 W/D/L 圆点（JS 自动计算，无数据自动隐藏） |
+| 品牌跑马灯 | `.ticker` | Hero 与赛程之间，CSS 无限横滚，reduced-motion 时静止 |
+| 射手榜 | `.scorers-board` | 每个赛季面板一份，从进球数据自动统计 Top 8，红色数据条，OG/匿名客串不计入 |
+| 球员进球徽章 | `.player-card__goals` | 当前赛季（fixtures 最大年份）该球员进球数，0 球不显示 |
 | 按钮 | `.btn--primary`（红实心）/ `.btn--secondary`（白描边）/ `.btn--ghost`（红文字） | |
 | 分段控件 | `.segmented` + `.segmented__btn.is-active` | 语言切换、年份切换共用；active = 反白 chip（白底深字） |
 | 比赛卡 | `.match-card--win/draw/loss/upcoming` | 结果决定比分颜色 |

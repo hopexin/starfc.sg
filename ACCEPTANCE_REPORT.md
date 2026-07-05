@@ -54,6 +54,16 @@
 - `scripts/validate-data.js`（新增）：数据校验闸门；`validate-assets.sh`、`validate-media-covers.py` 已适配新数据源。
 - 文档全部更新：`docs/WEEKLY_UPDATE_CHECKLIST.md`、`MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`、`CONTENT_MAINTENANCE.md`、`CONTENT_ASSET_WORKFLOW.md`、`DESIGN.md`。
 
+### UI/UX 重构（按反馈追加，参考职业球队官网模型）
+
+在保留全部原有板块/功能的基础上新增（全部由现有比赛数据自动计算，不需要新的维护动作）：
+- **Hero 最新战绩条**：最近一场比分 + 结果徽章 + 近 5 场 W/D/L 状态圆点（参考英超俱乐部官网 Match Center 首屏、FotMob 状态条），点击直达赛程区。
+- **射手榜**：每个赛季面板自动统计 Top 8 射手（带数据条，乌龙球/匿名客串不计入），与赛季统计组成"赛季总结"双栏。
+- **球员卡进球徽章**：当前赛季有进球的球员照片角显示 ⚽ N（14 人）。
+- **品牌跑马灯**：Hero 下方横滚品牌条（STAR FC ★ SINCE 2002 ★ …），reduced-motion 自动静止。
+- **编辑风章节体系**：01-09 幽灵描边编号 + 左对齐标题 + 右侧辅助位（年份切换移入赛程标题行）。
+以上内容全部双语，切换语言实时更新。
+
 ### 视觉（阶段 3，按反馈迭代为深色）
 
 高级深色运动风（延续球队"新加坡夜场球场"气质）：近黑碳色底 + 泛光灯径向光 + 极淡球场网格纹理；白色发丝线分层的卡片表面（带顶部内光）；品牌红唯一强调色（CTA/节点带克制红色泛光）+ 四级深色灰阶文字；Barlow Condensed 负责比分/数字/英文大字，Noto Sans SC 正文；赛程卡为主角（大号着色比分 + tint 结果徽章）；clamp() 流体字号 + Grid 布局，移动优先；克制的 hover 动效；支持 prefers-reduced-motion；队徽保留、巨龙弱化（仅 Hero 轻微光晕）。首版曾做成纯白亮色，经反馈改回深色高级方向；分享卡（og-cover.png）同步为深色版。

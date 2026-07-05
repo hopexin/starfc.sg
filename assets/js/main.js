@@ -136,6 +136,16 @@
     return list.slice().sort(function (a, b) { return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); });
   }
 
+  // 全部已赛比赛（跨赛季，按日期从新到旧）
+  function allPlayedMatches() {
+    var years = Object.keys(S.fixtures || {});
+    var all = [];
+    years.forEach(function (y) { all = all.concat(sortedFixtures(y)); });
+    return all.filter(matchResult).sort(function (a, b) {
+      return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0);
+    });
+  }
+
   function computeStats(list) {
     var st = { played: 0, won: 0, drawn: 0, lost: 0, gf: 0, ga: 0 };
     list.forEach(function (m) {
@@ -188,6 +198,92 @@
         statTile(st.ga, '', 'stats.goalsAgainst');
     });
     updateFixturesToggles();
+  }
+
+  /* ---------- Hero 最新战绩条 + 近 5 场状态 ---------- */
+  function renderHeroLatest() {
+    var el = document.querySelector('[data-hero-latest]');
+    if (!el) return;
+    var played = allPlayedMatches();
+    if (!played.length) { el.classList.add('hidden'); return; }
+    var m = played[0];
+    var res = matchResult(m);
+    var style = { win: 'WIN', draw: 'DRAW', loss: 'LOSS' }[res];
+    var last5 = played.slice(0, 5).reverse(); // 左旧右新
+    var dots = last5.map(function (mm, i) {
+      var r = matchResult(mm);
+      var isLatest = i === last5.length - 1;
+      return '<span class="form-dot form-dot--' + r + (isLatest ? ' form-dot--latest' : '') + '" title="' + esc(mm.date + ' vs ' + mm.opponent + ' ' + mm.score[0] + '-' + mm.score[1]) + '"></span>';
+    }).join('');
+    el.innerHTML =
+      '<span class="hero-latest__label">' + esc(t('hero.latestLabel')) + '</span>' +
+      '<span class="hero-latest__match">' +
+        '<time class="hero-latest__date" datetime="' + esc(m.date) + '">' + esc(m.date) + '</time>' +
+        '<span class="hero-latest__teams"><span translate="no">STAR FC</span>' +
+          '<span class="hero-latest__score hero-latest__score--' + res + '">' + m.score[0] + ' – ' + m.score[1] + '</span>' +
+          '<span>' + esc(m.opponent) + '</span>' +
+        '</span>' +
+        '<span class="result-pill result-pill--' + res + '">' + style + '</span>' +
+      '</span>' +
+      '<span class="hero-latest__form">' +
+        '<span class="hero-latest__form-label">' + esc(t('hero.formLabel')) + '</span>' +
+        '<span class="form-dots">' + dots + '</span>' +
+      '</span>';
+    el.classList.remove('hidden');
+  }
+
+  /* ---------- 品牌跑马灯 ---------- */
+  function renderTicker() {
+    var track = document.querySelector('[data-ticker]');
+    if (!track) return;
+    var items = ['STAR FC', 'SINCE 2002', t('ticker.grassroots'), t('ticker.motto'), t('ticker.runnerUp'), t('ticker.players')];
+    var seq = items.map(function (s) {
+      return '<span class="ticker__item">' + esc(s) + '</span><span class="ticker__star" aria-hidden="true">★</span>';
+    }).join('');
+    track.innerHTML = '<div class="ticker__seq">' + seq + '</div><div class="ticker__seq" aria-hidden="true">' + seq + '</div>';
+  }
+
+  /* ---------- 射手榜（按赛季自动统计） ---------- */
+  function computeScorers(year) {
+    var tally = {};
+    sortedFixtures(year).forEach(function (m) {
+      if (!matchResult(m) || !Array.isArray(m.scorers)) return;
+      m.scorers.forEach(function (e) {
+        var name = scorerName(e);
+        if (name === 'OG' || name === 'Guest') return; // 乌龙/匿名客串不进射手榜
+        var key = e.id ? 'id:' + e.id : 'name:' + name;
+        if (!tally[key]) tally[key] = { name: name, goals: 0 };
+        tally[key].goals += e.n || 1;
+      });
+    });
+    return Object.keys(tally).map(function (k) { return tally[k]; })
+      .sort(function (a, b) { return b.goals - a.goals || (a.name < b.name ? -1 : 1); });
+  }
+
+  function renderScorers() {
+    document.querySelectorAll('[data-scorers]').forEach(function (el) {
+      var list = computeScorers(el.getAttribute('data-scorers')).slice(0, 8);
+      if (!list.length) { el.innerHTML = ''; return; }
+      var max = list[0].goals;
+      el.innerHTML = list.map(function (s, i) {
+        var rank = i + 1;
+        var pct = Math.max(8, Math.round(s.goals / max * 100));
+        return '<li class="scorers-board__row' + (rank === 1 ? ' is-top' : '') + '">' +
+          '<span class="scorers-board__rank">' + (rank < 10 ? '0' + rank : rank) + '</span>' +
+          '<span class="scorers-board__player">' +
+            '<span class="scorers-board__name">' + esc(s.name) + '</span>' +
+            '<span class="scorers-board__bar"><span class="scorers-board__bar-fill" style="width:' + pct + '%"></span></span>' +
+          '</span>' +
+          '<span class="scorers-board__goals">' + esc(t('fixtures.scorersGoals', { n: s.goals })) + '</span>' +
+        '</li>';
+      }).join('');
+    });
+  }
+
+  // 当前赛季（fixtures 中最大的年份键），用于球员卡进球徽章
+  function currentSeasonYear() {
+    var years = Object.keys(S.fixtures || {});
+    return years.sort().pop();
   }
 
   function initFixturesToggles() {
@@ -257,7 +353,21 @@
     return 2;
   }
 
-  function playerCard(player) {
+  // 当前赛季各球员进球数（球员卡徽章用）
+  function seasonGoalsById() {
+    var year = currentSeasonYear();
+    var map = {};
+    if (!year) return map;
+    sortedFixtures(year).forEach(function (m) {
+      if (!matchResult(m) || !Array.isArray(m.scorers)) return;
+      m.scorers.forEach(function (e) {
+        if (e.id) map[e.id] = (map[e.id] || 0) + (e.n || 1);
+      });
+    });
+    return map;
+  }
+
+  function playerCard(player, goalsMap) {
     var team = S.team || {};
     var badge = '';
     if (player.id === team.captainId) {
@@ -282,6 +392,14 @@
     img.onload = function () { img.classList.add('is-loaded'); placeholder.style.display = 'none'; };
     img.onerror = function () { img.style.display = 'none'; };
     photo.appendChild(img);
+    var goals = goalsMap[player.id];
+    if (goals) {
+      var goalChip = document.createElement('span');
+      goalChip.className = 'player-card__goals';
+      goalChip.textContent = '⚽ ' + goals;
+      goalChip.title = t('fixtures.scorersGoals', { n: goals });
+      photo.appendChild(goalChip);
+    }
     card.appendChild(photo);
     var info = document.createElement('div');
     info.className = 'player-card__info';
@@ -297,6 +415,7 @@
     var players = S.players;
     var container = document.getElementById('team-groups');
     if (!players || !container) return;
+    var goalsMap = seasonGoalsById();
     container.innerHTML = '';
     groupConfig.forEach(function (group) {
       var groupPlayers = players.filter(function (p) {
@@ -318,7 +437,7 @@
       wrapper.appendChild(header);
       var grid = document.createElement('div');
       grid.className = 'team-grid';
-      groupPlayers.forEach(function (player) { grid.appendChild(playerCard(player)); });
+      groupPlayers.forEach(function (player) { grid.appendChild(playerCard(player, goalsMap)); });
       wrapper.appendChild(grid);
       container.appendChild(wrapper);
     });
@@ -389,6 +508,9 @@
     localStorage.setItem(LANG_KEY, lang);
     applyI18n();
     renderFixtures();
+    renderScorers();
+    renderHeroLatest();
+    renderTicker();
     renderMedia();
     renderTeam();
   }
@@ -404,6 +526,9 @@
   function init() {
     applyI18n();
     renderFixtures();
+    renderScorers();
+    renderHeroLatest();
+    renderTicker();
     renderMedia();
     renderTeam();
     initFixturesToggles();

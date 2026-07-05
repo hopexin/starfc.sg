@@ -42,8 +42,20 @@ window.STARFC.i18n = {
   'hero.ctaStory': { zh: '了解 STAR FC 的故事', en: 'Explore Our Story' },
   'hero.ctaJoin': { zh: '我要加入球队', en: 'Join the Team' },
 
+  // ---- Hero 最新战绩条 / 跑马灯 ----
+  'hero.latestLabel': { zh: '最新战绩', en: 'Latest Result' },
+  'hero.formLabel': { zh: '近 5 场', en: 'Last 5' },
+  'ticker.grassroots': { zh: '新加坡 11 人制草根球队', en: 'Singapore 11-a-side grassroots club' },
+  'ticker.runnerUp': { zh: '2025 UAFL 联赛亚军', en: '2025 UAFL Runners-up' },
+  'ticker.players': { zh: '200+ 历史球员', en: '200+ players all-time' },
+  'ticker.motto': { zh: '从 2002 到今天，继续上场', en: 'Since 2002, still on the pitch' },
+
   // ---- 赛程战绩 ----
   'fixtures.title': { zh: '赛程与战绩', en: 'Fixtures & Results' },
+  'fixtures.scorersTitle': { zh: '射手榜', en: 'Top Scorers' },
+  'fixtures.scorersSub': { zh: '由比赛数据自动统计', en: 'Computed from match data' },
+  'fixtures.scorersGoals': { zh: '{n} 球', en: '{n}' },
+  'fixtures.seasonSummary': { zh: '赛季总结', en: 'Season Summary' },
   'fixtures.note2026': { zh: '2026 赛季进行中，赛程与战绩持续更新', en: 'The 2026 season is in progress. Fixtures and results are updated regularly.' },
   'fixtures.upcoming': { zh: '即将开球', en: 'Upcoming' },
   'fixtures.showAll': { zh: '显示全部 {n} 场比赛', en: 'Show all {n} matches' },
