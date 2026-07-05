@@ -1,96 +1,81 @@
-# STAR FC 每周更新清单（Fixtures + 球员照片）
+# STAR FC 每周更新清单（2026-07 重构后版本）
 
-适用范围：静态单页站点，维护 `index.html`、`assets/js/data.js` 与 `assets/img/`。
-目标：每周更新赛程/战绩和球员照片时，降低改坏页面风险。
+适用范围：静态单页站点。**每周内容更新只改 `data/` 目录下的数据文件，不改 `index.html`、CSS、JS。**
 
----
-
-## 1. 每周更新赛程与战绩（Fixtures/Results）
-
-详细截图录入流程见：`docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`。
-
-1. 打开 `index.html`，定位 `#fixtures` 区域。
-2. 在注释标记区间内编辑卡片：
-   - `FIXTURES_2025_START` 到 `FIXTURES_2025_END`
-   - `FIXTURES_2026_START` 到 `FIXTURES_2026_END`
-3. 新增比赛时，复制同年现有卡片并替换关键字段：
-   - `date`（日期）
-   - `league`（赛事）
-   - `opponent`（对手）
-   - `score`（比分）
-   - `location`（球场/地点）
-4. 同步更新该年份统计区（比赛/胜/平/负/进球/失球）。
-
-注意：
-- 建议按日期从新到旧排列。
-- 胜/平/负视觉状态依赖 Badge 与比分颜色：`WIN` / `DRAW` / `LOSS`。
-- 比分必须是单个 `font-mono` span，不要拆成多个 span。
-- 不要改动 `switchYear()`、`data-year`、`data-year-panel`。
+架构一句话：`index.html` 是唯一页面骨架；比赛、视频、球员、双语文案分别存在
+`data/fixtures.js`、`data/media.js`、`data/players.js`、`data/i18n.js`；
+`assets/js/main.js` 负责渲染；**赛季统计（比赛/胜/平/负/进球/失球）由代码自动计算，永远不要手工改统计数字。**
 
 ---
 
-## 2. 球员照片命名规范（assets/js/data.js -> assets）
+## 1. 每周更新赛程与战绩
 
-页面读取规则：
-- 代码会按 `assets/js/data.js` 中球员的 `id` 拼接图片路径：
-  - `assets/img/players/<id>/profile.jpg`
-- 示例：
-  - `{"id":"xu-zhihe", ...}` -> `assets/img/players/xu-zhihe/profile.jpg`
+详细的截图录入流程见 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`。
 
-规范要求：
-- 统一小写英文 + 连字符（kebab-case）。
-- 与 `assets/js/data.js` 的 `id` 完全一致（包括连字符）。
-- 你只需要把照片拖进对应球员文件夹，再运行 `bash scripts/normalize-player-photos.sh`。
+1. 打开 `data/fixtures.js`。
+2. 在对应赛季数组（如 `2026:`）的**最前面**插入一个比赛对象：
 
----
-
-## 3. 缺图检查（每周建议执行）
-
-命令：
-
-```bash
-bash scripts/validate-assets.sh
+```js
+{ date: '2026-05-17', comp: '友谊赛', opponent: 'Some FC', score: [3, 1],
+  scorers: [{ id: 'zhang-xin', n: 2 }, { name: 'Shon Honda' }],
+  venue: 'SCC Dempsey · 15:00' },
 ```
 
-输出说明：
-- `OK` 表示该球员已有 `profile.jpg`。
-- `MISSING` 表示该球员还没有 `profile.jpg`。
-- 需要从随意文件名生成头像时，运行 `bash scripts/normalize-player-photos.sh`。
-- 如果照片统一放在 `player-photo-inbox/`，运行 `bash scripts/import-player-photos.sh`。
+字段约定：
+- `date`：`YYYY-MM-DD`。
+- `comp`：`'友谊赛'` / `'UAFL'` / `'UAFL 第X轮'` / `'杯赛'`（英文界面自动翻译）。
+- `score`：`[我方进球, 对方进球]`；**未开赛的预告比赛填 `null`**（会显示"即将开球"，不计入统计）。
+- `scorers` 进球名单（按人，不按时间）：
+  - 在册球员：`{ id: 'xu-zhihe', n: 2 }`——id 查 `data/players.js`；进 1 球可省略 `n`。
+  - 截图上是绰号（小许、雄、Joel…）：先查 `data/players.js` 底部的 `aliases` 表换成 id。
+  - 编外/客串球员：`{ name: 'Shon Honda' }`；有中英两个名字用 `{ nameZh: '田添', nameEn: 'Tian Tian' }`。
+  - 对方乌龙球：`{ name: 'OG' }`；无进球写 `[]`；进球了但没记录写 `null`。
+- `venue`：`'球场名 · HH:MM'`，时间可省略。
+3. 胜/平/负徽章、比分颜色、赛季统计全部自动生成，**不需要做任何同步**。
 
----
+## 2. 更新比赛集锦视频
 
-## 3.1 媒体封面检查（有新集锦时执行）
+1. 打开 `data/media.js`。
+2. 在 `videos` 数组**最前面**插入：
 
-命令：
-
-```bash
-python3 scripts/validate-media-covers.py
+```js
+{ "date": "2026-05-17", "opponent": "Some FC", "url": "https://youtu.be/xxxx", "cover": null },
 ```
 
-输出说明：
-- `OK` 表示该视频已有 `assets/img/media/highlights/<match-id>/cover.jpg`。
-- `MISSING` 表示该视频还没有发布封面。
-- 首次创建目录时可运行 `python3 scripts/validate-media-covers.py --create-dirs`。
+- 标题自动生成为「日期 vs 对手（比赛集锦）」，英文界面自动切换。
+- 有封面图时把图放到 `assets/img/media/highlights/<日期-对手slug>/cover.jpg`，并把 `cover` 填成该路径；没有就保持 `null`（显示默认深色播放占位）。
 
----
+## 3. 球员名册与照片
 
-## 4. 回归验收清单（发布前必查）
+- 新增球员：在 `data/players.js` 加一行（id 用小写 kebab-case）。
+- 球员照片：放到 `assets/img/players/<id>/profile.jpg`（工具脚本见 `docs/PLAYER_PHOTO_GUIDE.md`）。
+- 队长/副队长变更：改 `data/players.js` 里的 `window.STARFC.team`。
 
-- [ ] 锚点导航：顶部菜单跳转 `#home/#fixtures/#media/#team/#about/#history/#join/#contact` 正常
-- [ ] 移动端菜单：可打开/关闭，遮罩点击与 `Esc` 关闭正常
-- [ ] 语言切换：默认中文，切换 EN 后导航、Fixtures、Media、Team、Hall、About、Join、Contact、Footer 无明显中文残留
-- [ ] 赛程切换：2025/2026 按钮可切换，显示对应 `data-year-panel`
-- [ ] 横向滚动：桌面箭头可滚动，左右边界隐藏逻辑正常
-- [ ] Team 渲染：`#team` 区块能正常渲染分组球员卡
-- [ ] 图片 fallback：缺失球员图时显示占位，不出现破图布局错乱
+## 4. 提交前检查（必做）
 
----
+```bash
+node scripts/validate-data.js     # 数据校验：有 ERROR 不要提交
+bash scripts/validate-assets.sh   # 球员缺图检查（可选）
+```
 
-## 5. 最小回滚
+本地预览：
 
-若本周更新后发现问题，优先回滚本轮改动文件：
-- `index.html`（fixtures 卡片与统计）
-- `assets/img/players/*`（本周新增或替换的图片）
+```bash
+php -S 127.0.0.1:8899   # 或 python3 -m http.server 8899
+```
 
-建议在每次周更前先提交一次基线版本，异常时可直接回退到上一个提交。
+浏览器打开 http://127.0.0.1:8899/ 核对：
+- [ ] 新比赛卡片出现在对应赛季最前面，比分/结果徽章正确
+- [ ] 该赛季统计数字已自动 +1 场并更新进失球
+- [ ] 切换 EN，新卡片的赛事名/球员名显示正常
+- [ ] 无浏览器 console 报错
+
+## 5. 提交
+
+- 不要把 `.DS_Store` 等系统文件加进 commit（已在 .gitignore）。
+- push 到 main 后 Vercel 自动部署，等 1-2 分钟后打开 https://www.starfc.sg 复查线上。
+
+## 6. 红线
+
+- 不改 `assets/js/main.js`、`assets/css/main.css`、`index.html` 的结构（文案改动走 `data/i18n.js`）。
+- 不手写统计数字；不确定的对手名/球员名保持原样记录，不要编造。

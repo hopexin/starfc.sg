@@ -1,231 +1,105 @@
-# STAR FC 网站内容维护指南
+# STAR FC 网站内容维护指南（2026-07 重构后版本）
 
-本文档说明如何更新网站内容。当前站点是静态单页发布，但部分维护入口已经拆出：
+站点架构一句话：纯静态单页（HTML + CSS + 原生 JS，零构建），`index.html` 是页面骨架，
+**所有会变的内容都在 `data/` 目录**，`assets/js/main.js` 负责把数据渲染成页面。
+推上 GitHub main → Vercel 自动部署。
 
-- 比赛截图到战绩更新：优先看 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`
-- 媒体封面/球员照片/名人堂素材协作：优先看 `docs/CONTENT_ASSET_WORKFLOW.md`
-- 每周验收清单：优先看 `docs/WEEKLY_UPDATE_CHECKLIST.md`
-- 球员照片：优先看 `docs/PLAYER_PHOTO_GUIDE.md`
-- 球员名单数据：维护 `assets/js/data.js`
+## 维护入口总览
 
-注意：`index.html` 里仍保留一些历史 JSON 块，但 Fixtures 当前主要由页面内卡片直接展示，不要把 `fixtures-data` 当作唯一渲染来源。
+| 要改什么 | 改哪个文件 | 说明 |
+| --- | --- | --- |
+| 加一场比赛 / 改比分 | `data/fixtures.js` | 统计自动计算，见 `WEEKLY_UPDATE_CHECKLIST.md` |
+| 加一条比赛集锦视频 | `data/media.js` | 标题自动生成，支持可选封面图 |
+| 球员名册 / 队长 / 绰号表 | `data/players.js` | id 决定照片路径 |
+| 界面文案（中/英） | `data/i18n.js` | 每条 `{ zh, en }` 成对维护 |
+| 球员照片 | `assets/img/players/<id>/profile.jpg` | 见 `PLAYER_PHOTO_GUIDE.md` |
+| 名人堂卡片 | `index.html` 的 Hall of Fame 区块 | 目前是 3 张占位卡，人物确认后手工替换 |
+| 故事/文章外链 | `index.html` 的 Stories 区块 + `data/i18n.js` 文案 | 低频改动 |
+| 社媒/邮箱链接 | `index.html`（搜对应 href） | 出现多处，全局替换 |
+| 视觉样式 | `assets/css/main.css` | 设计变量见 `DESIGN.md`，谨慎改 |
 
-语言切换说明：网站默认中文，英文由 `index.html` 里的轻量翻译字典驱动。新增可见中文文案时，需要同步补充英文翻译，避免切换 EN 后残留中文。
+改完数据必跑：
+
+```bash
+node scripts/validate-data.js
+```
 
 ---
 
 ## 目录结构
 
 ```
+data/
+  fixtures.js   # 赛程战绩（唯一数据源；统计自动算）
+  media.js      # 比赛集锦视频列表
+  players.js    # 球员名册 + 队长/副队长 + 绰号别名表
+  i18n.js       # 全站中英文案词典
 assets/
+  css/main.css  # 全站样式（设计变量 + 组件）
+  js/main.js    # 渲染与交互（正常维护不需要动）
   img/
-    club/       # 俱乐部 logo（starfclogo2.png, star_logo.jpg）
-    players/    # 球员照片
+    club/       # 队徽（starfclogo2-256.png 站内用；starfclogo2.png 为原始大图）
+    players/    # 球员照片 <id>/profile.jpg
     hall/       # 名人堂照片
-    news/       # 新闻配图
-    fixtures/   # 赛程相关图片
+    media/      # 比赛集锦封面 highlights/<match-id>/cover.jpg
+    og/         # 社交分享卡图（og-cover.png，1200×630）
   icons/        # SVG 图标
+docs/           # 本目录：维护文档
+scripts/        # 校验与照片处理脚本
+*-inbox/        # 素材投递箱（原图丢这里，处理后进 assets）
 ```
 
 ---
 
-## 1. 添加/替换球员照片
+## 1. 赛程与战绩
 
-### 步骤
+见 `docs/WEEKLY_UPDATE_CHECKLIST.md`（每周主流程）与
+`docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`（截图录入细则）。
 
-1. 在 `docs/PLAYER_PHOTO_GUIDE.md` 找到球员对应的 `id`。
-2. 把照片拖进 `assets/img/players/<id>/`。
-3. 运行：
+## 2. 比赛集锦视频
+
+`data/media.js` 的 `videos` 数组最前面插一条：
+
+```js
+{ "date": "2026-05-17", "opponent": "Some FC", "url": "https://youtu.be/xxxx", "cover": null },
+```
+
+封面图（可选）：放到 `assets/img/media/highlights/<日期-对手slug>/cover.jpg`，
+把 `cover` 改成该路径。缺封面清单：`python3 scripts/validate-media-covers.py`。
+
+## 3. 球员名册与照片
+
+- 名册：`data/players.js`。新增球员一行对象；`nameZh` 只在确认中文写法时填。
+- 照片：拖进 `assets/img/players/<id>/`，运行 `bash scripts/normalize-player-photos.sh`；
+  或统一丢 `player-photo-inbox/` 再运行 `bash scripts/import-player-photos.sh`。
+- 缺图检查：`bash scripts/validate-assets.sh`。
+
+## 4. 名人堂
+
+1. 候选人的照片和文字资料放进 `hall-of-fame-inbox/`（每人一个文件夹：`photo.jpg` + `info.md`）。
+2. 人物、称号、年份、故事经维护人确认后，替换 `index.html` Hall of Fame 区块的占位卡
+   （复制一张现有卡片改文字；新增文案记得在 `data/i18n.js` 配对英文）。
+3. 照片发布路径：`assets/img/hall/<id>/profile.jpg`。
+
+## 5. 界面文案与双语
+
+- 所有界面文案在 `data/i18n.js`，每条 `{ zh: '…', en: '…' }`。
+- 改中文必须同步改英文；校验脚本会检查 zh/en 是否成对。
+- HTML 里的静态文字通过 `data-i18n="键名"` 绑定；新增文案 = 词典加键 + HTML 元素加 `data-i18n`。
+- 默认语言中文写在 HTML 里（对搜索引擎可见），英文由 JS 切换。
+
+## 6. SEO / 分享卡
+
+- 站点 meta、Open Graph、Twitter Card、JSON-LD 都在 `index.html` 的 `<head>`。
+- 分享卡图：`assets/img/og/og-cover.png`（1200×630）。改版时保持同路径覆盖即可。
+
+## 7. 发布
 
 ```bash
-bash scripts/normalize-player-photos.sh
+node scripts/validate-data.js   # 必须无 ERROR
+git add <改动文件>
+git commit -m "Update fixtures: 2026-05-17 vs Some FC"
+git push                         # main 分支 → Vercel 自动上线
 ```
 
-4. 网站会读取 `assets/img/players/<id>/profile.jpg`。
-5. 如果是新增球员，再维护 `assets/js/data.js` 的 `window.STAR_FC_DATA.players`。
-
-如果只知道球员名字，也可以把照片放进 `player-photo-inbox/`，文件名写球员 id 或英文姓名，再运行：
-
-```bash
-bash scripts/import-player-photos.sh
-```
-
----
-
-## 2. 更新社媒链接/报名表链接
-
-### 步骤
-
-1. 打开 `index.html`，找到 `<!-- CONTENT UPDATE ZONE -->` 区域
-2. 找到 `<script id="links-data">`
-3. 修改对应的链接值：
-
-```json
-{
-  "social": {
-    "xiaohongshu": "https://www.xiaohongshu.com/user/profile/xxx",
-    "youtube": "https://youtube.com/@starfc"
-  },
-  "forms": {
-    "registration": "https://forms.gle/xxx",
-    "feedback": "https://forms.gle/yyy"
-  },
-  "other": {
-    "official_site": "https://starfc.sg"
-  }
-}
-```
-
-> **注意**：修改 `links-data` 后，需要同步更新页面中实际使用这些链接的 `<a href="">` 标签。
-
----
-
-## 3. 更新名人堂
-
-### 步骤
-
-1. 先把候选人的照片和文字资料放进 `hall-of-fame-inbox/`。
-2. 建议每个人一个文件夹，包含 `photo.jpg` 和 `info.md`。
-3. 确认人物、称号、年份和故事后，再更新 `index.html` 的 Hall of Fame Section。
-4. `hall-data` 目前是预留 JSON，不驱动页面渲染，不要只改 JSON。
-
----
-
-## 4. 更新新闻/动态
-
-### 步骤
-
-1. **准备配图**
-   - 格式：`jpg` 或 `webp`
-   - 尺寸：建议 800×450px（16:9 比例）
-   - 放入 `assets/img/news/` 目录
-
-2. **更新数据**
-   - 找到 `<script id="media-data">`
-   - 在 `news` 数组中添加条目：
-
-```json
-{
-  "id": "news-2024-01",
-  "title": "新闻标题",
-  "date": "2024-01-15",
-  "summary": "新闻摘要...",
-  "image": "assets/img/news/news-2024-01.jpg",
-  "link": "https://..."
-}
-```
-
----
-
-## 4.1 更新比赛集锦封面
-
-### 步骤
-
-1. 把封面原图放进 `media-cover-inbox/`，文件名尽量包含日期和对手。
-2. 目标发布路径为：
-
-```text
-assets/img/media/highlights/<match-id>/cover.jpg
-```
-
-3. 检查当前缺哪些封面：
-
-```bash
-python3 scripts/validate-media-covers.py
-```
-
-4. 初始化现有视频的封面目录：
-
-```bash
-python3 scripts/validate-media-covers.py --create-dirs
-```
-
-注意：当前 Media 视频卡尚未接入封面图，下一轮 UI 小改时再把 `cover.jpg` 接入卡片。
-
----
-
-## 5. 更新赛程
-
-### 步骤
-
-1. 截图录入先看 `docs/MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`。
-2. 打开 `index.html`，找到对应年份注释区块：
-   - `FIXTURES_2025_START` 到 `FIXTURES_2025_END`
-   - `FIXTURES_2026_START` 到 `FIXTURES_2026_END`
-3. 复制同结果类型的现有卡片，替换日期、赛事、对手、比分、进球、地点。
-4. 同步更新该年份统计数字。
-5. 不要只修改 `<script id="fixtures-data">`，它不是当前 Fixtures 视觉卡片的唯一来源。
-
----
-
-## 图片规范
-
-| 类型 | 推荐格式 | 推荐尺寸 | 比例 |
-|------|----------|----------|------|
-| 球员照片 | webp/jpg | 400×500px | 4:5 |
-| 名人堂照片 | webp/jpg | 400×500px | 4:5 |
-| 新闻配图 | webp/jpg | 800×450px | 16:9 |
-| 俱乐部 Logo | png | 原尺寸 | - |
-| 图标 | svg | - | - |
-
-### 图片优化建议
-
-- 使用 [Squoosh](https://squoosh.app/) 或 [TinyPNG](https://tinypng.com/) 压缩图片
-- webp 格式比 jpg 小 25-35%，优先使用
-- 确保图片清晰度足够，但文件大小控制在 200KB 以内
-
----
-
-## 自检清单
-
-更新内容后，请逐项检查：
-
-- [ ] **文件位置正确**：图片放在了正确的 `assets/img/` 子目录
-- [ ] **文件命名规范**：使用小写字母、数字、连字符，无空格或中文
-- [ ] **JSON 格式正确**：使用 [JSONLint](https://jsonlint.com/) 验证语法
-- [ ] **路径一致**：JSON 中的 `photo`/`image` 路径与实际文件路径一致
-- [ ] **本地预览**：在浏览器中打开 `index.html` 检查显示效果
-- [ ] **移动端测试**：使用浏览器开发者工具切换到移动端视图检查
-- [ ] **链接可用**：点击所有更新的链接确认能正常打开
-
----
-
-## 常见问题
-
-### 图片不显示
-
-1. 检查文件路径是否正确（区分大小写）
-2. 确认文件已放入正确目录
-3. 确认文件名与 JSON 中的路径完全一致
-
-### JSON 语法错误
-
-常见错误：
-- 最后一项多了逗号 `,`
-- 缺少引号 `""`
-- 使用了中文引号 `""`
-
-使用 [JSONLint](https://jsonlint.com/) 检查并修复。
-
-### 更新后页面没变化
-
-1. 清除浏览器缓存（Ctrl+Shift+R 或 Cmd+Shift+R）
-2. 确认保存了 `index.html` 文件
-3. 确认修改的是正确的文件
-
----
-
-## 文件备份
-
-建议每次大更新前备份 `index.html`：
-
-```bash
-cp index.html index.html.backup-$(date +%Y%m%d)
-```
-
-或使用 Git：
-
-```bash
-git add .
-git commit -m "更新内容: 描述"
-```
+上线 1-2 分钟后打开 https://www.starfc.sg 复查（桌面 + 手机 + 中英切换）。
