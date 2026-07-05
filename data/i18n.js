@@ -31,7 +31,6 @@ window.STARFC.i18n = {
   'nav.contact': { zh: '联系我们', en: 'Contact' },
 
   // ---- 主页 Hero ----
-  'hero.badge': { zh: '自 2002 · 每周日开球', en: 'Since 2002 · We play every Sunday' },
   'hero.subtitle': { zh: '五湖四海，因球相聚。', en: 'From far and wide, brought together by football.' },
   'hero.tagline1': { zh: '人来人往，', en: 'People come and go. ' },
   'hero.tagline2': { zh: '从未散场。', en: 'The game goes on.' },

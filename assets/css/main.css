@@ -461,34 +461,8 @@ body.no-scroll { overflow: hidden; }
 .hero__crest {
   width: clamp(4.5rem, 4rem + 3vw, 6.5rem);
   height: auto;
-  margin: 0 auto var(--sp-6);
+  margin: 0 auto clamp(2.25rem, 5vh, 3.5rem);
   filter: drop-shadow(0 0 28px rgba(220, 38, 38, 0.28));
-}
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: 0.45rem 1rem;
-  border-radius: var(--radius-full);
-  border: var(--border);
-  background: rgba(255, 255, 255, 0.045);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  font-size: var(--text-sm);
-  color: var(--text);
-  margin-bottom: var(--sp-6);
-}
-.hero__badge-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--red-500);
-  box-shadow: 0 0 10px var(--red-glow);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
 }
 .hero__title {
   font-family: var(--font-display);
@@ -501,25 +475,27 @@ body.no-scroll { overflow: hidden; }
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
 }
 .hero__title-accent { color: var(--red-500); }
-.hero__subtitle {
-  margin-top: var(--sp-4);
-  font-size: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
-  color: var(--text-mut);
-  font-weight: 300;
-}
 .hero__tagline {
-  margin-top: var(--sp-3);
-  font-size: clamp(1.2rem, 1.05rem + 1vw, 1.75rem);
+  margin-top: clamp(2rem, 4.5vh, 3rem);
+  font-size: clamp(1.35rem, 1.1rem + 1.3vw, 2rem);
   font-weight: 500;
   color: var(--text-hi);
 }
+.hero__subtitle {
+  margin-top: var(--sp-5);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
+  color: var(--text-faint);
+  font-weight: 400;
+}
+/* 中文副句用碑刻式字距；英文保持常规 */
+.hero__subtitle:lang(zh-CN) { letter-spacing: 0.32em; text-indent: 0.32em; }
 .hero__tagline-accent { color: var(--red-500); }
 .hero__actions {
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
   justify-content: center;
-  margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  margin-top: clamp(3rem, 6.5vh, 4.5rem);
 }
 @media (min-width: 40rem) { .hero__actions { flex-direction: row; } }
 
@@ -529,7 +505,7 @@ body.no-scroll { overflow: hidden; }
   flex-direction: column;
   align-items: center;
   gap: var(--sp-3);
-  margin: clamp(2.5rem, 2rem + 2.5vw, 4rem) auto 0;
+  margin: clamp(3.25rem, 8vh, 5.5rem) auto 0;
   padding: var(--sp-4) var(--sp-5);
   max-width: 46rem;
   border: var(--border);
@@ -1447,15 +1423,14 @@ body.no-scroll { overflow: hidden; }
 @keyframes word-up { from { transform: translateY(108%); } to { transform: none; } }
 .title-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
 .title-word { display: inline-block; }
-.js-motion .title-word { animation: word-up 0.95s var(--ease-out) 0.25s both; }
-.js-motion .title-mask:nth-of-type(2) .title-word { animation-delay: 0.38s; }
-.js-motion .hero__crest { animation: rise 0.8s var(--ease-out) 0.08s both; }
-.js-motion .hero__badge { animation: rise 0.7s var(--ease-out) 0.2s both; }
-.js-motion .hero__subtitle { animation: rise 0.7s var(--ease-out) 0.55s both; }
-.js-motion .hero__tagline { animation: rise 0.7s var(--ease-out) 0.65s both; }
-.js-motion .hero__actions { animation: rise 0.7s var(--ease-out) 0.78s both; }
-.js-motion .hero-latest { animation: rise 0.7s var(--ease-out) 0.95s both; }
-.js-motion .hero-next { animation: rise 0.7s var(--ease-out) 1.08s both; }
+.js-motion .title-word { animation: word-up 0.95s var(--ease-out) 0.2s both; }
+.js-motion .title-mask:nth-of-type(2) .title-word { animation-delay: 0.32s; }
+.js-motion .hero__crest { animation: rise 0.8s var(--ease-out) 0.05s both; }
+.js-motion .hero__tagline { animation: rise 0.7s var(--ease-out) 0.5s both; }
+.js-motion .hero__subtitle { animation: rise 0.7s var(--ease-out) 0.62s both; }
+.js-motion .hero__actions { animation: rise 0.7s var(--ease-out) 0.75s both; }
+.js-motion .hero-latest { animation: rise 0.7s var(--ease-out) 0.92s both; }
+.js-motion .hero-next { animation: rise 0.7s var(--ease-out) 1.04s both; }
 .hero__inner { will-change: transform, opacity; }
 
 /* ---- 射手榜数据条生长（随 board 渐入，逐行错峰） ---- */
@@ -1642,3 +1617,52 @@ body.no-scroll { overflow: hidden; }
 
 /* 博客索引页 */
 .post-list { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-6); }
+
+/* =====================================================================
+   14. 全平台交互与滚动优化（iOS / Android / Windows / macOS）
+   ===================================================================== */
+/* 防横向溢出（clip 不产生滚动容器，不影响 sticky） */
+html, body { overflow-x: clip; }
+
+/* 触控：去 300ms 双击缩放延迟与点击高亮 */
+a, button, input, select, textarea, .segmented__btn { touch-action: manipulation; }
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* 触屏设备：hover 悬浮位移会"粘住"，统一关闭 transform 类 hover 反馈 */
+@media (hover: none) {
+  .btn:hover,
+  .match-card:hover,
+  .video-card:hover,
+  .video-card:hover .video-card__play,
+  .player-card:hover,
+  .value-card:hover,
+  .timeline__card:hover,
+  .story-card:hover,
+  .contact-item:hover,
+  .hero-latest:hover,
+  .hero-next:hover,
+  .site-footer__social a:hover,
+  .btn:hover .btn__arrow { transform: none !important; }
+}
+
+/* 粗指针（手机/平板）：加大小控件的可点面积（≥44px 触达目标） */
+@media (pointer: coarse) {
+  .segmented__btn { padding: 0.55rem 1.05rem; }
+  .segmented--lg .segmented__btn { padding: 0.65rem 1.6rem; }
+  .post-topbar__back { padding: 0.6rem 0.25rem; }
+  .video-card__cta { padding: 0.7rem 1rem; }
+}
+
+/* 移动菜单：阻断滚动链（背后页面不跟着滚） */
+.mobile-menu__panel { overscroll-behavior: contain; }
+
+/* Windows / Firefox：深色细滚动条，避免默认亮色粗条破坏观感 */
+html { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.22) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.28); }

@@ -678,9 +678,10 @@
     });
   }
 
-  /* ---- Hero 视差：内容缓移淡出 + 泛光灯光斑跟随滚动/鼠标 ---- */
+  /* ---- Hero 视差：内容缓移淡出 + 泛光灯光斑跟随滚动/鼠标 ----
+     仅精确指针设备启用：触屏设备保持静态 Hero，保障各端滚动顺滑省电。 */
   function setupHeroParallax() {
-    if (MOTION_OFF) return;
+    if (MOTION_OFF || !FINE_POINTER) return;
     var hero = document.querySelector('.hero');
     var inner = document.querySelector('.hero__inner');
     var glowA = document.querySelector('.hero__glow-a');
@@ -734,6 +735,31 @@
     });
   }
 
+  /* ---------- 试训表单 → 结构化邮件（零后端，无可攻击端点） ---------- */
+  function setupTrialMailto() {
+    var cta = document.querySelector('#join .join-card a[href^="mailto:"]');
+    if (!cta) return;
+    cta.addEventListener('click', function () {
+      function val(id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      }
+      var name = val('join-name');
+      var lines = [];
+      if (name) lines.push('姓名: ' + name);
+      if (val('join-contact')) lines.push('联系方式: ' + val('join-contact'));
+      var pos = val('join-position');
+      if (pos && pos !== t('join.select')) lines.push('擅长位置: ' + pos);
+      var exp = val('join-exp');
+      if (exp && exp !== t('join.select')) lines.push('踢球经验: ' + exp);
+      if (val('join-intro')) lines.push('自我介绍: ' + val('join-intro'));
+      lines.push('', '—— 来自官网试训表单');
+      var subject = 'STAR FC 试训申请' + (name ? ' - ' + name : '');
+      cta.setAttribute('href', 'mailto:account@starfc.sg?subject=' +
+        encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n')));
+    });
+  }
+
   /* ---------- 语言切换入口 ---------- */
   function setLanguage(lang) {
     lang = lang === 'en' ? 'en' : 'zh';
@@ -770,6 +796,7 @@
     renderStories();
     renderTeam();
     initFixturesToggles();
+    setupTrialMailto();
     refreshReveals(false);
     setupHeroParallax();
     setupCardTilt();

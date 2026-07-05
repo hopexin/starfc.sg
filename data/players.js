@@ -4,9 +4,10 @@
 // 命名规范：
 // - id：小写英文 + 连字符（kebab-case），球员照片路径按 id 拼接：
 //   assets/img/players/<id>/profile.jpg
-// - name：规范英文名（全站统一显示用，赛程进球名单也用它）
-// - nameZh：中文名（可选，仅在确认写法时填写，供数据参考/未来使用）
-// - shortName：站内显示用短名（可选，如 Victor）
+// - name：官方英文名（全站主显示：球员卡、进球名单都用它）
+// - nameZh：官方中文名（可选，确认写法后填写）
+// - nickZh / nickEn：昵称（可选；播报、录入时可用；页面显示仍以官方名为准）
+// - shortName：显示覆盖（特例，如 Victor——填了它页面就显示它）
 // - position：GK / CB / FULL BACK / DM / CM / WINGER / STRIKER
 // - number：球衣号
 //
@@ -22,8 +23,8 @@ window.STARFC.players = [
   { "id": "wu-wei", "name": "Wu Wei", "position": "CB", "number": 5 },
   { "id": "zhang-liang", "name": "Zhang Liang", "position": "FULL BACK", "number": 6 },
   { "id": "liu-zeyu", "name": "Liu Zeyu", "position": "DM", "number": 7 },
-  { "id": "xu-zhihe", "name": "Xu Zhihe", "position": "CM", "number": 8 },
-  { "id": "huang-jaron-zijie", "name": "Huang Jaron Zijie", "position": "STRIKER", "number": 9 },
+  { "id": "xu-zhihe", "name": "Xu Zhihe", "nickZh": "小许", "position": "CM", "number": 8 },
+  { "id": "huang-jaron-zijie", "name": "Huang Jaron Zijie", "nickZh": "小杰", "nickEn": "Jaron", "position": "STRIKER", "number": 9 },
   { "id": "neo-kai-feng", "name": "Neo Kai Feng", "position": "WINGER", "number": 10 },
   { "id": "wu-ding", "name": "Wu Ding", "position": "WINGER", "number": 11 },
   { "id": "heng-teh-hup", "name": "Heng Teh Hup", "position": "DM", "number": 12 },
@@ -32,20 +33,20 @@ window.STARFC.players = [
   { "id": "sun-yumin", "name": "Sun Yumin", "position": "CB", "number": 15 },
   { "id": "feng-xin", "name": "Feng Xin", "nameZh": "冯鑫", "position": "WINGER", "number": 16 },
   { "id": "wu-jinglong", "name": "Wu Jinglong", "position": "CB", "number": 17 },
-  { "id": "jiang-chaoxiong", "name": "Jiang Chaoxiong", "position": "STRIKER", "number": 18 },
+  { "id": "jiang-chaoxiong", "name": "Jiang Chaoxiong", "nickZh": "雄", "position": "STRIKER", "number": 18 },
   { "id": "zhang-xin", "name": "Zhang Xin", "nameZh": "张鑫", "position": "STRIKER", "number": 19 },
   { "id": "cui-zongyu", "name": "Cui Zongyu", "position": "WINGER", "number": 20 },
   { "id": "li-qilin", "name": "Li Qilin", "nameZh": "李祺琳", "position": "FULL BACK", "number": 22 },
   { "id": "zhou-xin", "name": "Zhou Xin", "position": "FULL BACK", "number": 24 },
   { "id": "liu-meihua", "name": "Liu Meihua", "nameZh": "刘美华", "position": "CM", "number": 25 },
   { "id": "gong-yiou", "name": "Gong Yiou", "position": "GK", "number": 26 },
-  { "id": "joel-loh-ziyang", "name": "Joel Loh Ziyang", "position": "WINGER", "number": 27 },
+  { "id": "joel-loh-ziyang", "name": "Joel Loh Ziyang", "nickEn": "Joel", "position": "WINGER", "number": 27 },
   { "id": "wu-di", "name": "Wu Di", "position": "FULL BACK", "number": 28 },
   { "id": "victor-chukwuebuka-ebele", "name": "Victor Chukwuebuka Ebele", "shortName": "Victor", "position": "CM", "number": 29 },
   { "id": "hu-jianghai", "name": "Hu Jianghai", "position": "FULL BACK", "number": 33 },
   { "id": "toyama-yuchiro", "name": "Toyama Yuchiro", "position": "WINGER", "number": 38 },
   { "id": "zhao-ruilin", "name": "Zhao Ruilin", "position": "WINGER", "number": 45 },
-  { "id": "sun-gan", "name": "Sun Gan", "position": "CB", "number": 46 },
+  { "id": "sun-gan", "name": "Sun Gan", "nickZh": "干哥", "position": "CB", "number": 46 },
   { "id": "zhang-wei", "name": "Zhang Wei", "position": "FULL BACK", "number": 49 },
   { "id": "sun-haoyang", "name": "Sun Haoyang", "position": "FULL BACK", "number": 51 },
   { "id": "zhao-yu", "name": "Zhao Yu", "nameZh": "赵宇", "position": "WINGER", "number": 56 },
@@ -65,7 +66,7 @@ window.STARFC.team = {
 
 // 别名对照表：比赛截图/群聊里常见的绰号、简称、中文名 → 球员 id。
 // 录入 data/fixtures.js 时遇到这些写法，一律换成对应 id 引用。
-// （此表供维护者与自动化 agent 查询，也用于 scripts/validate-data.py 校验提示。）
+// 新增昵称时：名册对象里补 nickZh/nickEn + 此表加一行映射，两处都要。
 window.STARFC.aliases = {
   "小许": "xu-zhihe",
   "雄": "jiang-chaoxiong",
