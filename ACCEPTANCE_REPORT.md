@@ -54,9 +54,9 @@
 - `scripts/validate-data.js`（新增）：数据校验闸门；`validate-assets.sh`、`validate-media-covers.py` 已适配新数据源。
 - 文档全部更新：`docs/WEEKLY_UPDATE_CHECKLIST.md`、`MATCH_SCREENSHOT_UPDATE_WORKFLOW.md`、`CONTENT_MAINTENANCE.md`、`CONTENT_ASSET_WORKFLOW.md`、`DESIGN.md`。
 
-### 视觉（阶段 3）
+### 视觉（阶段 3，按反馈迭代为深色）
 
-白底极简现代运动风：品牌红唯一强调色 + 中性灰阶；Barlow Condensed 负责比分/数字/英文大字，Noto Sans SC 正文；赛程卡为主角（大号着色比分 + 轻量 W/D/L 徽章）；clamp() 流体字号 + Grid 布局，移动优先；克制的 hover 动效；支持 prefers-reduced-motion；队徽保留、巨龙弱化。
+高级深色运动风（延续球队"新加坡夜场球场"气质）：近黑碳色底 + 泛光灯径向光 + 极淡球场网格纹理；白色发丝线分层的卡片表面（带顶部内光）；品牌红唯一强调色（CTA/节点带克制红色泛光）+ 四级深色灰阶文字；Barlow Condensed 负责比分/数字/英文大字，Noto Sans SC 正文；赛程卡为主角（大号着色比分 + tint 结果徽章）；clamp() 流体字号 + Grid 布局，移动优先；克制的 hover 动效；支持 prefers-reduced-motion；队徽保留、巨龙弱化（仅 Hero 轻微光晕）。首版曾做成纯白亮色，经反馈改回深色高级方向；分享卡（og-cover.png）同步为深色版。
 
 ### SEO 与分享（阶段 4）
 

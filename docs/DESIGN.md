@@ -8,10 +8,10 @@
 
 ## 1. 设计方向
 
-- 极简、干净的现代运动风：大留白、强字体层级、克制配色。
-- **一个强主色红 + 大量中性灰**；金/琥珀不再作为系统色（只存在于队徽图案内）。
-- 赛程卡是视觉主角：结果用大号 condensed 比分 + 轻量 W/D/L 徽章表达，不用整卡描边。
-- 保留队徽，但"巨龙"元素弱化：队徽小尺寸出现，无发光特效。
+- **高级深色运动风（Singapore night pitch）**：近黑碳色底 + 泛光灯氛围 + 白色发丝线分层；大留白、强字体层级、克制配色。
+- **一个强主色红 + 深色中性灰阶**；金/琥珀不作为系统色（只存在于队徽图案内）；红色可以带克制的泛光（glow）。
+- 赛程卡是视觉主角：结果用大号 condensed 比分 + 轻量 tint 徽章表达，不用整卡描边。
+- 保留队徽，巨龙弱化：小尺寸出现，仅 Hero 处配轻微红色光晕。
 - 移动优先：默认单列堆叠，向上逐级变网格；赛程默认折叠（手机 6 张 / 桌面 9 张）+ "显示全部"。
 
 ## 2. Tokens（唯一取值来源：main.css `:root`）
@@ -20,16 +20,16 @@
 
 | Token | 值 | 用途 |
 | --- | --- | --- |
-| `--red-600` / `--red-700` | #dc2626 / #b91c1c | 品牌红：CTA、强调、active、eyebrow |
-| `--red-50` / `--red-100` | 红色浅底 | 红色 tint 背景（chip、CTA hover） |
-| `--ink` | #0f0f0f | 标题、核心信息 |
-| `--gray-700` / `--gray-500` / `--gray-400` | 中性灰阶 | 正文 / 次要说明 / 元信息 |
-| `--gray-50` | #f7f7f7 | 交替区块背景（`.section--alt`） |
-| `--gray-200` | #e4e4e4 | 默认描边（`--border`） |
-| `--gray-900` | #171717 | 页脚深底 |
-| `--win` / `--draw` / `--loss` | 绿 / 灰 / 红 | 只用于结果徽章与比分文字 |
+| `--red-600` / `--red-500` | #dc2626 / #ef4444 | 品牌红：CTA 实心 / hover 提亮与深底红字 |
+| `--red-tint` / `--red-border` / `--red-glow` | 红色透明层 | chip 底、红描边、按钮与节点泛光 |
+| `--bg` / `--bg-alt` / `--bg-deep` | #0e0f11 / #131417 / #0a0b0c | 页面底 / 交替区块 / 页脚 |
+| `--surface` / `--surface-2` | #17181c / #101114 | 卡片表面（自带顶部内光）/ 输入框与照片位 |
+| `--line` / `--line-soft` / `--line-strong` | 白色 8% / 5% / 17% | 发丝线描边体系（默认 / 分隔 / hover） |
+| `--text-hi` / `--text` / `--text-mut` / `--text-faint` | #f6f6f5 → #6c6c69 | 标题 / 正文 / 说明 / 元信息四级 |
+| `--win` / `--draw` / `--loss` | #4ade80 / #a1a1aa / #f87171 | 只用于结果徽章与比分文字（含各自 tint 底/描边） |
 
-规则：胜平负色**只**用于 `.result-pill` 和 `.match-card__score`；红色是唯一品牌强调色。
+规则：胜平负色**只**用于 `.result-pill` 和 `.match-card__score`；红色是唯一品牌强调色；
+深底上禁用纯黑阴影堆叠表达层级，优先用 `--line`/`--line-strong` 描边 + 顶部内光。
 
 ### 字体
 
@@ -56,7 +56,7 @@
 | 区块 | `.section` / `.section--alt` | 白与浅灰交替 |
 | 区块标题组 | `.section-head` + `.eyebrow` + `.section-title` + `.section-desc` | eyebrow 是红色 condensed 大写 |
 | 按钮 | `.btn--primary`（红实心）/ `.btn--secondary`（白描边）/ `.btn--ghost`（红文字） | |
-| 分段控件 | `.segmented` + `.segmented__btn.is-active` | 语言切换、年份切换共用；active = 白底 chip |
+| 分段控件 | `.segmented` + `.segmented__btn.is-active` | 语言切换、年份切换共用；active = 反白 chip（白底深字） |
 | 比赛卡 | `.match-card--win/draw/loss/upcoming` | 结果决定比分颜色 |
 | 结果徽章 | `.result-pill--win/draw/loss` | tint 底 + 描边 |
 | 统计块 | `.stat-tile--accent/win/loss` | condensed 大数字 |
