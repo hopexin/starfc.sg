@@ -81,8 +81,23 @@
 ## 5. 可访问性与动效
 
 - 焦点：全局 `:focus-visible` 红色描边，不许去掉。
-- 动效只做 opacity/transform/box-shadow 的 0.15–0.3s 过渡；`prefers-reduced-motion` 已全局降级。
+- 微交互只做 opacity/transform/box-shadow 的 0.15–0.3s 过渡；`prefers-reduced-motion` 全局降级。
 - 新增图片必须写 alt；界面文案走 `data/i18n.js`（中英成对）。
+
+### 动效层（main.css §11 + main.js 动效模块）
+
+统一缓动 `--ease-out`（expo-out）。五个组成部分：
+
+| 动效 | 机制 | 备注 |
+| --- | --- | --- |
+| 滚动渐入 | HTML 标 `data-reveal` / 容器标 `data-reveal-stagger`；JS 武装 `.reveal-armed` 后由滚动自检加 `.is-in` | 隐藏态只作用于 JS 武装过的元素：JS 不运行/出错时页面完全静态可见；不依赖 IntersectionObserver |
+| 数字滚动 | 容器标 `data-countup`，进入视口后 `.stat-tile__value` 从 0 数到真实值，容器 `data-counted` 防重播 | reduced-motion 下直接显示终值 |
+| Hero 入场编排 | 纯 CSS：`.js-motion` 下 crest→badge→标题逐词(title-mask/word)→副标→CTA→战绩条依次 rise | 仅首次加载 |
+| Hero 视差 | JS：内容随滚动缓移淡出；光斑层 `.hero__glow-a/b` 随滚动+鼠标漂移 | 仅 fine pointer 响应鼠标 |
+| 球员卡倾斜 | `#team-groups` 事件委托：pointermove 设置 rotateX/Y 与 `--mx/--my` 光泽 | 仅 fine pointer；重渲染安全 |
+
+规则：语言切换等重渲染**不重播**动画（视口内元素 `.is-in.instant` 直接就位）；
+新增可渐入内容 = 元素加 `data-reveal`（或容器加 `data-reveal-stagger`），别的不用动。
 
 ## 6. 改样式的流程
 

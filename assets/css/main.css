@@ -428,12 +428,22 @@ body.no-scroll { overflow: hidden; }
   min-height: 92svh;
   padding: calc(var(--nav-h) + var(--sp-8)) 0 var(--sp-9);
   background:
-    radial-gradient(56rem 32rem at 80% -12%, rgba(220, 38, 38, 0.17) 0%, transparent 62%),
-    radial-gradient(44rem 28rem at 8% 6%, rgba(255, 255, 255, 0.055) 0%, transparent 56%),
     radial-gradient(70rem 42rem at 50% 118%, rgba(220, 38, 38, 0.07) 0%, transparent 60%),
     var(--bg);
   overflow: hidden;
   text-align: center;
+}
+/* 泛光灯光斑（独立层，供 JS 视差驱动） */
+.hero__glow { position: absolute; inset: 0; pointer-events: none; }
+.hero__glow-a,
+.hero__glow-b { position: absolute; will-change: transform; }
+.hero__glow-a {
+  top: -20rem; right: -14rem; width: 60rem; height: 42rem;
+  background: radial-gradient(closest-side, rgba(220, 38, 38, 0.18), transparent 70%);
+}
+.hero__glow-b {
+  top: -8rem; left: -18rem; width: 48rem; height: 34rem;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.06), transparent 65%);
 }
 .hero::before {
   content: '';
@@ -1405,4 +1415,83 @@ body.no-scroll { overflow: hidden; }
   text-align: center;
   font-size: var(--text-xs);
   color: var(--text-faint);
+}
+
+/* =====================================================================
+   11. 动效层（零依赖）
+   参考：FC Porto Memorial（滚动叙事）/ Audi F1（动态大字）/ WC26 Album（卡片倾斜）
+   规则：统一 expo-out 缓动；prefers-reduced-motion 全部关闭；
+   JS 未启用（无 .js-motion）时一切静态可见；JS 异常时 2.5s 安全网自动显示。
+   ===================================================================== */
+:root { --ease-out: cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* ---- 滚动渐入 ----
+   隐藏态只作用于 JS 武装过的 .reveal-armed；JS 未运行/出错时页面完全静态可见。 */
+.reveal-armed {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.reveal-armed.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-armed.is-in.instant { transition: none; }
+
+/* ---- Hero 入场编排（仅首次加载，CSS 驱动） ---- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes word-up { from { transform: translateY(108%); } to { transform: none; } }
+.title-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.title-word { display: inline-block; }
+.js-motion .title-word { animation: word-up 0.95s var(--ease-out) 0.25s both; }
+.js-motion .title-mask:nth-of-type(2) .title-word { animation-delay: 0.38s; }
+.js-motion .hero__crest { animation: rise 0.8s var(--ease-out) 0.08s both; }
+.js-motion .hero__badge { animation: rise 0.7s var(--ease-out) 0.2s both; }
+.js-motion .hero__subtitle { animation: rise 0.7s var(--ease-out) 0.55s both; }
+.js-motion .hero__tagline { animation: rise 0.7s var(--ease-out) 0.65s both; }
+.js-motion .hero__actions { animation: rise 0.7s var(--ease-out) 0.78s both; }
+.js-motion .hero-latest { animation: rise 0.7s var(--ease-out) 0.95s both; }
+.js-motion .hero-next { animation: rise 0.7s var(--ease-out) 1.08s both; }
+.hero__inner { will-change: transform, opacity; }
+
+/* ---- 射手榜数据条生长（随 board 渐入，逐行错峰） ---- */
+.scorers-board.reveal-armed .scorers-board__bar-fill { transform: scaleX(0); transform-origin: left; }
+.scorers-board.reveal-armed.is-in .scorers-board__bar-fill {
+  transform: scaleX(1);
+  transition: transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms + 150ms);
+}
+.scorers-board.reveal-armed.is-in.instant .scorers-board__bar-fill { transition: none; }
+
+/* ---- 大事记：年份节点弹出 ---- */
+.timeline__item.reveal-armed .timeline__year { opacity: 0; transform: scale(0.6); }
+.timeline__item.reveal-armed.is-in .timeline__year {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s var(--ease-out) 0.15s, transform 0.5s var(--ease-out) 0.15s;
+}
+
+/* ---- 球员卡倾斜光泽（JS 设置 --mx/--my） ---- */
+.js-motion .player-card__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(22rem 22rem at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.13), transparent 55%);
+  transition: opacity 0.25s ease;
+}
+.js-motion .player-card.is-tilting .player-card__photo::after { opacity: 1; }
+.js-motion .player-card.is-tilting { border-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+
+/* ---- reduced-motion：动效层全部关闭（全局降级规则之外的兜底） ---- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-armed { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .scorers-board.reveal-armed .scorers-board__bar-fill { transform: scaleX(1) !important; transition: none !important; }
+  .timeline__item.reveal-armed .timeline__year { opacity: 1 !important; transform: none !important; }
+  .js-motion .player-card__photo::after { display: none; }
 }

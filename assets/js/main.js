@@ -307,7 +307,7 @@
       el.innerHTML = list.map(function (s, i) {
         var rank = i + 1;
         var pct = Math.max(8, Math.round(s.goals / max * 100));
-        return '<li class="scorers-board__row' + (rank === 1 ? ' is-top' : '') + '">' +
+        return '<li class="scorers-board__row' + (rank === 1 ? ' is-top' : '') + '" style="--i:' + i + '">' +
           '<span class="scorers-board__rank">' + (rank < 10 ? '0' + rank : rank) + '</span>' +
           '<span class="scorers-board__player">' +
             '<span class="scorers-board__name">' + esc(s.name) + '</span>' +
@@ -336,6 +336,8 @@
         if (collapsed) {
           var section = document.getElementById('fixtures');
           if (section) section.scrollIntoView({ block: 'start' });
+        } else {
+          revealCheck(); // 展开后新露出的卡片立即渐入
         }
       });
     });
@@ -541,6 +543,148 @@
     });
   }
 
+  /* =====================================================================
+   * 动效层（零依赖）：滚动渐入 / 数字滚动 / 射手榜条生长 / Hero 视差 / 球员卡倾斜
+   * 参考：FC Porto Memorial（滚动叙事）、Audi F1（动态大字）、WC26 Album（卡片倾斜）
+   * 统一规则：expo-out 缓动；prefers-reduced-motion 下全部关闭；语言切换不重播。
+   * ===================================================================== */
+  var MOTION_OFF = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FINE_POINTER = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+
+  // 隐藏态只加在 JS "武装"过的元素（.reveal-armed）上：
+  // JS 若未运行/中途出错，页面完全静态可见，天然安全。
+  // 触发采用滚动驱动自检（不依赖 IntersectionObserver，任何环境行为一致）。
+  function viewportH() {
+    return window.innerHeight || document.documentElement.clientHeight || 800;
+  }
+
+  function inViewport(el, marginRatio) {
+    var r = el.getBoundingClientRect();
+    var vh = viewportH();
+    var m = vh * (marginRatio || 0);
+    return r.top < vh - m && r.bottom > 0 && r.width > 0;
+  }
+
+  function revealCheck() {
+    document.querySelectorAll('.reveal-armed:not(.is-in)').forEach(function (el) {
+      if (inViewport(el, 0.06)) el.classList.add('is-in');
+    });
+    document.querySelectorAll('[data-countup]:not([data-counted])').forEach(function (c) {
+      if (inViewport(c, 0.1)) runCountup(c);
+    });
+  }
+  window.__starfcMotionCheck = revealCheck; // 内部测试钩子
+
+  var revealTick = false;
+  function scheduleRevealCheck() {
+    if (revealTick) return;
+    revealTick = true;
+    setTimeout(function () { revealTick = false; revealCheck(); }, 120);
+  }
+
+  // instant=true：语言切换等重渲染场景，视口内的元素直接就位，不重播动画
+  function refreshReveals(instant) {
+    if (MOTION_OFF) return; // 不武装 → 全部静态可见
+    document.querySelectorAll('[data-reveal-stagger]').forEach(function (grid) {
+      Array.prototype.forEach.call(grid.children, function (child, i) {
+        if (!child.hasAttribute('data-reveal')) child.setAttribute('data-reveal', '');
+        child.style.setProperty('--reveal-delay', (Math.min(i % 9, 5) * 70) + 'ms');
+      });
+    });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      if (el.classList.contains('is-in')) return;
+      if (instant && inViewport(el)) {
+        el.classList.add('reveal-armed', 'is-in', 'instant');
+        return;
+      }
+      el.classList.add('reveal-armed');
+    });
+    revealCheck();
+  }
+
+  /* ---- 数字滚动（进入视口时从 0 数到真实值，每个容器只播一次） ---- */
+  function countUpEl(el, duration) {
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var target = parseInt(el.getAttribute('data-count') || el.textContent, 10);
+    if (isNaN(target)) return;
+    var start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function runCountup(container) {
+    container.setAttribute('data-counted', '1');
+    if (MOTION_OFF) return;
+    container.querySelectorAll('.stat-tile__value').forEach(function (v, i) {
+      if (v.getAttribute('data-count') || /^\d+$/.test(v.textContent.trim())) {
+        setTimeout(function () { countUpEl(v, 900); }, i * 90);
+      }
+    });
+  }
+
+  /* ---- Hero 视差：内容缓移淡出 + 泛光灯光斑跟随滚动/鼠标 ---- */
+  function setupHeroParallax() {
+    if (MOTION_OFF) return;
+    var hero = document.querySelector('.hero');
+    var inner = document.querySelector('.hero__inner');
+    var glowA = document.querySelector('.hero__glow-a');
+    var glowB = document.querySelector('.hero__glow-b');
+    if (!hero || !inner) return;
+    var sy = 0, mx = 0, my = 0, dirty = false;
+    function apply() {
+      dirty = false;
+      var h = hero.offsetHeight || 1;
+      if (sy <= h) {
+        inner.style.transform = 'translate3d(0,' + (sy * 0.16).toFixed(1) + 'px,0)';
+        inner.style.opacity = Math.max(0.25, 1 - (sy / h) * 0.85).toFixed(3);
+        if (glowA) glowA.style.transform = 'translate3d(' + (mx * 26).toFixed(1) + 'px,' + (sy * 0.22 + my * 18).toFixed(1) + 'px,0)';
+        if (glowB) glowB.style.transform = 'translate3d(' + (mx * -18).toFixed(1) + 'px,' + (sy * 0.1 + my * -12).toFixed(1) + 'px,0)';
+      }
+    }
+    function schedule() { if (!dirty) { dirty = true; requestAnimationFrame(apply); } }
+    window.addEventListener('scroll', function () { sy = window.scrollY; schedule(); }, { passive: true });
+    if (FINE_POINTER) {
+      hero.addEventListener('pointermove', function (e) {
+        mx = e.clientX / window.innerWidth - 0.5;
+        my = e.clientY / window.innerHeight - 0.5;
+        schedule();
+      }, { passive: true });
+    }
+  }
+
+  /* ---- 球员卡 3D 倾斜 + 光泽（仅鼠标设备，事件委托，重渲染安全） ---- */
+  function setupCardTilt() {
+    if (MOTION_OFF || !FINE_POINTER) return;
+    var container = document.getElementById('team-groups');
+    if (!container) return;
+    var MAX = 7; // 最大倾角（度）
+    container.addEventListener('pointermove', function (e) {
+      var card = e.target.closest ? e.target.closest('.player-card') : null;
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      card.style.transform = 'perspective(650px) rotateX(' + ((0.5 - py) * MAX).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * MAX).toFixed(2) + 'deg) translateY(-2px)';
+      card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      card.classList.add('is-tilting');
+    });
+    container.addEventListener('pointerout', function (e) {
+      var card = e.target.closest ? e.target.closest('.player-card') : null;
+      if (!card) return;
+      if (e.relatedTarget && card.contains(e.relatedTarget)) return;
+      card.style.transform = '';
+      card.classList.remove('is-tilting');
+    });
+  }
+
   /* ---------- 语言切换入口 ---------- */
   function setLanguage(lang) {
     lang = lang === 'en' ? 'en' : 'zh';
@@ -553,6 +697,7 @@
     renderTicker();
     renderMedia();
     renderTeam();
+    refreshReveals(true); // 重渲染后：视口内元素直接就位，不重播动画
   }
 
   /* ---------- 对 HTML onclick 暴露的全局函数 ---------- */
@@ -573,6 +718,11 @@
     renderMedia();
     renderTeam();
     initFixturesToggles();
+    refreshReveals(false);
+    setupHeroParallax();
+    setupCardTilt();
+    window.addEventListener('scroll', scheduleRevealCheck, { passive: true });
+    window.addEventListener('resize', scheduleRevealCheck, { passive: true });
   }
 
   if (document.readyState === 'loading') {

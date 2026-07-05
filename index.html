@@ -33,6 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <script>document.documentElement.classList.add('js-motion');</script>
     <!-- 站点数据（唯一维护入口）与渲染脚本 -->
     <script src="data/i18n.js" defer></script>
     <script src="data/players.js" defer></script>
@@ -131,6 +132,10 @@
     <main>
         <!-- ===== Hero ===== -->
         <section id="home" class="hero">
+            <div class="hero__glow" aria-hidden="true">
+                <span class="hero__glow-a"></span>
+                <span class="hero__glow-b"></span>
+            </div>
             <div class="container hero__inner">
                 <img src="assets/img/club/starfclogo2-256.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="hero__crest" width="104" height="104" fetchpriority="high">
                 <div>
@@ -139,7 +144,7 @@
                         <span data-i18n="hero.badge">成立于 2002 · 新加坡 11 人制草根球队</span>
                     </span>
                 </div>
-                <h1 class="hero__title" translate="no">STAR <span class="hero__title-accent">FC</span></h1>
+                <h1 class="hero__title" translate="no"><span class="title-mask"><span class="title-word">STAR</span></span> <span class="title-mask"><span class="title-word hero__title-accent">FC</span></span></h1>
                 <p class="hero__subtitle" data-i18n="hero.subtitle">新加坡 STAR 足球俱乐部</p>
                 <p class="hero__tagline"><span data-i18n="hero.tagline1">从 2002 到今天，</span><span class="hero__tagline-accent" data-i18n="hero.tagline2">继续上场。</span></p>
                 <div class="hero__actions">
@@ -166,7 +171,7 @@
         <!-- ===== 赛程战绩（数据驱动：data/fixtures.js） ===== -->
         <section id="fixtures" class="section section--alt">
             <div class="container">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">01</p>
                         <span class="eyebrow">Fixtures & Results</span>
@@ -185,14 +190,14 @@
                 <!-- 2025 赛季 -->
                 <div data-year-panel="2025" class="hidden">
                     <!-- 比赛卡片由 assets/js/main.js 从 data/fixtures.js 渲染 -->
-                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2025"></div>
+                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2025" data-reveal-stagger></div>
                     <div class="fixtures-more">
                         <button type="button" class="btn btn--secondary" data-fixtures-toggle="2025"></button>
                     </div>
                     <!-- 赛季总结：统计与射手榜均由比赛数据自动计算 -->
                     <div class="season-summary">
-                        <div class="season-stats" data-fixtures-stats="2025"></div>
-                        <aside class="scorers-board">
+                        <div class="season-stats" data-fixtures-stats="2025" data-countup data-reveal-stagger></div>
+                        <aside class="scorers-board" data-reveal>
                             <div class="scorers-board__head">
                                 <h3 class="scorers-board__title" data-i18n="fixtures.scorersTitle">射手榜</h3>
                                 <span class="scorers-board__sub" data-i18n="fixtures.scorersSub">由比赛数据自动统计</span>
@@ -204,13 +209,13 @@
 
                 <!-- 2026 赛季 -->
                 <div data-year-panel="2026">
-                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2026"></div>
+                    <div class="fixtures-grid is-collapsed" data-fixtures-list="2026" data-reveal-stagger></div>
                     <div class="fixtures-more">
                         <button type="button" class="btn btn--secondary" data-fixtures-toggle="2026"></button>
                     </div>
                     <div class="season-summary">
-                        <div class="season-stats" data-fixtures-stats="2026"></div>
-                        <aside class="scorers-board">
+                        <div class="season-stats" data-fixtures-stats="2026" data-countup data-reveal-stagger></div>
+                        <aside class="scorers-board" data-reveal>
                             <div class="scorers-board__head">
                                 <h3 class="scorers-board__title" data-i18n="fixtures.scorersTitle">射手榜</h3>
                                 <span class="scorers-board__sub" data-i18n="fixtures.scorersSub">由比赛数据自动统计</span>
@@ -226,7 +231,7 @@
         <!-- ===== 媒体中心（数据驱动：data/media.js） ===== -->
         <section id="media" class="section">
             <div class="container">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">02</p>
                         <span class="eyebrow">Media Center</span>
@@ -234,19 +239,19 @@
                         <p class="section-desc" data-i18n="media.desc">持续记录比赛集锦与关键瞬间</p>
                     </div>
                 </header>
-                <div class="media-head">
+                <div class="media-head" data-reveal>
                     <span class="chip chip--red" data-i18n="media.videoTag">视频</span>
                     <h3 class="media-head__title" data-i18n="media.videosTitle">比赛集锦</h3>
                 </div>
                 <!-- 视频卡片由 assets/js/main.js 从 data/media.js 渲染 -->
-                <div class="media-grid" data-media-list></div>
+                <div class="media-grid" data-media-list data-reveal-stagger></div>
             </div>
         </section>
 
         <!-- ===== 球队成员（数据驱动：data/players.js） ===== -->
         <section id="team" class="section section--alt">
             <div class="container">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">03</p>
                         <span class="eyebrow">Current Squad</span>
@@ -261,7 +266,7 @@
         <!-- ===== 名人堂 ===== -->
         <section id="hall" class="section">
             <div class="container">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">04</p>
                         <span class="eyebrow">Hall of Fame</span>
@@ -269,7 +274,7 @@
                         <p class="section-desc" data-i18n="hall.desc">记录 STAR FC 的关键人物、功勋队员与名誉成员。</p>
                     </div>
                 </header>
-                <div class="hall-grid">
+                <div class="hall-grid" data-reveal-stagger>
                     <article class="hall-card">
                         <div class="hall-card__photo">
                             <img src="assets/img/club/star_logo-320.jpg" alt="首批名单整理中" data-i18n-attr="alt:hall.card1.title" loading="lazy" decoding="async">
@@ -307,20 +312,20 @@
         <!-- ===== 关于我们 ===== -->
         <section id="about" class="section section--alt">
             <div class="container container--narrow">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">05</p>
                         <span class="eyebrow">About Us</span>
                         <h2 class="section-title" data-i18n="about.title">关于 STAR FC</h2>
                     </div>
                 </header>
-                <div class="about-prose">
+                <div class="about-prose" data-reveal>
                     <p><span class="em-ink" translate="no">STAR FC</span><span data-i18n="about.p1a"> 的雏形始于 </span><span class="em-red" data-i18n="about.p1b">2001 年</span><span data-i18n="about.p1c">，最初由 AIT 留学生队与浙江足球队等群体在新加坡的社区球场相聚踢球。</span><span class="em-red" data-i18n="about.p1d">2002 年 9 月</span><span data-i18n="about.p1e">，各分支正式整合并更名为 </span><span class="em-ink" translate="no">STAR FC</span><span data-i18n="about.p1f">，由终身名誉队长 </span><span class="em-red" data-i18n="about.p1g">Lemon（9 号）</span><span data-i18n="about.p1h"> 牵头组建。</span></p>
                     <p data-i18n="about.p2">二十余年来，STAR FC 作为一支草根 11 人制球队，在新加坡持续活跃，参与本地联赛与友谊赛，累计吸纳超过 200 名球员。球队保留了队徽、队规与纪念球衣等传统，一代带一代，从未散场。</p>
                 </div>
-                <div class="about-stats">
+                <div class="about-stats" data-reveal-stagger data-countup>
                     <div class="stat-tile stat-tile--accent">
-                        <p class="stat-tile__value">23+</p>
+                        <p class="stat-tile__value" data-count="23" data-count-suffix="+">23+</p>
                         <p class="stat-tile__label" data-i18n="about.stat1Label">年历史</p>
                     </div>
                     <div class="stat-tile stat-tile--accent">
@@ -328,22 +333,22 @@
                         <p class="stat-tile__label" data-i18n="about.stat2Label">2025 UAFL 联赛</p>
                     </div>
                     <div class="stat-tile stat-tile--accent">
-                        <p class="stat-tile__value">200+</p>
+                        <p class="stat-tile__value" data-count="200" data-count-suffix="+">200+</p>
                         <p class="stat-tile__label" data-i18n="about.stat3Label">历史球员</p>
                     </div>
                     <div class="stat-tile stat-tile--accent">
-                        <p class="stat-tile__value">30+</p>
+                        <p class="stat-tile__value" data-count="30" data-count-suffix="+">30+</p>
                         <p class="stat-tile__label" data-i18n="about.stat4Label">活跃成员</p>
                     </div>
                 </div>
                 <div class="values">
-                    <header class="section-head section-head--sub">
+                    <header class="section-head section-head--sub" data-reveal>
                         <div class="section-head__main">
                             <span class="eyebrow">Our Values</span>
                             <h3 class="section-title" data-i18n="about.valuesTitle">团结、分享、乐趣、成长</h3>
                         </div>
                     </header>
-                    <div class="values-grid">
+                    <div class="values-grid" data-reveal-stagger>
                         <article class="value-card">
                             <div class="value-card__emoji" aria-hidden="true">🤝</div>
                             <h4 class="value-card__title" data-i18n="about.v1.title">团结 Unity</h4>
@@ -372,7 +377,7 @@
         <!-- ===== 队史大事记 ===== -->
         <section id="history" class="section">
             <div class="container container--narrow">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">06</p>
                         <span class="eyebrow">History</span>
@@ -381,49 +386,49 @@
                     </div>
                 </header>
                 <div class="timeline">
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">2001</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i1.title">雏形形成</h3>
                             <p class="timeline__body" data-i18n="history.i1.body">AIT 留学生队、浙江足球队等群体在新加坡社区球场自发踢球，STAR FC 的雏形在这一年形成。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">2002.09</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i2.title">整合更名为 STAR</h3>
                             <p class="timeline__body" data-i18n="history.i2.body">各分支球队正式整合，由终身名誉队长 Lemon（9 号）牵头，更名为「STAR 足球俱乐部」。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">2005.08</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i3.title">队规第一版发布</h3>
                             <p class="timeline__body" data-i18n="history.i3.body">2005 年 8 月 8 日，球队正式发布第一版队规，明确管理规范与行为准则，奠定球队文化基础。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">2008</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i4.title">启用现版队徽</h3>
                             <p class="timeline__body" data-i18n="history.i4.body">球队对队徽进行改进，启用现在这版带巨龙的盾牌式队徽：红色代表热血与激情，两颗星代表"STAR"的含义，居中的巨龙象征"龙的传人"。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">08–10</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i5.title">一年多不败纪录</h3>
                             <p class="timeline__body" data-i18n="history.i5.body">2008 年至 2010 年间，球队创下一年多不败的历史纪录，成为 STAR FC 早期的巅峰时期。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year">2025</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i6.title">UAFL 联赛亚军</h3>
                             <p class="timeline__body" data-i18n="history.i6.body">球队在 UAFL 业余联赛中取得联赛第二名的佳绩，主力阵容以老带新，新一代球员逐渐成长为中坚力量。</p>
                         </div>
                     </div>
-                    <div class="timeline__item">
+                    <div class="timeline__item" data-reveal>
                         <div class="timeline__year" data-i18n="history.i7.year">现在</div>
                         <div class="timeline__card">
                             <h3 class="timeline__title" data-i18n="history.i7.title">继续记录与传承</h3>
@@ -437,7 +442,7 @@
         <!-- ===== 球队档案与故事 ===== -->
         <section id="stories" class="section section--alt">
             <div class="container">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">07</p>
                         <span class="eyebrow">Stories</span>
@@ -445,7 +450,7 @@
                         <p class="section-desc" data-i18n="stories.desc">二十多年，留下的不只是比分</p>
                     </div>
                 </header>
-                <div class="stories-grid">
+                <div class="stories-grid" data-reveal-stagger>
                     <a href="http://xhslink.com/o/65x7g6P3zwi" target="_blank" rel="noopener noreferrer" class="story-card">
                         <span><span class="chip chip--red" data-i18n="stories.tag">小红书</span></span>
                         <h3 class="story-card__title" data-i18n="stories.s1.title">目标：新加坡最好的业余华人足球俱乐部</h3>
@@ -474,14 +479,14 @@
                         </div>
                     </a>
                 </div>
-                <p class="stories-note" data-i18n="stories.note">后续会继续补充比赛战报、活动与球队故事。</p>
+                <p class="stories-note" data-reveal data-i18n="stories.note">后续会继续补充比赛战报、活动与球队故事。</p>
             </div>
         </section>
 
         <!-- ===== 加入我们 ===== -->
         <section id="join" class="section">
             <div class="container container--narrow">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">08</p>
                         <span class="eyebrow">Join Us</span>
@@ -489,7 +494,7 @@
                         <p class="section-desc" data-i18n="join.subtitle">那个热爱足球的你</p>
                     </div>
                 </header>
-                <div class="join-card">
+                <div class="join-card" data-reveal>
                     <h3 class="join-card__title" data-i18n="join.formTitle">试训联系信息</h3>
                     <div class="form-grid">
                         <div class="form-field">
@@ -532,7 +537,7 @@
         <!-- ===== 联系我们 ===== -->
         <section id="contact" class="section section--alt">
             <div class="container container--narrow">
-<header class="section-head">
+<header class="section-head" data-reveal>
                     <div class="section-head__main">
                         <p class="section-head__index" aria-hidden="true">09</p>
                         <span class="eyebrow">Contact</span>
@@ -541,7 +546,7 @@
                     </div>
                 </header>
                 <div class="contact-grid">
-                    <div class="contact-list">
+                    <div class="contact-list" data-reveal-stagger>
                         <a href="mailto:account@starfc.sg" class="contact-item">
                             <span class="contact-item__icon contact-item__icon--ink" aria-hidden="true">
                                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -570,7 +575,7 @@
                             </span>
                         </a>
                     </div>
-                    <div class="venues-card">
+                    <div class="venues-card" data-reveal>
                         <h3 class="venues-card__title" data-i18n="contact.venues">常用球场</h3>
                         <ul>
                             <li>SCC Dempsey</li>
