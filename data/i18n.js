@@ -53,7 +53,6 @@ window.STARFC.i18n = {
   // ---- 赛程战绩 ----
   'fixtures.title': { zh: '赛程与战绩', en: 'Fixtures & Results' },
   'fixtures.scorersTitle': { zh: '射手榜', en: 'Top Scorers' },
-  'fixtures.scorersSub': { zh: '由比赛数据自动统计', en: 'Computed from match data' },
   'fixtures.scorersGoals': { zh: '{n} 球', en: '{n}' },
   'fixtures.note2026': { zh: '2026 赛季进行中，赛程与战绩持续更新', en: 'The 2026 season is in progress. Fixtures and results are updated regularly.' },
   'fixtures.upcoming': { zh: '即将开球', en: 'Upcoming' },
@@ -75,6 +74,8 @@ window.STARFC.i18n = {
   'media.videoTag': { zh: '视频', en: 'Video' },
   'media.videosTitle': { zh: '比赛集锦', en: 'Match Highlights' },
   'media.watchYoutube': { zh: '在 YouTube 观看', en: 'Watch on YouTube' },
+  'media.showAll': { zh: '显示全部 {n} 条集锦', en: 'Show all {n} videos' },
+  'media.showLess': { zh: '收起', en: 'Show less' },
   'media.highlightsSuffix': { zh: '（比赛集锦）', en: '(Highlights)' },
 
   // ---- 球队成员 ----

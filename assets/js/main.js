@@ -383,12 +383,40 @@
           '<span class="video-card__tag">YouTube</span>' +
         '</a>' +
         '<div class="video-card__body">' +
-          '<h3 class="video-card__title">' + esc(videoTitle(v)) + '</h3>' +
+          '<time class="video-card__date" datetime="' + esc(v.date) + '">' + esc(v.date) + '</time>' +
+          '<h3 class="video-card__match"><span class="video-card__vs">vs</span> ' + esc(v.opponent) + '</h3>' +
           '<a href="' + esc(v.url) + '" target="_blank" rel="noopener noreferrer" class="video-card__cta">' +
             YT_ICON + '<span>' + esc(t('media.watchYoutube')) + '</span>' +
           '</a>' +
         '</div>' +
       '</article>';
+  }
+
+  // 媒体折叠按钮（仅手机端可见，CSS 控制；桌面端始终全量显示）
+  function updateMediaToggle() {
+    var btn = document.querySelector('[data-media-toggle]');
+    var grid = document.querySelector('[data-media-list]');
+    if (!btn || !grid) return;
+    var total = grid.children.length;
+    btn.parentElement.classList.toggle('hidden', total <= 4);
+    var collapsed = grid.classList.contains('is-collapsed');
+    btn.textContent = collapsed ? t('media.showAll', { n: total }) : t('media.showLess');
+  }
+
+  function initMediaToggle() {
+    var btn = document.querySelector('[data-media-toggle]');
+    var grid = document.querySelector('[data-media-list]');
+    if (!btn || !grid) return;
+    btn.addEventListener('click', function () {
+      var collapsed = grid.classList.toggle('is-collapsed');
+      updateMediaToggle();
+      if (collapsed) {
+        var section = document.getElementById('media');
+        if (section) section.scrollIntoView({ block: 'start' });
+      } else {
+        revealCheck();
+      }
+    });
   }
 
   function renderMedia() {
@@ -398,6 +426,7 @@
       return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0);
     });
     el.innerHTML = videos.map(videoCard).join('');
+    updateMediaToggle();
   }
 
   /* ---------- 球队档案与故事（首页最新 6 篇，数据源 data/blog.js） ---------- */
@@ -796,6 +825,7 @@
     renderStories();
     renderTeam();
     initFixturesToggles();
+    initMediaToggle();
     setupTrialMailto();
     refreshReveals(false);
     setupHeroParallax();
