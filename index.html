@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STAR FC | 新加坡 STAR 足球俱乐部</title>
-    <link rel="icon" type="image/png" href="assets/img/club/starfclogo2.png">
-    <link rel="apple-touch-icon" href="assets/img/club/starfclogo2.png">
+    <meta name="description" content="STAR FC 成立于 2002 年，是新加坡活跃的 11 人制草根华人足球俱乐部：赛程与战绩、比赛集锦、球队阵容与球队故事。">
+    <link rel="canonical" href="https://www.starfc.sg/">
+    <meta name="theme-color" content="#dc2626">
+
+    <!-- Open Graph（小红书 / WhatsApp / 微信等分享卡片） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="STAR FC">
+    <meta property="og:title" content="STAR FC | 新加坡 STAR 足球俱乐部">
+    <meta property="og:description" content="成立于 2002 年的新加坡 11 人制草根足球俱乐部。从 2002 到今天，继续上场。赛程战绩 · 比赛集锦 · 球队阵容。">
+    <meta property="og:url" content="https://www.starfc.sg/">
+    <meta property="og:image" content="https://www.starfc.sg/assets/img/og/og-cover.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="STAR FC — 新加坡 STAR 足球俱乐部，成立于 2002 年">
+    <meta property="og:locale" content="zh_SG">
+    <meta property="og:locale:alternate" content="en_SG">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="STAR FC | 新加坡 STAR 足球俱乐部">
+    <meta name="twitter:description" content="成立于 2002 年的新加坡 11 人制草根足球俱乐部。从 2002 到今天，继续上场。">
+    <meta name="twitter:image" content="https://www.starfc.sg/assets/img/og/og-cover.png">
+
+    <link rel="icon" type="image/png" href="assets/img/club/starfclogo2-256.png">
+    <link rel="apple-touch-icon" href="assets/img/club/starfclogo2-180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
@@ -16,13 +39,45 @@
     <script src="data/fixtures.js" defer></script>
     <script src="data/media.js" defer></script>
     <script src="assets/js/main.js" defer></script>
+
+    <!-- 结构化数据：球队信息（搜索引擎理解用） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "STAR FC",
+      "alternateName": "新加坡 STAR 足球俱乐部",
+      "sport": "Soccer",
+      "foundingDate": "2002-09",
+      "url": "https://www.starfc.sg/",
+      "logo": "https://www.starfc.sg/assets/img/club/starfclogo2-256.png",
+      "image": "https://www.starfc.sg/assets/img/og/og-cover.png",
+      "email": "account@starfc.sg",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "SG",
+          "addressLocality": "Singapore"
+        }
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UAFL (Singapore amateur football league)"
+      },
+      "sameAs": [
+        "https://www.youtube.com/@SingaporeStarFC",
+        "https://xhslink.com/m/8BgWbanhmVq"
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- ===== 顶部导航 ===== -->
     <header id="navbar" class="site-header">
         <div class="container site-header__inner">
             <a href="#home" class="brand">
-                <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38">
+                <img src="assets/img/club/starfclogo2-256.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38">
                 <span>
                     <span class="brand__name" translate="no">STAR FC</span>
                     <span class="brand__since">SINCE 2002</span>
@@ -77,7 +132,7 @@
         <!-- ===== Hero ===== -->
         <section id="home" class="hero">
             <div class="container hero__inner">
-                <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="hero__crest" width="104" height="104">
+                <img src="assets/img/club/starfclogo2-256.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="hero__crest" width="104" height="104" fetchpriority="high">
                 <div>
                     <span class="hero__badge">
                         <span class="hero__badge-dot" aria-hidden="true"></span>
@@ -112,6 +167,8 @@
                         <button type="button" data-year="2026" onclick="switchYear(2026)" class="segmented__btn year-btn is-active">2026</button>
                     </div>
                 </div>
+
+                <noscript><p class="fixtures-note">此页面的赛程、阵容与视频列表需要启用 JavaScript 才能显示。/ Fixtures, squad and videos require JavaScript.</p></noscript>
 
                 <!-- 2025 赛季 -->
                 <div data-year-panel="2025" class="hidden">
@@ -176,7 +233,7 @@
                 <div class="hall-grid">
                     <article class="hall-card">
                         <div class="hall-card__photo">
-                            <img src="assets/img/club/star_logo.jpg" alt="首批名单整理中" data-i18n-attr="alt:hall.card1.title" loading="lazy" decoding="async">
+                            <img src="assets/img/club/star_logo-320.jpg" alt="首批名单整理中" data-i18n-attr="alt:hall.card1.title" loading="lazy" decoding="async">
                         </div>
                         <div class="hall-card__body">
                             <div class="hall-card__tag" data-i18n="hall.card1.tag">名人堂</div>
@@ -186,7 +243,7 @@
                     </article>
                     <article class="hall-card">
                         <div class="hall-card__photo">
-                            <img src="assets/img/club/star_logo.jpg" alt="功勋队员资料确认中" data-i18n-attr="alt:hall.card2.title" loading="lazy" decoding="async">
+                            <img src="assets/img/club/star_logo-320.jpg" alt="功勋队员资料确认中" data-i18n-attr="alt:hall.card2.title" loading="lazy" decoding="async">
                         </div>
                         <div class="hall-card__body">
                             <div class="hall-card__tag" data-i18n="hall.card2.tag">资料整理</div>
@@ -196,7 +253,7 @@
                     </article>
                     <article class="hall-card">
                         <div class="hall-card__photo">
-                            <img src="assets/img/club/star_logo.jpg" alt="更多人物待补充" data-i18n-attr="alt:hall.card3.title" loading="lazy" decoding="async">
+                            <img src="assets/img/club/star_logo-320.jpg" alt="更多人物待补充" data-i18n-attr="alt:hall.card3.title" loading="lazy" decoding="async">
                         </div>
                         <div class="hall-card__body">
                             <div class="hall-card__tag" data-i18n="hall.card3.tag">持续更新</div>
@@ -480,7 +537,7 @@
             <div class="site-footer__grid">
                 <div>
                     <div class="brand">
-                        <img src="assets/img/club/starfclogo2.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38" loading="lazy">
+                        <img src="assets/img/club/starfclogo2-256.png" alt="STAR FC 官方队徽" data-i18n-attr="alt:a11y.crestAlt" class="brand__crest" width="38" height="38" loading="lazy">
                         <span>
                             <span class="brand__name" translate="no">STAR FC</span>
                             <span class="brand__since">SINCE 2002</span>
