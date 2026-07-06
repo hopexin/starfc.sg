@@ -6,7 +6,7 @@
 - 数据来源：`data/fixtures.js` 的 2026 赛季比赛，名册来源：`data/players.js`。
 - `fred` 已按维护人和队长信息归到 `Wang Xiangan / 王祥安 / Fred`，共 6 球，官网数据已写回正式 ID。
 - `Lao Sun / 老孙` 已按队长补充的 `Sun Yumin / 孙毓敏 / 老孙` 归到 `sun-yumin`，共 2 球，官网数据已写回正式 ID。
-- `Shon Honda` 按维护人确认，保留这个姓名记录。
+- `Shou Honda` 按维护人确认，保留这个姓名记录。
 - `OG` 不进入射手榜，本表不列入球员进球。
 
 ## 在册球员
@@ -58,12 +58,12 @@
 
 | 当前记录名 | 2026 进球 | 出现比赛 | 处理建议 |
 | --- | ---: | --- | --- |
-| Shon Honda | 9 | 2026-03-29 vs Victoria School Alumni；2026-03-22 vs Westland；2026-03-15 vs Opponent B | 维护人确认按 Shon Honda 保持姓名记录 |
-| Ling Ran | 4 | 2026-05-03 vs Unity FC；2026-01-11 vs Kings FC；2026-01-08 vs SCC Lions | 队长确认是否在册；若在册，补正式 ID |
+| Shou Honda | 9 | 2026-03-29 vs Victoria School Alumni；2026-03-22 vs Westland；2026-03-15 vs Opponent B | 全名稳定，按姓名记录 |
+| Ling Ran | 4 | 2026-05-03 vs Unity FC；2026-01-11 vs Kings FC；2026-01-08 vs SCC Lions | 中文名：凌然；全名稳定，暂未建正式球员 ID |
 | Tian Tian | 4 | 2026-06-14 vs Bang Brothers；2026-06-07 vs Vikings FC；2026-05-10 vs Chung Hwa；2026-05-03 vs Unity FC | 队长确认是否在册；若在册，补正式 ID |
-| Song Bowei | 1 | 2026-06-18 vs SCC Lions | 维护人确认小宋是 Song Bowei；队长确认是否加名册 |
-| Wang Yifan | 1 | 2026-04-09 vs SCC | 队长确认是否在册；若在册，补正式 ID |
-| Zack | 1 | 2026-05-17 vs Vietnam FC | 维护人暂不知道身份，待队长确认 |
+| Song Bowei | 1 | 2026-06-18 vs SCC Lions | 昵称：小宋；全名稳定，暂未建正式球员 ID |
+| Wang Yifan | 1 | 2026-04-09 vs SCC | 中文名：王一凡；全名稳定，暂未建正式球员 ID |
+| Zhao Yiming | 1 | 2026-05-17 vs Vietnam FC | 中文名：赵屹明；昵称/截图写法：Zack；全名稳定，暂未建正式球员 ID |
 | 琦哥 | 1 | 2026-06-14 vs Bang Brothers | 维护人暂不知道身份，待队长确认 |
 
 ## 状态与后续
@@ -71,4 +71,4 @@
 1. `Fred = Wang Xiangan` 已写回 `data/fixtures.js` 与 `data/players.js`。
 2. `Lao Sun / 老孙 = Sun Yumin` 已写回 `data/fixtures.js` 与 `data/players.js`。
 3. 队长已补的中文名和昵称已写入 `data/players.js`；`Hu Jianghai` 中文名按维护人纠正为“胡江海”。
-4. 对 `Ling Ran / Tian Tian / Song Bowei / Wang Yifan / Zack / 琦哥` 逐个确认：在册就建或匹配 ID；编外就继续保留姓名记录。
+4. `Shou Honda / Ling Ran / Song Bowei / Wang Yifan / Zhao Yiming` 已有稳定姓名信息，暂按未建正式球员 ID 记录；`Tian Tian / 琦哥` 仍需继续确认身份。
