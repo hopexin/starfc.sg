@@ -1266,10 +1266,17 @@ body.no-scroll { overflow: hidden; }
 /* ---------- 故事 ---------- */
 .stories-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
 }
-@media (min-width: 40rem) { .stories-grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); } }
+@media (min-width: 40rem) {
+  .stories-grid { gap: var(--sp-5); }
+  .stories-grid > .story-card:only-child {
+    width: 100%;
+    max-width: 42rem;
+    justify-self: center;
+  }
+}
 .story-card {
   display: flex;
   flex-direction: column;
