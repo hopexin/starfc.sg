@@ -16,18 +16,6 @@ window.STARFC = window.STARFC || {};
 window.STARFC.blog = {
   posts: [
     {
-      "slug": "2025-season-review",
-      "type": "post",
-      "date": "2026-07-06",
-      "titleZh": "2025 赛季回顾：50 场比赛，从未散场",
-      "titleEn": "2025 Season Review: 50 Matches, The Game Went On",
-      "excerptZh": "38 胜 4 平 8 负，234 粒进球，一座 UAFL 亚军——用数据把 2025 收进档案。",
-      "excerptEn": "38 wins, 4 draws, 8 losses, 234 goals and a UAFL runners-up finish — the 2025 season, on the record.",
-      "tagZh": "赛季档案",
-      "tagEn": "Season Archive",
-      "cover": null
-    },
-    {
       "slug": "star-fc-chronicle",
       "type": "post",
       "date": "2023-04-12",
