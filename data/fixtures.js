@@ -9,7 +9,7 @@
 //     score: [3, 1],                 // 比分 [STAR FC 进球, 对手进球]；未开赛填 null
 //     scorers: [                     // 进球队员（无进球或 0-0 就写 []；没记录写 null）
 //       { id: 'zhang-xin', n: 2 },   //   在册球员：用 data/players.js 里的 id；n 为进球数，1 球可省略 n
-//       { name: 'Shon Honda' },      //   客串/编外：直接写名字
+//       { name: 'Shou Honda' },      //   客串/编外：直接写名字
 //       { nameZh: '田添', nameEn: 'Tian Tian' }, // 编外且有中英两个名字时
 //       { name: 'OG' },              //   对方乌龙球记 'OG'
 //     ],
@@ -29,7 +29,7 @@ window.STARFC.fixtures = {
       scorers: [{ id: 'wang-xiangan' }],
       venue: 'SIA · 17:00' },
     { date: '2026-06-18', comp: '友谊赛', opponent: 'SCC Lions', score: [6, 3],
-      scorers: [{ id: 'zhang-xin' }, { id: 'lan-yihang' }, { name: 'Song Bowei' }, { id: 'xu-zhihe' }, { id: 'jiang-chaoxiong' }, { id: 'wang-xiangan' }],
+      scorers: [{ id: 'zhang-xin' }, { id: 'lan-yihang' }, { nameZh: '小宋', nameEn: 'Song Bowei' }, { id: 'xu-zhihe' }, { id: 'jiang-chaoxiong' }, { id: 'wang-xiangan' }],
       venue: 'Padang · 17:20' },
     { date: '2026-06-14', comp: '友谊赛', opponent: 'Bang Brothers', score: [7, 2],
       scorers: [{ id: 'zhang-xin', n: 2 }, { id: 'feng-xin' }, { id: 'ouyang-mingyu' }, { id: 'sun-haoyang' }, { nameZh: '田添', nameEn: 'Tian Tian' }, { name: '琦哥' }],
@@ -41,7 +41,7 @@ window.STARFC.fixtures = {
       scorers: [{ id: 'joel-loh-ziyang', n: 2 }, { id: 'feng-xin', n: 2 }, { id: 'jiang-chaoxiong' }],
       venue: 'SIA · 17:00' },
     { date: '2026-05-17', comp: 'UAFL', opponent: 'Vietnam FC', score: [5, 2],
-      scorers: [{ id: 'jiang-chaoxiong', n: 2 }, { id: 'joel-loh-ziyang' }, { name: 'Zack' }, { id: 'jing-yilin' }],
+      scorers: [{ id: 'jiang-chaoxiong', n: 2 }, { id: 'joel-loh-ziyang' }, { nameZh: '赵屹明', nameEn: 'Zhao Yiming' }, { id: 'jing-yilin' }],
       venue: 'SIA Sports Centre · 15:00' },
     { date: '2026-05-10', comp: '友谊赛', opponent: 'Chung Hwa', score: [6, 2],
       scorers: [{ id: 'feng-xin', n: 2 }, { id: 'zhang-xin', n: 2 }, { nameZh: '田添', nameEn: 'Tian Tian' }, { id: 'jing-yilin' }],
@@ -62,13 +62,13 @@ window.STARFC.fixtures = {
       scorers: [{ id: 'sa-baiyi' }],
       venue: 'CMPB · 14:00' },
     { date: '2026-03-29', comp: '友谊赛', opponent: 'Victoria School Alumni', score: [2, 2],
-      scorers: [{ id: 'zhang-xin' }, { name: 'Shon Honda' }],
+      scorers: [{ id: 'zhang-xin' }, { name: 'Shou Honda' }],
       venue: 'Vic school · 15:00' },
     { date: '2026-03-22', comp: 'UAFL', opponent: 'Westland', score: [4, 3],
-      scorers: [{ name: 'Shon Honda', n: 2 }, { id: 'lan-yihang', n: 2 }],
+      scorers: [{ name: 'Shou Honda', n: 2 }, { id: 'lan-yihang', n: 2 }],
       venue: 'SIA · 15:00' },
     { date: '2026-03-15', comp: '友谊赛', opponent: 'Opponent B', score: [13, 3],
-      scorers: [{ name: 'Shon Honda', n: 6 }, { id: 'zhang-xin', n: 3 }, { id: 'feng-xin', n: 2 }, { id: 'jing-yilin' }, { id: 'li-qilin' }],
+      scorers: [{ name: 'Shou Honda', n: 6 }, { id: 'zhang-xin', n: 3 }, { id: 'feng-xin', n: 2 }, { id: 'jing-yilin' }, { id: 'li-qilin' }],
       venue: 'SCC · 17:00' },
     { date: '2026-03-08', comp: 'UAFL', opponent: '7 Star', score: [1, 2],
       scorers: [{ id: 'joel-loh-ziyang' }],
