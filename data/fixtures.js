@@ -21,6 +21,9 @@
 window.STARFC = window.STARFC || {};
 window.STARFC.fixtures = {
   2026: [
+    { date: '2026-07-12', comp: '友谊赛', opponent: 'Changi Tuesday FC', score: null,
+      scorers: null,
+      venue: 'SUTD · 15:00' },
     { date: '2026-07-05', comp: '友谊赛', opponent: 'Snipers', score: [5, 1],
       scorers: [{ id: 'xu-zhihe', n: 3 }, { id: 'zhang-xin' }, { id: 'wang-xiangan' }],
       venue: 'SUTD · 15:00' },
