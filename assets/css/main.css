@@ -9,8 +9,8 @@
    5. Hero
    6. 赛程战绩（比赛卡 = 视觉主角）
    7. 媒体中心
-   8. 球队成员
-   9. 名人堂 / 关于 / 大事记 / 故事 / 加入 / 联系
+   8. 当前阵容
+   9. 名人堂 / 关于 / 大事记 / 最新文章 / 加入 / 联系
    10. 页脚
    设计原则：高级深色运动风——近黑碳色底 + 分层表面 + 白色发丝线；
    品牌红为唯一强调色（含克制的红色泛光）；大留白；强字体层级；
@@ -1027,7 +1027,7 @@ body.no-scroll { overflow: hidden; }
 .media-more { display: flex; justify-content: center; margin-top: var(--sp-6); }
 @media (min-width: 30rem) { .media-more { display: none !important; } }
 
-/* ---------- 8. 球队成员 ---------- */
+/* ---------- 8. 当前阵容 ---------- */
 .team-group { margin-bottom: var(--sp-7); }
 .team-group:last-child { margin-bottom: 0; }
 .team-group__head {
@@ -1179,7 +1179,7 @@ body.no-scroll { overflow: hidden; }
 .hall-card__title { margin-top: var(--sp-1); font-size: var(--text-lg); font-weight: 700; color: var(--text); }
 .hall-card__sub { margin-top: var(--sp-1); font-size: var(--text-sm); color: var(--text-faint); }
 
-/* ---------- 关于我们 ---------- */
+/* ---------- 关于 STAR FC ---------- */
 .about-prose {
   font-size: clamp(1.05rem, 1rem + 0.4vw, 1.2rem);
   line-height: 1.9;

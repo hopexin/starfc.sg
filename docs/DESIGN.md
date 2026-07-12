@@ -54,7 +54,7 @@
 | 组件 | 类 | 说明 |
 | --- | --- | --- |
 | 区块 | `.section` / `.section--alt` | 深浅碳色交替 |
-| 区块标题组 | `.section-head`（编辑风） | 幽灵描边编号 `.section-head__index`（01-09）+ 左对齐 eyebrow/标题/描述 + 右侧 `.section-head__aux` 辅助位（如年份切换） |
+| 区块标题组 | `.section-head`（编辑风） | 幽灵描边编号 `.section-head__index`（当前可见 01-08）+ 左对齐 eyebrow/标题/描述 + 右侧 `.section-head__aux` 辅助位（如年份切换） |
 | 最新战绩条 | `.hero-latest` + `.form-dots` | Hero 底部：最近一场比分 + 近 5 场 W/D/L 圆点（JS 自动计算，无数据自动隐藏） |
 | 品牌跑马灯 | `.ticker` | Hero 与赛程之间，CSS 无限横滚，reduced-motion 时静止 |
 | 射手榜 | `.scorers-board` | 每个赛季面板一份，从进球数据自动统计 Top 8，红色数据条，OG/匿名客串不计入 |

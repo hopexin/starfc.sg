@@ -10,12 +10,12 @@
 | --- | --- | --- |
 | 加一场比赛 / 改比分 | `data/fixtures.js` | 统计自动计算，见 `WEEKLY_UPDATE_CHECKLIST.md` |
 | 加一条比赛集锦视频 | `data/media.js` | 标题自动生成，支持可选封面图 |
-| 发一篇博客/档案文章 | `blog/<slug>.html` + `data/blog.js` | 复制 `blog/_template.html`；流程见 AGENTS.md 任务 C |
+| 发一篇博客文章 | `blog/<slug>.html` + `data/blog.js` | 复制 `blog/_template.html`；流程见 AGENTS.md 任务 C |
 | 球员名册 / 队长 / 绰号表 | `data/players.js` | id 决定照片路径 |
 | 界面文案（中/英） | `data/i18n.js` | 每条 `{ zh, en }` 成对维护 |
 | 球员照片 | `assets/img/players/<id>/profile.jpg` | 见 `PLAYER_PHOTO_GUIDE.md` |
-| 名人堂卡片 | `index.html` 的 Hall of Fame 区块 | 目前是 3 张占位卡，人物确认后手工替换 |
-| 故事/文章外链 | `index.html` 的 Stories 区块 + `data/i18n.js` 文案 | 低频改动 |
+| 名人堂卡片 | `index.html` 的 Hall of Fame 区块 | 当前隐藏；首位真实人物确认后恢复 |
+| 首页最新文章区文案 | `data/i18n.js` 的 `stories.*` | 文章数据仍只维护 `data/blog.js`，不加外链 |
 | 社媒/邮箱链接 | `index.html`（搜对应 href） | 出现多处，全局替换 |
 | 视觉样式 | `assets/css/main.css` | 设计变量见 `DESIGN.md`，谨慎改 |
 
@@ -80,7 +80,9 @@ scripts/        # 校验与照片处理脚本
 1. 候选人的照片和文字资料放进 `hall-of-fame-inbox/`（每人一个文件夹：`photo.jpg` + `info.md`）。
 2. 人物、称号、年份、故事经维护人确认后，替换 `index.html` Hall of Fame 区块的占位卡
    （复制一张现有卡片改文字；新增文案记得在 `data/i18n.js` 配对英文）。
-3. 照片发布路径：`assets/img/hall/<id>/profile.jpg`。
+3. 首位真实人物上线时再移除 `#hall` 的 `hidden/aria-hidden`、恢复导航入口，并把后续可见区块
+   重新编号、恢复深浅底色交替；不要让占位卡单独重新出现。
+4. 照片发布路径：`assets/img/hall/<id>/profile.jpg`。
 
 ## 5. 界面文案与双语
 

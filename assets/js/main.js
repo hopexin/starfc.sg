@@ -429,7 +429,7 @@
     updateMediaToggle();
   }
 
-  /* ---------- 球队档案与故事（首页最新 6 篇，数据源 data/blog.js） ---------- */
+  /* ---------- 最新文章（首页最新 6 篇，数据源 data/blog.js） ---------- */
   function storyCard(p) {
     var lang = getLang();
     var external = p.type === 'external';
@@ -457,7 +457,7 @@
     el.innerHTML = posts.slice(0, 6).map(storyCard).join('');
   }
 
-  /* ---------- 球队成员 ---------- */
+  /* ---------- 当前阵容 ---------- */
   var groupConfig = [
     { key: 'FWD', titleKey: 'team.groupFwd', sub: 'Forwards · FWD', positions: ['WINGER', 'STRIKER'] },
     { key: 'MID', titleKey: 'team.groupMid', sub: 'Midfielders · MID', positions: ['CM', 'DM'] },
@@ -604,6 +604,20 @@
     else closeMobileMenu();
   }
 
+  var desktopNavQuery = window.matchMedia('(min-width: 64rem)');
+  function closeMobileMenuAtDesktop(e) {
+    if (!e.matches) return;
+    var menu = document.getElementById('mobile-menu');
+    var btn = document.getElementById('mobile-menu-btn');
+    menu.classList.remove('is-open');
+    menu.classList.add('hidden');
+    document.body.classList.remove('no-scroll');
+    btn.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  if (desktopNavQuery.addEventListener) desktopNavQuery.addEventListener('change', closeMobileMenuAtDesktop);
+  else desktopNavQuery.addListener(closeMobileMenuAtDesktop);
+
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       var menu = document.getElementById('mobile-menu');
@@ -619,6 +633,7 @@
     document.querySelectorAll('[data-year-panel]').forEach(function (panel) {
       panel.classList.toggle('hidden', parseInt(panel.dataset.yearPanel, 10) !== year);
     });
+    requestAnimationFrame(function () { refreshReveals(true); });
   }
 
   /* =====================================================================

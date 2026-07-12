@@ -58,7 +58,7 @@ window.STARFC.players = [
   { "id": "wang-xiangan", "name": "Wang Xiangan", "nameZh": "王祥安", "nickEn": "Fred", "position": "DM", "number": 92 }
 ];
 
-// 队长 / 副队长（球队成员板块的 C / VC 徽章与排序依据）
+// 队长 / 副队长（当前阵容板块的 C / VC 徽章与排序依据）
 window.STARFC.team = {
   captainId: "liu-meihua",
   viceCaptainIds: ["zhang-xin", "feng-xin"]

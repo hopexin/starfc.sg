@@ -65,7 +65,8 @@ hall-of-fame-inbox/lemon/
   info.md   # 姓名 / 称号 / 年份 / 一句话简介 / 详细故事
 ```
 
-确认后替换 `index.html` Hall of Fame 区块的占位卡（新增文案在 `data/i18n.js` 配对英文）。
+确认后替换 `index.html` 中当前隐藏的 Hall of Fame 占位卡（新增文案在 `data/i18n.js` 配对英文）；
+首位真实人物上线时再恢复区块与导航入口。
 
 ## 报名表
 

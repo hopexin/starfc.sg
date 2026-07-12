@@ -12,8 +12,8 @@ window.STARFC.i18n = {
   // ---- 全站 / meta ----
   'meta.title': { zh: 'STAR FC | 新加坡 STAR 足球俱乐部', en: 'STAR FC | Singapore STAR Football Club' },
   'meta.description': {
-    zh: 'STAR FC，2002 年成立的新加坡华人业余足球俱乐部。人来人往，从未散场：每周比赛与集锦、阵容与射手榜、球队故事。',
-    en: 'STAR FC, a Chinese community football club in Singapore since 2002. People come and go — the game goes on: weekly fixtures, highlights, squad and stories.'
+    zh: 'STAR FC，2002 年成立的新加坡华人业余足球俱乐部。人来人往，从未散场：赛程战绩、比赛集锦、球队博客与当前阵容。',
+    en: 'STAR FC, a Chinese community football club in Singapore since 2002. People come and go — the game goes on: fixtures, highlights, the club blog and current squad.'
   },
   'a11y.crestAlt': { zh: 'STAR FC 官方队徽', en: 'STAR FC official crest' },
   'a11y.langSwitcher': { zh: '语言切换', en: 'Language switcher' },
@@ -23,10 +23,11 @@ window.STARFC.i18n = {
   'nav.home': { zh: '主页', en: 'Home' },
   'nav.fixtures': { zh: '赛程战绩', en: 'Fixtures' },
   'nav.media': { zh: '媒体中心', en: 'Media' },
-  'nav.team': { zh: '球队成员', en: 'Squad' },
+  'nav.blog': { zh: '博客', en: 'Blog' },
+  'nav.team': { zh: '阵容', en: 'Squad' },
   'nav.hall': { zh: '名人堂', en: 'Hall of Fame' },
-  'nav.about': { zh: '关于我们', en: 'About' },
-  'nav.history': { zh: '队史大事记', en: 'History' },
+  'nav.about': { zh: '球队介绍', en: 'About' },
+  'nav.history': { zh: '队史', en: 'History' },
   'nav.join': { zh: '加入我们', en: 'Join Us' },
   'nav.contact': { zh: '联系我们', en: 'Contact' },
 
@@ -78,7 +79,7 @@ window.STARFC.i18n = {
   'media.showLess': { zh: '收起', en: 'Show less' },
   'media.highlightsSuffix': { zh: '（比赛集锦）', en: '(Highlights)' },
 
-  // ---- 球队成员 ----
+  // ---- 当前阵容 ----
   'team.title': { zh: '当前阵容', en: 'Current Squad' },
   'team.season': { zh: '2026 赛季', en: '2026 Season' },
   'team.desc': { zh: '按位置浏览 STAR FC 当前阵容', en: 'Browse the current STAR FC squad by position' },
@@ -102,7 +103,7 @@ window.STARFC.i18n = {
   'hall.card3.title': { zh: '更多人物待补充', en: 'More names to be added' },
   'hall.card3.sub': { zh: '欢迎提供历史照片与资料', en: 'Historical photos and notes are welcome' },
 
-  // ---- 关于我们 ----
+  // ---- 关于 STAR FC ----
   'about.title': { zh: '关于 STAR FC', en: 'About STAR FC' },
   'about.p1': { zh: '2000 年前后，一批从中国来到新加坡的人留了下来。2002 年 9 月，AIT 留学生队、浙江足球队等几支队伍整合为 STAR FC，由终身名誉队长 Lemon（9 号）牵头——这支球队，是留下来的人守着的。', en: 'Around 2000, a group who came from China to Singapore chose to stay. In September 2002 the AIT student team, the Zhejiang side and other groups merged into STAR FC, led by lifetime honorary captain Lemon (No. 9) — a club kept alive by the ones who stayed.' },
   'about.p2': { zh: '二十多年过去，一代代新人加入，元老们还在场上。今天的 STAR FC：四十人的现役名册，每个周日的正式比赛，每周更新的集锦，中英双语的社区。2025 年，我们拿到 UAFL 联赛亚军——下一场，照常开球。', en: 'More than twenty years on, new generations keep arriving and the founding members are still playing. STAR FC today: a forty-man roster, a proper match every Sunday, highlights published weekly, a bilingual community. In 2025 we finished UAFL runners-up — and the next kick-off is business as usual.' },
@@ -139,16 +140,16 @@ window.STARFC.i18n = {
   'history.i7.title': { zh: '照常开球', en: 'Kick-off As Usual' },
   'history.i7.body': { zh: '四十人的名册，每周日的比赛，每周更新的集锦。人来人往，从未散场——下一代的故事，正在写。', en: 'A forty-man roster, a match every Sunday, highlights every week. People come and go, the game goes on — and the next generation is already writing its chapter.' },
 
-  // ---- 球队档案与故事 ----
-  'stories.title': { zh: '球队档案与故事', en: 'Club Archive & Stories' },
+  // ---- 最新文章 / Blog ----
+  'stories.title': { zh: '最新文章', en: 'Latest Stories' },
   'stories.desc': { zh: '二十多年，留下的不只是比分', en: 'After more than two decades, the record is more than scores' },
   'stories.readMore': { zh: '查看原文 →', en: 'Read original →' },
   'stories.readPost': { zh: '阅读全文 →', en: 'Read post →' },
-  'stories.viewAll': { zh: '查看全部文章', en: 'All posts' },
-  'stories.note': { zh: '后续会继续补充比赛战报、活动与球队故事。', en: 'Match reports, events and club stories will continue to be added here.' },
+  'stories.viewAll': { zh: '查看全部文章', en: 'All Posts' },
+  'stories.note': { zh: '战报、人物、动态与队史，持续更新。', en: 'Match reports, people, club updates and history, updated regularly.' },
 
   // ---- 加入我们 ----
-  'join.title': { zh: '我们一直在等', en: 'We Are Always Looking' },
+  'join.title': { zh: '加入 STAR FC', en: 'Join STAR FC' },
   'join.subtitle': { zh: '那个热爱足球的你', en: 'For players who love the game' },
   'join.factLine': { zh: '正式 11 人制比赛 · 每周日 · 新加坡各球场', en: 'Proper 11-a-side football · Every Sunday · Across Singapore' },
   'join.formTitle': { zh: '试训联系信息', en: 'Trial Contact Info' },

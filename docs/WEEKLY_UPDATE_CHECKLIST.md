@@ -46,7 +46,7 @@
 - 标题自动生成为「日期 vs 对手（比赛集锦）」，英文界面自动切换。
 - 有封面图时把图放到 `assets/img/media/highlights/<日期-对手slug>/cover.jpg`，并把 `cover` 填成该路径；没有就保持 `null`（显示默认深色播放占位）。
 
-## 2.5 发一篇博客/档案文章
+## 2.5 发一篇博客文章
 
 完整八步流程见根目录 **AGENTS.md 任务 C**（复制 blog/_template.html → 填 5 个占位符 →
 组件库写正文 → data/blog.js 加索引 → validate + update-sitemap → 预览 → 提交）。
