@@ -21,8 +21,9 @@
 window.STARFC = window.STARFC || {};
 window.STARFC.fixtures = {
   2026: [
-    { date: '2026-07-19', comp: '友谊赛', opponent: 'Big Boy FC', score: null,
-      scorers: null,
+    { date: '2026-07-19', comp: '友谊赛', opponent: 'Big Boy FC', score: [7, 0],
+      scorers: [{ id: 'xu-zhihe' }, { id: 'sun-haoyang' }, { id: 'zhang-xin', n: 3 },
+        { id: 'jing-yilin' }, { id: 'huang-pengxin' }],
       venue: 'St Gabriel Secondary School · 15:00' },
     { date: '2026-07-12', comp: '友谊赛', opponent: 'Changi Tuesday FC', score: [1, 3],
       scorers: [{ id: 'jiang-chaoxiong' }],
